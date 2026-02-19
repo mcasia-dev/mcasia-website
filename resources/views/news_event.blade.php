@@ -270,7 +270,7 @@
                             <img src="{{ $eventImages[0] }}" alt="{{ $event['title'] }}"
                                 class="w-full h-36 sm:h-40 md:h-48 object-cover rounded mb-2 ">
                             <h4 class="text-lg font-semibold truncate">{{ $event['title'] }}</h4>
-                            <p class="text-xs sm:text-sm text-gray-400">{{ $event['date'] }}</p>
+                            {{-- <p class="text-xs sm:text-sm text-gray-400">{{ $event['date'] }}</p> --}}
                         </div>
 
                         <!-- Event Modal -->
@@ -328,9 +328,9 @@
                                     <div
                                         class="flex-1 flex flex-col justify-center p-4 text-center md:text-left">
                                         <h2 class="text-3xl font-bold text-black mb-2">{{ $event['title'] }}</h2>
-                                        <p class="text-sm md:text-base text-gray-500 {{ $hasDescription ? 'mb-4' : '' }}">
+                                        {{-- <p class="text-sm md:text-base text-gray-500 {{ $hasDescription ? 'mb-4' : '' }}">
                                             {{ $event['date'] }}
-                                        </p>
+                                        </p> --}}
                                         @if ($hasDescription)
                                             <p
                                                 class="text-base md:text-lg text-gray-700 text-justify leading-relaxed overflow-auto">
