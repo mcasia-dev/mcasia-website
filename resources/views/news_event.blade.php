@@ -123,39 +123,43 @@
                     'title' => 'WOFEX Manila 2023',
                     'date' => 'August 6, 2025',
                     'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/365309671_605395005042162_8665672183080610030_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/362915216_605986988316297_3417780447851312438_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/364024435_604917185089944_24185452207523667_n-1.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/364741217_604917138423282_3446886961058776681_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/364793323_604923915089271_3137930836185061493_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/364807750_605395031708826_8851447479745907818_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/365183731_605395021708827_321624644136527296_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/365260050_605395015042161_4799622706911865117_n.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/01_WOF.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/02_WOF.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/03_WOF.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/04_WOF.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/05_WOF.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/06_WOF.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/07_WOF.jpg',
+                        'images/EVENTS/WOFEX MANILA 2023/08_WOF.jpg',
 
                     ],
                     'description' =>
                         'McAsia’s booth at the World Food Expo last August 2-5, 2023 at the SMX Convention Center Manila, was a symphony of flavors and aromas, designed to captivate the palates of visitors. From the moment attendees stepped into our space, they were enveloped in an ambiance that celebrated the artistry and passion behind our culinary creations.',
                     'The carefully curated displays featured our signature dishes, highlighting the quality of our Asian ingredients and the craftsmanship that sets us apart'
                 ],
-                [
-                    'title' => 'WOFEX Cebu 2023',
-                    'date' => 'April 24, 2023',
-                    'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342335781_569158718654567_3828589371071699165_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342513751_609894934087360_3630082966185560219_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342511311_610762660669477_2013223865411140735_n-2.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342202074_1176372153046709_8460370401537678584_n-2.jpg',
-                    ],
-                    'description' => 'In a celebration of food and culinary innovation, McAsia Team had the privilege of participating in the World Food Expo held in the vibrant city of Cebu for the World Food Expo Visayas happened last April 20-23, 2023 at Waterfront Hotels & Casinos, Cebu City.'
-                ],
+                // [
+                //     'title' => 'WOFEX Cebu 2023',
+                //     'date' => 'April 24, 2023',
+                //     'images' => [
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342335781_569158718654567_3828589371071699165_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342513751_609894934087360_3630082966185560219_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342511311_610762660669477_2013223865411140735_n-2.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/342202074_1176372153046709_8460370401537678584_n-2.jpg',
+                //     ],
+                //     'description' => 'In a celebration of food and culinary innovation, McAsia Team had the privilege of participating in the World Food Expo held in the vibrant city of Cebu for the World Food Expo Visayas happened last April 20-23, 2023 at Waterfront Hotels & Casinos, Cebu City.'
+                // ],
                 [
                     'title' => 'MAFBEX 2023',
                     'date' => 'June 19, 2023',
                     'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/353849351_579937790921217_3426866377363875407_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/354054637_579356617646001_7944086778451893510_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/353864525_579354364312893_3477703331002766260_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/354074348_579355964312733_3954022509091062262_n.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex1.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex2.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex3.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex4.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex5.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex6.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex7.jpg',
+                        'images/EVENTS/MAFBEX 2023/mafbex8.jpg',
                     ],
                     'description' => 'The Manila Food Expo happened last June 14-18, 2023 in World Trade Center, Manila provided a platform for us to explore and embrace regional culinary trends. From unique street food creations to innovative fusion dishes,'
                 ],
@@ -163,12 +167,16 @@
                     'title' => 'Thailand Week 2023',
                     'date' => 'June 19, 2023',
                     'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/338879829_606755484367223_7933176536063397916_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/338670227_172208585703130_7193591554524312944_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/338879829_606755484367223_7933176536063397916_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/338445505_1214715305843763_1213229833998898028_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/338148452_6198103230232964_2320221285370044531_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/338836215_553154026929985_1072623498872901242_n.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai1.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai2.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai3.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai4.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai5.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai6.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai7.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai8.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai9.jpg',
+                        'images/EVENTS/Thailand Week 2023/thai10.jpg',
                     ],
                     'description' => ''
                 ],
@@ -176,54 +184,64 @@
                     'title' => 'Noel Bazaar 2022',
                     'date' => 'June 19, 2023',
                     'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/317722698_972910054112482_8280839285273602904_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/317437551_971351740934980_8520068563068373948_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/316255719_970617491008405_4421288660658418542_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/315695845_970617481008406_5887967203713590679_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/316315145_969420371128117_7372400841176610787_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/316807336_968750324528455_750020097159258414_n.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar1.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar2.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar3.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar4.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar5.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar6.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar7.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar8.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar9.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar10.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar11.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar12.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar13.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar14.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar15.jpg',
+                        'images/EVENTS/NOEL Bazaar 2022/noel_bazaar16.jpg',
                     ],
                     'description' => 'As the holiday season unfolded, our team had the pleasure of participating in the much-anticipated Christmas Bazaar of 2022, Noel Bazaar—an event that transformed the ordinary into the extraordinary and spread festive cheer throughout the community. McAsias booth, adorned with twinkling lights and exuding a warm and welcoming ambiance, became a haven for holiday shoppers seeking unique gifts and delightful Asian products Our participation in the Christmas Bazaar allowed us to present exclusive holiday offerings that resonated with the festive spirit We want to send thanks to all who participated with us last November and December event dates that happened at Filinvest Tent, Alabang and World Trade Center'
                 ],
-                [
-                    'title' => 'WOFEX Manila 2022',
-                    'date' => 'June 19, 2023',
-                    'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297574535_882671376469684_2999360323446627874_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297660701_882671799802975_210699793026921347_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297601056_882671829802972_98910655444194783_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297626116_882671869802968_683372144773233079_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297689432_882672013136287_8404949495675449345_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297571825_882672039802951_3959572961363665160_n.jpg',
-                    ],
-                    'description' => 'The World Food Expo (WOFEX) 2022 was a feast for the senses, bringing together food enthusiasts, industry leaders, and culinary innovators from around the country. This happened last August 3-6, 2023 at SMX Convention Center, Pasay City. This was the first-ever expo experience of McAsia. This culinary extravaganza was a testament to our commitment to showcasing the best in food and beverage',
-                ],
-                [
-                    'title' => 'McAsia & Kobeya New Year’s Toast 2022',
-                    'date' => 'January 7, 2023',
-                    'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/thumbnail-1.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07188-1536x864.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07207-1536x864.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07436-1536x864.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07446-1536x864.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07477-1536x864.jpg',
-                    ],
-                    'description' => 'As the year drew to a new chapter, McAsia embraced the festive spirit with a spectacular New Years Toast and Christmas Party, bringing together colleagues, friends, and the warmth of the holiday season. The event was held at Felicidad Mansion, Quezon City last January 6, 2023, and it was a dazzling affair that marked the end of the year with joy, gratitude, and anticipation for the adventures that lie ahead.',
-                ],
-                [
-                    'title' => 'ABC Hot & Sweet Chili Donation Drive',
-                    'date' => 'January 7, 2023',
-                    'images' => [
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401076115_657908519790810_3693639043077205660_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401076317_657908513124144_3911741493152524187_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/400836935_657908523124143_1650869408429332145_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401076116_657908563124139_9047497740408235196_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401093252_657908609790801_6297931591554095694_n.jpg',
-                        'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401063216_657908746457454_1719933888189202571_n.jpg',
-                    ],
-                    'description' => 'As part of McAsia Foodtrade Corporation’s Corporate Social Responsibility, we are able to donate boxes of ABC Sauces PH goods to our neighboring communities:',
-                ],
+                // [
+                //     'title' => 'WOFEX Manila 2022',
+                //     'date' => 'June 19, 2023',
+                //     'images' => [
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297574535_882671376469684_2999360323446627874_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297660701_882671799802975_210699793026921347_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297601056_882671829802972_98910655444194783_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297626116_882671869802968_683372144773233079_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297689432_882672013136287_8404949495675449345_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/297571825_882672039802951_3959572961363665160_n.jpg',
+                //     ],
+                //     'description' => 'The World Food Expo (WOFEX) 2022 was a feast for the senses, bringing together food enthusiasts, industry leaders, and culinary innovators from around the country. This happened last August 3-6, 2023 at SMX Convention Center, Pasay City. This was the first-ever expo experience of McAsia. This culinary extravaganza was a testament to our commitment to showcasing the best in food and beverage',
+                // ],
+                // [
+                //     'title' => 'McAsia & Kobeya New Year’s Toast 2022',
+                //     'date' => 'January 7, 2023',
+                //     'images' => [
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/thumbnail-1.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07188-1536x864.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07207-1536x864.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07436-1536x864.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07446-1536x864.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/07/DSC07477-1536x864.jpg',
+                //     ],
+                //     'description' => 'As the year drew to a new chapter, McAsia embraced the festive spirit with a spectacular New Years Toast and Christmas Party, bringing together colleagues, friends, and the warmth of the holiday season. The event was held at Felicidad Mansion, Quezon City last January 6, 2023, and it was a dazzling affair that marked the end of the year with joy, gratitude, and anticipation for the adventures that lie ahead.',
+                // ],
+                // [
+                //     'title' => 'ABC Hot & Sweet Chili Donation Drive',
+                //     'date' => 'January 7, 2023',
+                //     'images' => [
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401076115_657908519790810_3693639043077205660_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401076317_657908513124144_3911741493152524187_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/400836935_657908523124143_1650869408429332145_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401076116_657908563124139_9047497740408235196_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401093252_657908609790801_6297931591554095694_n.jpg',
+                //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401063216_657908746457454_1719933888189202571_n.jpg',
+                //     ],
+                //     'description' => 'As part of McAsia Foodtrade Corporation’s Corporate Social Responsibility, we are able to donate boxes of ABC Sauces PH goods to our neighboring communities:',
+                // ],
             ];
         @endphp
 
@@ -250,20 +268,21 @@
 
                         <!-- Event Modal -->
                         <div x-show="open" x-data="{
-                                                        index: 0,
-                                                        fullImage: null,
-                                                        images: {{ json_encode($event['images']) }},
-                                                        slideshow: null,
-                                                        startSlideshow() {
-                                                            this.slideshow = setInterval(() => {
-                                                                this.index = (this.index + 1) % this.images.length;
-                                                            }, 5000);
-                                                        },
-                                                        stopSlideshow() {
-                                                            clearInterval(this.slideshow);
-                                                            this.index = 0;
-                                                        }
-                                                    }" x-init="startSlideshow()" @click.away="open = false; stopSlideshow()"
+                                                                index: 0,
+                                                                fullImage: null,
+                                                                images: {{ json_encode($event['images']) }},
+                                                                slideshow: null,
+                                                                startSlideshow() {
+                                                                    this.slideshow = setInterval(() => {
+                                                                        this.index = (this.index + 1) % this.images.length;
+                                                                    }, 5000);
+                                                                },
+                                                                stopSlideshow() {
+                                                                    clearInterval(this.slideshow);
+                                                                    this.index = 0;
+                                                                }
+                                                            }" x-init="startSlideshow()"
+                            @click.away="open = false; stopSlideshow()"
                             class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[9999] overflow-auto p-4">
 
                             <div
