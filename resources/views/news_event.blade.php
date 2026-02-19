@@ -61,11 +61,11 @@
                     'date' => 'August 2025',
                     'description' => 'MAFBEX 2025 was held at the World Trade Center Manila, and McAsia Foodtrade Corporation was proud to be part of this exciting event. At our booth, we shared product samples, fun giveaways, and had the chance to meet with partners and food enthusiasts. It was a great way to show our quality products and connect with more people in the industry. Thank you to everyone who visited—we look forward to serving more flavors soon!',
                     'images' => [
-                        'images/EVENTS/MAFBEX 2025/1.jpeg',
-                        'images/EVENTS/MAFBEX 2025/2.jpeg',
-                        'images/EVENTS/MAFBEX 2025/3.jpeg',
-                        'images/EVENTS/MAFBEX 2025/4.jpeg',
-                        'images/EVENTS/MAFBEX 2025/5.jpeg',
+                        'images/EVENTS/MAFBEX 2025/1.jpg',
+                        'images/EVENTS/MAFBEX 2025/2.jpg',
+                        'images/EVENTS/MAFBEX 2025/3.jpg',
+                        'images/EVENTS/MAFBEX 2025/4.jpg',
+                        'images/EVENTS/MAFBEX 2025/5.jpg',
                     ],
                 ],
                 [
@@ -73,12 +73,12 @@
                     'date' => 'August 2025',
                     'description' => 'McAsia Foodtrade Corporation brought bold flavors and kitchen excitement to WOFEX Iloilo 2025! We proudly joined the event to showcase our wide range of sauces, condiments, and Asian ingredients that bring authentic flavors to every kitchen. It was a great opportunity to connect with chefs, food entrepreneurs, and partners who share our passion for quality and taste. We’re grateful to everyone who visited our booth and look forward to bringing more Asian flavors closer to you.',
                     'images' => [
-                        'images/EVENTS/WOFEX lloilo 2025/1.jpeg',
-                        'images/EVENTS/WOFEX lloilo 2025/2.jpeg',
-                        'images/EVENTS/WOFEX lloilo 2025/3.jpeg',
-                        'images/EVENTS/WOFEX lloilo 2025/4.jpeg',
-                        'images/EVENTS/WOFEX lloilo 2025/5.jpeg',
-                        'images/EVENTS/WOFEX lloilo 2025/6.jpeg',
+                        'images/EVENTS/WOFEX lloilo 2025/1.jpg',
+                        'images/EVENTS/WOFEX lloilo 2025/2.jpg',
+                        'images/EVENTS/WOFEX lloilo 2025/3.jpg',
+                        'images/EVENTS/WOFEX lloilo 2025/4.jpg',
+                        'images/EVENTS/WOFEX lloilo 2025/5.jpg',
+                        'images/EVENTS/WOFEX lloilo 2025/6.jpg',
                     ],
                 ],
                 [
@@ -99,11 +99,14 @@
                     'title' => 'WOFEX Visayas 2025',
                     'date' => 'August 2025',
                     'images' => [
-                        'images/EVENTS/WOFEX VISAYAS 2025/1.jpeg',
-                        'images/EVENTS/WOFEX VISAYAS 2025/2.jpeg',
-                        'images/EVENTS/WOFEX VISAYAS 2025/3.jpeg',
-                        'images/EVENTS/WOFEX VISAYAS 2025/4.jpeg',
-                        'images/EVENTS/WOFEX VISAYAS 2025/5.jpeg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/1.jpg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/2.jpg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/3.jpg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/4.jpg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/5.jpg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/6.jpg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/7.jpg',
+                        'images/EVENTS/WOFEX VISAYAS 2025/8.jpg',
                     ],
                     'description' => 'McAsia Foodtrade Corporation was honored to be part of WOFEX Visayas 2025! The event was a dynamic platform where we showcased our trusted line of sauces, condiments, and Asian specialties that bring authentic flavors to every kitchen. It was an exciting opportunity to connect with industry leaders, strengthen partnerships, and highlight our commitment to quality and innovation. With every event like WOFEX, McAsia continues to serve solutions that inspire chefs, home cooks, and food businesses alike. Thank you to everyone who visited and connected with us during the event. '
                 ],
@@ -111,7 +114,7 @@
                     'title' => 'WOFEX Davao 2025',
                     'date' => 'August 2025',
                     'images' => [
-                        'images/EVENTS/WOFEX Davao 2025/1.jpeg',
+                        'images/EVENTS/WOFEX Davao 2025/1.jpg',
                         'images/EVENTS/WOFEX Davao 2025/2.jpg',
                         'images/EVENTS/WOFEX Davao 2025/3.jpg',
                         'images/EVENTS/WOFEX Davao 2025/4.jpg',
@@ -255,12 +258,16 @@
             <!-- Events Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 @foreach($events as $event)
+                    @php
+                        $eventImages = array_map(fn($img) => asset($img), $event['images']);
+                        $hasDescription = filled(trim($event['description'] ?? ''));
+                    @endphp
                     <div class="cursor-pointer rounded-lg shadow-md transition p-2 md:p-4"
-                        x-data="{ open: false, index: 0, fullImage: null, images: {{ json_encode($event['images']) }} }">
+                        x-data="{ open: false, index: 0, fullImage: null, images: {{ json_encode($eventImages) }} }">
 
                         <!-- Event Card -->
                         <div @click="open = true">
-                            <img src="{{ $event['images'][0] }}" alt="{{ $event['title'] }}"
+                            <img src="{{ $eventImages[0] }}" alt="{{ $event['title'] }}"
                                 class="w-full h-36 sm:h-40 md:h-48 object-cover rounded mb-2 ">
                             <h4 class="text-lg font-semibold truncate">{{ $event['title'] }}</h4>
                             <p class="text-xs sm:text-sm text-gray-400">{{ $event['date'] }}</p>
@@ -268,20 +275,20 @@
 
                         <!-- Event Modal -->
                         <div x-show="open" x-data="{
-                                                                index: 0,
-                                                                fullImage: null,
-                                                                images: {{ json_encode($event['images']) }},
-                                                                slideshow: null,
-                                                                startSlideshow() {
-                                                                    this.slideshow = setInterval(() => {
-                                                                        this.index = (this.index + 1) % this.images.length;
-                                                                    }, 5000);
-                                                                },
-                                                                stopSlideshow() {
-                                                                    clearInterval(this.slideshow);
-                                                                    this.index = 0;
-                                                                }
-                                                            }" x-init="startSlideshow()"
+                                                                                        index: 0,
+                                                                                        fullImage: null,
+                                                                                        images: {{ json_encode($eventImages) }},
+                                                                                        slideshow: null,
+                                                                                        startSlideshow() {
+                                                                                            this.slideshow = setInterval(() => {
+                                                                                                this.index = (this.index + 1) % this.images.length;
+                                                                                            }, 5000);
+                                                                                        },
+                                                                                        stopSlideshow() {
+                                                                                            clearInterval(this.slideshow);
+                                                                                            this.index = 0;
+                                                                                        }
+                                                                                    }" x-init="startSlideshow()"
                             @click.away="open = false; stopSlideshow()"
                             class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[9999] overflow-auto p-4">
 
@@ -289,13 +296,13 @@
                                 class="bg-white rounded-xl w-full max-w-6xl max-h-[95vh] flex flex-col relative overflow-hidden">
 
                                 <div
-                                    class="relative bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+                                    class="relative w-full p-6 md:p-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
 
                                     <!-- Left: Slideshow -->
-                                    <div class="relative flex-shrink-0 w-full md:w-1/2">
+                                    <div class="relative flex-shrink-0 w-full md:w-1/2 flex justify-center">
 
                                         <!-- Slideshow Container -->
-                                        <div class="relative mb-4 flex-shrink-0 h-[60vh] md:h-[60vh] mt-15">
+                                        <div class="relative mb-4 w-full max-w-[560px] h-[52vh] md:h-[60vh]">
                                             <template x-for="(img, i) in images" :key="i">
                                                 <img x-show="i === index" x-transition:enter="transition-opacity duration-500"
                                                     x-transition:enter-start="opacity-0 scale-95"
@@ -318,23 +325,23 @@
                                     </div>
 
                                     <!-- Right: Title + Date + Description -->
-                                    <div class="flex-1 flex flex-col justify-center p-4 text-center md:text-left">
-                                        <!-- Title -->
+                                    <div
+                                        class="flex-1 flex flex-col justify-center p-4 text-center md:text-left">
                                         <h2 class="text-3xl font-bold text-black mb-2">{{ $event['title'] }}</h2>
-
-                                        <!-- Date -->
-                                        <p class="text-sm md:text-base text-gray-500 mb-4">{{ $event['date'] }}</p>
-
-                                        <!-- Description -->
-                                        <p
-                                            class="text-base md:text-lg text-gray-700 text-justify leading-relaxed overflow-auto">
-                                            {{ $event['description'] }}
+                                        <p class="text-sm md:text-base text-gray-500 {{ $hasDescription ? 'mb-4' : '' }}">
+                                            {{ $event['date'] }}
                                         </p>
+                                        @if ($hasDescription)
+                                            <p
+                                                class="text-base md:text-lg text-gray-700 text-justify leading-relaxed overflow-auto">
+                                                {{ $event['description'] }}
+                                            </p>
+                                        @endif
                                     </div>
 
                                     <!-- Close Button -->
                                     <button @click="open = false; stopSlideshow()"
-                                        class="absolute top-3 right-3 text-black hover:text-black text-1xl font-bold z-20">X</button>
+                                        class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/95 text-black hover:bg-white text-2xl leading-none font-bold z-[10001] shadow-md">X</button>
 
                                     <!-- Fullscreen Preview -->
                                     <div x-show="fullImage"
