@@ -1,0 +1,112 @@
+/* resources/css/autoscroll.css */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: "Chendolle";
+    src: url("fonts/chendolle.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Rockwell";
+    src: url("fonts/rockwell-extra-bold.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Yellowtail";
+    src: url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Onest:wght@100..900&family=Yellowtail&display=swap") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Onest";
+    src: url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Onest:wght@100..900&family=Yellowtail&display=swap") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Utility class for using the font */
+.font-chendolle {
+    font-family: "Chendolle", sans-serif;
+}
+
+.font-rockwell {
+    font-family: "Rockwell", sans-serif;
+}
+
+.font-yellowtail {
+    font-family: "Yellowtail", sans-serif;
+}
+
+.font-onest {
+    font-family: "Onest", sans-serif;
+}
+
+/* Make the section relative to hold absolute background images */
+
+.bg-slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.bg-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.animate-in {
+    opacity: 1 !important;
+    transform: translateX(0px) !important;
+    transition: all 3.8s ease-out;
+}
+
+[data-animate="right"].animate-in {
+    transition-delay: 200ms;
+}
+
+/* slides must sit on top of each other and crossfade */
+#section1 {
+    position: relative;
+    overflow: hidden;
+}
+
+#section1 .bg-slide {
+    position: absolute;
+    inset: 0; /* top:0 right:0 bottom:0 left:0 */
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+    pointer-events: none; /* avoid blocking clicks */
+}
+
+/* visible slide */
+#section1 .bg-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+@keyframes gradient-move {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    animation: gradient-move 8s ease infinite;
+    background-size: 200% 200%;
+}

@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Onest:wght@100..900&family=Yellowtail&display=swap');
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans:
+        "Onest", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+    :root {
+        --font-sans:
+            "Onest", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+            "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    html,
+    body {
+        font-family: "Onest", ui-sans-serif, system-ui, sans-serif,
+            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+            "Noto Color Emoji";
+    }
+}
+
+.custom-border {
+    border-radius: 26px 2px;
+    padding: .7rem 0;
+    width: 9rem;
+    text-align: center !important;
+    cursor: pointer !important;
+    position: relative;
+    display: inline-block;
+    transition: ease-out 0.5s;
+    -webkit-transition: ease-out 0.5s;
+    -moz-transition: ease-out 0.5s;
+}
+
+.custom-border::after,
+.custom-border::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    transition: 0.5s;
+}
+
+.custom-border::after {
+    top: -9px;
+    left: -9px;
+    border-top: 1px solid #b91c1c;
+    border-radius: 26px 2px;
+    border-left: 1px solid #b91c1c;
+    border-radius: 26px 2px;
+}
+
+.custom-border::before {
+    bottom: -9px;
+    right: -9px;
+    border-bottom: 1px solid #b91c1c;
+    border-radius: 26px 2px;
+    border-right: 1px solid #b91c1c;
+    border-radius: 26px 2px;
+}
+
+.custom-border:hover::after,
+.custom-border:hover::before {
+    width: calc(100% + 18px);
+    height: calc(100% + 18px);
+    border-color: #b91c1c;
+}
