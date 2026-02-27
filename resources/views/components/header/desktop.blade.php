@@ -112,22 +112,41 @@
 
                             <div
                                 class="absolute left-0 top-full hidden font-bold group-hover:block bg-white shadow-lg rounded-lg mt-0 w-48 border border-gray-100 z-50">
-                                <a href="/foodservice_solutions"
-                                   class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
-                                    Food Services
-                                </a>
-                                <a href="/retail_product"
-                                   class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
-                                    Retail
-                                </a>
-                                <a href="/beverage"
-                                   class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
-                                    Beverages
-                                </a>
-                                <a href="/ecommerce"
-                                   class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
-                                    Ecommerce
-                                </a>
+                                <ul class="py-2">
+                                    <li class="relative group/food">
+                                        <a href="/foodservice_solutions"
+                                           class="flex items-center justify-between px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
+                                            <span>Food Services</span>
+                                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                                        </a>
+
+                                        <div
+                                            class="absolute left-full top-0 hidden group-hover/food:block w-64 bg-white shadow-lg rounded-lg border border-gray-100 z-50">
+                                            <ul class="py-2">
+                                                <li>
+                                                    <a href="/beverage"
+                                                       class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
+                                                        Beverages
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <a href="/retail_product"
+                                           class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
+                                            Retail
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/ecommerce"
+                                           class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition">
+                                            Ecommerce
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
