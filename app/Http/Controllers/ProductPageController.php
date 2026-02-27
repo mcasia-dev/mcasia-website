@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProductPageController extends Controller
 {
@@ -43,23 +44,6 @@ class ProductPageController extends Controller
             ? collect([$activeSubcategory->id])
             : $allCategoryIds;
 
-        $extractImageUrls = static function ($products): array {
-            return $products
-                ->map(function (Product $product): ?string {
-                    $mediaUrl = $product->getFirstMediaUrl('products');
-                    if (!empty($mediaUrl)) {
-                        return $mediaUrl;
-                    }
-
-                    $convertedUrl = $product->getFirstMediaUrl('products', 'products');
-                    return !empty($convertedUrl) ? $convertedUrl : null;
-                })
-                ->filter()
-                ->values()
-                ->take(3)
-                ->all();
-        };
-
         $products = Product::query()
             ->where('is_active', true)
             ->whereHas('categories', fn($query) => $query->whereIn('product_categories.id', $categoryIds))
@@ -67,18 +51,36 @@ class ProductPageController extends Controller
             ->orderBy('name')
             ->get();
 
-        $productImages = $extractImageUrls($products);
+        $allProductImages = $products
+            ->map(function (Product $product): ?string {
+                $mediaUrl = $product->getFirstMediaUrl('products');
+                if (!empty($mediaUrl)) {
+                    return $mediaUrl;
+                }
+
+                $convertedUrl = $product->getFirstMediaUrl('products', 'products');
+                return !empty($convertedUrl) ? $convertedUrl : null;
+            })
+            ->filter()
+            ->values();
+
+        $imagesInitialLimit = 10;
+        $currentImages = $allProductImages
+            ->take($imagesInitialLimit)
+            ->values();
 
         return view('products.show', [
             'topCategories' => $topCategories,
             'activeCategory' => $activeCategory,
             'activeSubcategory' => $activeSubcategory,
             'products' => $products,
-            'productImages' => $productImages,
+            'productImages' => $currentImages,
+            'totalProductImages' => $allProductImages->count(),
+            'imagesInitialLimit' => $imagesInitialLimit,
         ]);
     }
 
-    public function images(string $categorySlug, ?string $subcategorySlug = null): JsonResponse
+    public function images(Request $request, string $categorySlug, ?string $subcategorySlug = null): JsonResponse
     {
         $activeCategory = ProductCategory::query()
             ->whereNull('parent_id')
@@ -130,8 +132,19 @@ class ProductPageController extends Controller
             ->values()
             ->all();
 
+        $offset = max(0, (int) $request->query('offset', 0));
+        $limit = (int) $request->query('limit', 12);
+        $limit = max(1, min($limit, 60));
+
+        $pagedImages = array_slice($images, $offset, $limit);
+        $loadedCount = $offset + count($pagedImages);
+        $total = count($images);
+
         return response()->json([
-            'images' => $images,
+            'images' => $pagedImages,
+            'has_more' => $loadedCount < $total,
+            'next_offset' => $loadedCount,
+            'total' => $total,
         ]);
     }
 }
