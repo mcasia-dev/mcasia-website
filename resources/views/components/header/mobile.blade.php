@@ -82,18 +82,23 @@
                 </button>
                 <ul id="ourSalesAvenue" class="hidden flex flex-col bg-gray-50">
                     <li>
-                        <a href="/foodservice_solutions" class="block px-6 py-2 hover:bg-red-50 hover:text-red-600">
+                        <button onclick="toggleDropdown('ourSalesAvenueFoodServices')"
+                                class="w-full text-left px-6 py-2 flex justify-between items-center hover:bg-red-50 hover:text-red-600">
                             Food Services
-                        </a>
+                            <i class="fa-solid fa-chevron-down transition-transform"
+                               id="ourSalesAvenueFoodServicesArrow"></i>
+                        </button>
+                        <ul id="ourSalesAvenueFoodServices" class="hidden flex flex-col bg-gray-100">
+                            <li>
+                                <a href="/beverage" class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
+                                    Beverages
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="/retail_product" class="block px-6 py-2 hover:bg-red-50 hover:text-red-600">
                             Retail
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/beverage" class="block px-6 py-2 hover:bg-red-50 hover:text-red-600">
-                            Beverages
                         </a>
                     </li>
                     <li>
