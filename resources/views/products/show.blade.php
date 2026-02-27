@@ -215,7 +215,7 @@
                     <div id="product-image-grid" class="canned-image-grid">
                         @forelse($productImages as $image)
                             <article class="canned-image-card">
-                                <img src="{{ $image }}" alt=" Product">
+                                <img src="{{ $image }}" alt="Product" loading="lazy" decoding="async">
                             </article>
                         @empty
                             <div class="rounded-xl bg-white border border-slate-200 p-6 text-slate-600">
@@ -224,14 +224,23 @@
                         @endforelse
                     </div>
 
+                    @php
+                        $imagesUrl = $activeSubcategory
+                            ? route('products.images.subcategory', ['categorySlug' => $activeCategory->slug, 'subcategorySlug' => $activeSubcategory->slug])
+                            : route('products.images', ['categorySlug' => $activeCategory->slug]);
+                        $hasAnyImages = $totalProductImages > 0;
+                        $hasMoreImages = $totalProductImages > count($productImages);
+                    @endphp
                     <div class="bg-white rounded-lg p-6 text-center">
                         <h3 class="text-2xl font-bold text-slate-900 uppercase">{{ $activeSubcategory?->name ?? $activeCategory?->name }}</h3>
                         <button type="button"
                                 id="view-all-images-btn"
-                                data-url="{{ route('products.images', ['categorySlug' => $activeCategory->slug, 'subcategorySlug' => $activeSubcategory?->slug]) }}"
+                                data-url="{{ $imagesUrl }}"
                                 data-current-count="{{ count($productImages) }}"
-                                class="inline-flex mt-4 bg-red-700 hover:bg-red-800 text-white text-sm font-semibold px-5 py-2 rounded">
-                            View All
+                                data-limit="{{ $imagesInitialLimit }}"
+                                class="inline-flex mt-4 bg-red-700 hover:bg-red-800 text-white text-sm font-semibold px-5 py-2 rounded {{ $hasMoreImages ? '' : 'opacity-70 cursor-not-allowed' }}"
+                                {{ $hasMoreImages ? '' : 'disabled' }}>
+                            {{ !$hasAnyImages ? 'No Images' : ($hasMoreImages ? 'Load More' : 'All Loaded') }}
                         </button>
                     </div>
                 </div>
@@ -248,12 +257,13 @@
             const viewAllButton = document.getElementById('view-all-images-btn');
             const imageGrid = document.getElementById('product-image-grid');
 
-            if (!viewAllButton || !imageGrid) {
+            if (!viewAllButton || !imageGrid || viewAllButton.disabled) {
                 return;
             }
 
             viewAllButton.addEventListener('click', async function () {
                 const endpoint = viewAllButton.dataset.url;
+                const limit = Number(viewAllButton.dataset.limit || '12');
                 const currentCount = Number(viewAllButton.dataset.currentCount || '0');
 
                 if (!endpoint) {
@@ -264,8 +274,11 @@
                 viewAllButton.textContent = 'Loading...';
 
                 let images = [];
+                let hasMore = false;
+                let nextOffset = currentCount;
                 try {
-                    const response = await fetch(endpoint, {
+                    const requestUrl = `${endpoint}?offset=${encodeURIComponent(String(currentCount))}&limit=${encodeURIComponent(String(limit))}`;
+                    const response = await fetch(requestUrl, {
                         headers: {
                             'Accept': 'application/json'
                         }
@@ -277,19 +290,20 @@
 
                     const payload = await response.json();
                     images = Array.isArray(payload.images) ? payload.images : [];
+                    hasMore = Boolean(payload.has_more);
+                    nextOffset = Number(payload.next_offset || (currentCount + images.length));
                 } catch (error) {
                     viewAllButton.disabled = false;
-                    viewAllButton.textContent = 'View All';
+                    viewAllButton.textContent = 'Load More';
                     return;
                 }
 
                 if (!images.length) {
-                    viewAllButton.textContent = 'No Images';
+                    viewAllButton.textContent = 'No More Images';
                     viewAllButton.classList.add('opacity-70', 'cursor-not-allowed');
                     return;
                 }
 
-                imageGrid.innerHTML = '';
                 const fragment = document.createDocumentFragment();
 
                 images.forEach(function (imageUrl) {
@@ -299,14 +313,23 @@
                     const image = document.createElement('img');
                     image.src = imageUrl;
                     image.alt = 'Product';
+                    image.loading = 'lazy';
+                    image.decoding = 'async';
 
                     article.appendChild(image);
                     fragment.appendChild(article);
                 });
 
                 imageGrid.appendChild(fragment);
-                viewAllButton.textContent = images.length > currentCount ? 'Showing All' : 'No More Images';
-                viewAllButton.classList.add('opacity-70', 'cursor-not-allowed');
+                viewAllButton.dataset.currentCount = String(nextOffset);
+
+                if (hasMore) {
+                    viewAllButton.disabled = false;
+                    viewAllButton.textContent = 'Load More';
+                } else {
+                    viewAllButton.textContent = 'All Loaded';
+                    viewAllButton.classList.add('opacity-70', 'cursor-not-allowed');
+                }
             });
         });
     </script>
