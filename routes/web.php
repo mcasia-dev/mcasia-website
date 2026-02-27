@@ -176,4 +176,7 @@ Route::get('/oatdaily', function () {
     return view('brand_page.oatdaily');
 })->name('oatdaily');
 
-#--------------------------------------------------------------------------
+Route::controller(\App\Http\Controllers\ProductPageController::class)
+->group(function () {
+    Route::get('/products/{categorySlug}/{subcategorySlug?}', 'show')->name('products.show');
+});

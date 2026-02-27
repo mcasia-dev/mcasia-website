@@ -1,7 +1,7 @@
 
 {{-- Footer --}}
 <footer class="bg-gray-900 text-white relative z-20">
-<div class="w-screen px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+<div class="w-full px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
 
         {{------------------------------------------Logo & About---------------------------}}
         <div class="flex flex-col space-y-4 items-center md:items-start text-center md:text-left">

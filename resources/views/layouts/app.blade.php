@@ -27,7 +27,7 @@
     @stack('styles')
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 overflow-x-hidden">
     {{-- Header --}}
     @include('components.header')
 
