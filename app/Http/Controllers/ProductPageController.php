@@ -118,6 +118,7 @@ class ProductPageController extends Controller
         $images = $products
             ->map(function (Product $product): ?string {
                 $mediaUrl = $product->getFirstMediaUrl('products');
+                
                 if (!empty($mediaUrl)) {
                     return $mediaUrl;
                 }
