@@ -228,7 +228,7 @@
                         <h3 class="text-2xl font-bold text-slate-900 uppercase">{{ $activeSubcategory?->name ?? $activeCategory?->name }}</h3>
                         <button type="button"
                                 id="view-all-images-btn"
-                                data-url="{{ route('products.images', ['categorySlug' => $activeCategory->slug]) }}"
+                                data-url="{{ route('products.images', ['categorySlug' => $activeCategory->slug, 'subcategorySlug' => $activeSubcategory?->slug]) }}"
                                 data-current-count="{{ count($productImages) }}"
                                 class="inline-flex mt-4 bg-red-700 hover:bg-red-800 text-white text-sm font-semibold px-5 py-2 rounded">
                             View All

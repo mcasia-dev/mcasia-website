@@ -39,12 +39,9 @@ class ProductPageController extends Controller
             ->unique()
             ->values();
 
-        $categoryIds = collect([$activeCategory->id]);
-        if ($activeSubcategory) {
-            $categoryIds->push($activeSubcategory->id);
-        } else {
-            $categoryIds = $allCategoryIds;
-        }
+        $categoryIds = $activeSubcategory
+            ? collect([$activeSubcategory->id])
+            : $allCategoryIds;
 
         $extractImageUrls = static function ($products): array {
             return $products
@@ -81,7 +78,7 @@ class ProductPageController extends Controller
         ]);
     }
 
-    public function images(string $categorySlug): JsonResponse
+    public function images(string $categorySlug, ?string $subcategorySlug = null): JsonResponse
     {
         $activeCategory = ProductCategory::query()
             ->whereNull('parent_id')
@@ -97,14 +94,24 @@ class ProductPageController extends Controller
 
         abort_if(!$activeCategory, 404);
 
+        $activeSubcategory = null;
+        if ($subcategorySlug !== null) {
+            $activeSubcategory = $activeCategory->children->firstWhere('slug', $subcategorySlug);
+            abort_if(!$activeSubcategory, 404);
+        }
+
         $allCategoryIds = collect([$activeCategory->id])
             ->merge($activeCategory->children->pluck('id'))
             ->unique()
             ->values();
 
+        $categoryIds = $activeSubcategory
+            ? collect([$activeSubcategory->id])
+            : $allCategoryIds;
+
         $products = Product::query()
             ->where('is_active', true)
-            ->whereHas('categories', fn($query) => $query->whereIn('product_categories.id', $allCategoryIds))
+            ->whereHas('categories', fn($query) => $query->whereIn('product_categories.id', $categoryIds))
             ->with(['media'])
             ->orderBy('name')
             ->get();
