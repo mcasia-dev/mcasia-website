@@ -87,8 +87,7 @@ class ProductPageController extends Controller
             ->where('is_active', true)
             ->where('slug', $categorySlug)
             ->with([
-                'children' => fn($query) => $query
-                    ->where('is_active', true)
+                'children' => fn($query) => $query->where('is_active', true)
                     ->orderBy('sort_order')
                     ->orderBy('name'),
             ])
