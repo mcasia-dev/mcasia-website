@@ -212,7 +212,7 @@
                 </div>
 
                 <div class="mt-5 canned-showcase">
-                    <div class="canned-image-grid">
+                    <div id="product-image-grid" class="canned-image-grid">
                         @forelse($productImages as $image)
                             <article class="canned-image-card">
                                 <img src="{{ $image }}" alt=" Product">
@@ -225,11 +225,14 @@
                     </div>
 
                     <div class="bg-white rounded-lg p-6 text-center">
-                        <h3 class="text-2xl font-bold text-slate-900 uppercase">{{$activeSubcategory->name}}</h3>
-                        <a href="{{ route('products.show', ['categorySlug' => $activeCategory->slug]) }}"
-                           class="inline-flex mt-4 bg-red-700 hover:bg-red-800 text-white text-sm font-semibold px-5 py-2 rounded">
+                        <h3 class="text-2xl font-bold text-slate-900 uppercase">{{ $activeSubcategory?->name ?? $activeCategory?->name }}</h3>
+                        <button type="button"
+                                id="view-all-images-btn"
+                                data-url="{{ route('products.images', ['categorySlug' => $activeCategory->slug]) }}"
+                                data-current-count="{{ count($productImages) }}"
+                                class="inline-flex mt-4 bg-red-700 hover:bg-red-800 text-white text-sm font-semibold px-5 py-2 rounded">
                             View All
-                        </a>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -238,3 +241,73 @@
 
     @include('components.footer')
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const viewAllButton = document.getElementById('view-all-images-btn');
+            const imageGrid = document.getElementById('product-image-grid');
+
+            if (!viewAllButton || !imageGrid) {
+                return;
+            }
+
+            viewAllButton.addEventListener('click', async function () {
+                const endpoint = viewAllButton.dataset.url;
+                const currentCount = Number(viewAllButton.dataset.currentCount || '0');
+
+                if (!endpoint) {
+                    return;
+                }
+
+                viewAllButton.disabled = true;
+                viewAllButton.textContent = 'Loading...';
+
+                let images = [];
+                try {
+                    const response = await fetch(endpoint, {
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to load images');
+                    }
+
+                    const payload = await response.json();
+                    images = Array.isArray(payload.images) ? payload.images : [];
+                } catch (error) {
+                    viewAllButton.disabled = false;
+                    viewAllButton.textContent = 'View All';
+                    return;
+                }
+
+                if (!images.length) {
+                    viewAllButton.textContent = 'No Images';
+                    viewAllButton.classList.add('opacity-70', 'cursor-not-allowed');
+                    return;
+                }
+
+                imageGrid.innerHTML = '';
+                const fragment = document.createDocumentFragment();
+
+                images.forEach(function (imageUrl) {
+                    const article = document.createElement('article');
+                    article.className = 'canned-image-card';
+
+                    const image = document.createElement('img');
+                    image.src = imageUrl;
+                    image.alt = 'Product';
+
+                    article.appendChild(image);
+                    fragment.appendChild(article);
+                });
+
+                imageGrid.appendChild(fragment);
+                viewAllButton.textContent = images.length > currentCount ? 'Showing All' : 'No More Images';
+                viewAllButton.classList.add('opacity-70', 'cursor-not-allowed');
+            });
+        });
+    </script>
+@endpush

@@ -178,5 +178,6 @@ Route::get('/oatdaily', function () {
 
 Route::controller(\App\Http\Controllers\ProductPageController::class)
 ->group(function () {
+    Route::get('/products/{categorySlug}/images', 'images')->name('products.images');
     Route::get('/products/{categorySlug}/{subcategorySlug?}', 'show')->name('products.show');
 });
