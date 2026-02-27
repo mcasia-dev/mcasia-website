@@ -1,21 +1,25 @@
 name: Publishing McAsia Foodtrade Website to cPanel
-on: 
-  push: 
-    branches: 
+
+on:
+  push:
+    branches:
       - v1
-jobs: 
-  FTP-Deploy-Action: 
-    name: FTP-Deploy-Action
+
+jobs:
+  web-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2.1.0
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 2
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+          fetch-depth: 0
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          ftp-server: ${{secrets.FTP_SERVER}}
-          ftp-username: ${{secrets.FTP_USERNAME}}
-          ftp-password: ${{secrets.FTP_PASSWORD}}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          git-ftp-args: --remote-root mcasia.website/ --syncroot
+          server-dir: mcasia.website/
