@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class ProductPageController extends Controller
 {
-    public function show(string $categorySlug, ?string $subcategorySlug = null)
+    public function show(Request $request, string $categorySlug, ?string $subcategorySlug = null)
     {
         $topCategories = ProductCategory::query()
             ->whereNull('parent_id')
@@ -64,19 +65,33 @@ class ProductPageController extends Controller
             ->filter()
             ->values();
 
-        $imagesInitialLimit = 10;
+        $imagesPerPage = 15;
+        $imagesPageName = 'images_page';
+        $currentPage = max(1, (int) $request->query($imagesPageName, 1));
+        $totalImages = $allProductImages->count();
+
         $currentImages = $allProductImages
-            ->take($imagesInitialLimit)
+            ->forPage($currentPage, $imagesPerPage)
             ->values();
+
+        $paginatedImages = new LengthAwarePaginator(
+            $currentImages,
+            $totalImages,
+            $imagesPerPage,
+            $currentPage,
+            [
+                'path' => $request->url(),
+                'pageName' => $imagesPageName,
+                'query' => $request->query(),
+            ]
+        );
 
         return view('products.show', [
             'topCategories' => $topCategories,
             'activeCategory' => $activeCategory,
             'activeSubcategory' => $activeSubcategory,
             'products' => $products,
-            'productImages' => $currentImages,
-            'totalProductImages' => $allProductImages->count(),
-            'imagesInitialLimit' => $imagesInitialLimit,
+            'productImages' => $paginatedImages,
         ]);
     }
 
@@ -132,18 +147,23 @@ class ProductPageController extends Controller
             ->values()
             ->all();
 
-        $offset = max(0, (int) $request->query('offset', 0));
-        $limit = (int) $request->query('limit', 12);
-        $limit = max(1, min($limit, 60));
-
-        $pagedImages = array_slice($images, $offset, $limit);
-        $loadedCount = $offset + count($pagedImages);
         $total = count($images);
+        $page = max(1, (int) $request->query('page', 1));
+        $perPage = (int) $request->query('per_page', 12);
+        $perPage = max(1, min($perPage, 60));
+        $lastPage = max(1, (int) ceil($total / $perPage));
+        $page = min($page, $lastPage);
+
+        $offset = ($page - 1) * $perPage;
+        $pagedImages = array_slice($images, $offset, $perPage);
 
         return response()->json([
             'images' => $pagedImages,
-            'has_more' => $loadedCount < $total,
-            'next_offset' => $loadedCount,
+            'has_more' => $page < $lastPage,
+            'current_page' => $page,
+            'per_page' => $perPage,
+            'last_page' => $lastPage,
+            'next_page' => $page < $lastPage ? $page + 1 : null,
             'total' => $total,
         ]);
     }
