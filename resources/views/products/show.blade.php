@@ -100,7 +100,7 @@
 
         .canned-showcase {
             display: grid;
-            grid-template-columns: minmax(0, 1fr);
+            grid-template-columns: minmax(2, 1fr);
             gap: 1.5rem;
             align-items: center;
         }
@@ -125,7 +125,7 @@
 
         @media (min-width: 1280px) {
             .canned-image-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(5, minmax(0, 1fr));
             }
         }
 
@@ -211,7 +211,23 @@
                     </span>
                 </div>
 
-                <div class="mt-5 canned-showcase">
+                <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
+                    <h3 class="text-lg font-bold text-slate-900 uppercase">
+                        {{ $activeSubcategory?->name ?? $activeCategory?->name }}
+                    </h3>
+                    <div class="bg-white rounded-lg px-4 py-3 text-center border border-slate-200">
+                        <p class="text-sm font-medium text-slate-600">
+                            {{ $productImages->total() }} image(s)
+                        </p>
+                        @if($productImages->total() > 0)
+                            <p class="mt-1 text-xs text-slate-500">
+                                Page {{ $productImages->currentPage() }} of {{ $productImages->lastPage() }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="mt-5">
                     <div id="product-image-grid" class="canned-image-grid">
                         @forelse($productImages as $image)
                             <article class="canned-image-card">
@@ -224,113 +240,16 @@
                         @endforelse
                     </div>
 
-                    @php
-                        $imagesUrl = $activeSubcategory
-                            ? route('products.images.subcategory', ['categorySlug' => $activeCategory->slug, 'subcategorySlug' => $activeSubcategory->slug])
-                            : route('products.images', ['categorySlug' => $activeCategory->slug]);
-                        $hasAnyImages = $totalProductImages > 0;
-                        $hasMoreImages = $totalProductImages > count($productImages);
-                    @endphp
-                    <div class="bg-white rounded-lg p-6 text-center">
-                        <h3 class="text-2xl font-bold text-slate-900 uppercase">{{ $activeSubcategory?->name ?? $activeCategory?->name }}</h3>
-                        <button type="button"
-                                id="view-all-images-btn"
-                                data-url="{{ $imagesUrl }}"
-                                data-current-count="{{ count($productImages) }}"
-                                data-limit="{{ $imagesInitialLimit }}"
-                                class="inline-flex mt-4 bg-red-700 hover:bg-red-800 text-white text-sm font-semibold px-5 py-2 rounded {{ $hasMoreImages ? '' : 'opacity-70 cursor-not-allowed' }}"
-                                {{ $hasMoreImages ? '' : 'disabled' }}>
-                            {{ !$hasAnyImages ? 'No Images' : ($hasMoreImages ? 'Load More' : 'All Loaded') }}
-                        </button>
-                    </div>
                 </div>
+
+                @if($productImages->total() > 0)
+                    <div class="mt-8">
+                        {{ $productImages->onEachSide(1)->links() }}
+                    </div>
+                @endif
             </section>
         </div>
     </main>
 
     @include('components.footer')
 @endsection
-
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const viewAllButton = document.getElementById('view-all-images-btn');
-            const imageGrid = document.getElementById('product-image-grid');
-
-            if (!viewAllButton || !imageGrid || viewAllButton.disabled) {
-                return;
-            }
-
-            viewAllButton.addEventListener('click', async function () {
-                const endpoint = viewAllButton.dataset.url;
-                const limit = Number(viewAllButton.dataset.limit || '12');
-                const currentCount = Number(viewAllButton.dataset.currentCount || '0');
-
-                if (!endpoint) {
-                    return;
-                }
-
-                viewAllButton.disabled = true;
-                viewAllButton.textContent = 'Loading...';
-
-                let images = [];
-                let hasMore = false;
-                let nextOffset = currentCount;
-                try {
-                    const requestUrl = `${endpoint}?offset=${encodeURIComponent(String(currentCount))}&limit=${encodeURIComponent(String(limit))}`;
-                    const response = await fetch(requestUrl, {
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Failed to load images');
-                    }
-
-                    const payload = await response.json();
-                    images = Array.isArray(payload.images) ? payload.images : [];
-                    hasMore = Boolean(payload.has_more);
-                    nextOffset = Number(payload.next_offset || (currentCount + images.length));
-                } catch (error) {
-                    viewAllButton.disabled = false;
-                    viewAllButton.textContent = 'Load More';
-                    return;
-                }
-
-                if (!images.length) {
-                    viewAllButton.textContent = 'No More Images';
-                    viewAllButton.classList.add('opacity-70', 'cursor-not-allowed');
-                    return;
-                }
-
-                const fragment = document.createDocumentFragment();
-
-                images.forEach(function (imageUrl) {
-                    const article = document.createElement('article');
-                    article.className = 'canned-image-card';
-
-                    const image = document.createElement('img');
-                    image.src = imageUrl;
-                    image.alt = 'Product';
-                    image.loading = 'lazy';
-                    image.decoding = 'async';
-
-                    article.appendChild(image);
-                    fragment.appendChild(article);
-                });
-
-                imageGrid.appendChild(fragment);
-                viewAllButton.dataset.currentCount = String(nextOffset);
-
-                if (hasMore) {
-                    viewAllButton.disabled = false;
-                    viewAllButton.textContent = 'Load More';
-                } else {
-                    viewAllButton.textContent = 'All Loaded';
-                    viewAllButton.classList.add('opacity-70', 'cursor-not-allowed');
-                }
-            });
-        });
-    </script>
-@endpush
