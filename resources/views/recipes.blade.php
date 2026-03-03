@@ -1,431 +1,351 @@
 @extends('layouts.app')
+@section('title', 'McAsia - Recipes')
 @section('content')
 
-
 <style>
-  [x-cloak] { display: none !important; }
-
-  </style>
-
-<div class="h-26"></div>
-
-<!------------------------------------------Slideshow--------------------------------------------------->
-<div class="relative w-full h-64 md:h-[500px] overflow-hidden rounded-lg shadow-lg mb-10 bg-black">
-  <div id="slideshow" class="w-full h-full relative">
-    <img src="{{ asset('images/EXPLORE NEW RECEIPES/1.png') }}"
-         class="absolute top-0 left-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000" />
-    <img src="{{ asset('images/EXPLORE NEW RECEIPES/2.png') }}"
-         class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
-    <img src="{{ asset('images/EXPLORE NEW RECEIPES/3.png') }}"
-         class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
-    <img src="{{ asset('images/EXPLORE NEW RECEIPES/4.png') }}"
-         class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
-  </div>
-</div>
-<!------------------------------------------------------------------------------------------------------------------>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!----------------------------------------------------------------------RECIPE SECTION---------------------------------------------->
-<div id="recipesSection" class="px-6">
-
-  <!-- Section 4: Recipes Showcase -->
-  <div id="section4" 
-       x-data="{
-          open: false,
-          recipe: null,
-          videoSrc: null,
-
-          setRecipe(data) {
-              this.recipe = data;
-              this.videoSrc = data.videoEmbed ?? null;
-          },
-
-          closeModal() {
-              this.open = false;
-              this.recipe = null;
-              this.videoSrc = null;
-          }
-       }">
-
-      <!-- Title -->
-      <h2 class="text-2xl font-bold mb-5 ml-8">Recipes</h2>
-
-
-    @php
-      $recipes = [
-        [
-
-
-
-          'image' => 'images/RECIPE/new version/1.jpg',
-          'title' => 'Mixed Seafood',
-          'videoEmbed' => asset('videos/Recipes/MixedSeaFood.mp4'),
-          'ingredients' => [
-            ['name' => '1 Pack of Lobo Chinese Five Spice Blend Powder'],
-            ['name' => '1 kl. Marble Potatoes'],
-            ['name' => '1 Pack Hungarian Sausage'],
-            ['name' => '3 Pcs. Fresh Corn, cut in three'],
-            ['name' => '4 pcs crabs, cut into 2'],
-            ['name' => '500g Sea Chef Shrimp, Peeled and Deveined'],
-            ['name' => '1/4 Cup Garlic'],
-            ['name' => '1 lemon/lime'],
-            ['name' => '1 Onion'],
-            ['name' => 'Salt and pepper to taste'],
-          ],
-          'instructions' => [
-            'Boil 5L of water over medium high heat and add the Lobo Chinese Five Spice blend powder',
-            'Add salt, pepper, marble potatoes, Hungarian sausage, lemon, onions and garlic. Cover and boil for 10 minutes',
-            'Add corn and cook for 5 minutes',
-            'Add crab and cook for 5 minutes',
-            'Add Sea Chef Shrimp, cook for another 3 to 4 minutes',
-            'Drain off water and pour the contents in a serving tray.'
-          ]
-        ],
-
-
-
-        [
-          'image' => 'images/RECIPE/new version/2.jpg',
-          'title' => 'Pork Adobo',
-          'videoEmbed' => asset('videos/Recipes/PorkAdobo.mp4'),
-          'ingredients' => [
-            ['name' => '2 Lbs Pork Belly'],
-            ['name' => '2 tbsp garlic (minced or crushed)'],
-            ['name' => '2 pcs bay leaf'],
-            ['name' => '4 tbsp vinegar'],
-            ['name' => '1/2 cup Kikkoman Soy Sauce Koikuchi'],
-            ['name' => '1 tbsp peppercorn'],
-            ['name' => '2 cups water'],
-            ['name' => '1 cup stock'],
-            ['name' => 'Salt to taste'],
-          ],
-          'instructions' => [
-            'Mix pork belly with soy sauce, vinegar, bay leaves, peppercorn and garlic',
-            'Sear the marinated pork until brown on all sides, then set aside',
-            'In the same pan, sauté garlic until fragrant',
-            'Put back the pork into the pan, cover and bring to a boil',
-            'Once boiling, add the stock',
-            'Simmer for 20–25 minutes or until the pork is tender',
-            'Transfer onto a platter and serve hot'
-          ]
-        ],
-
-
-         [
-          'image' => 'images/RECIPE/new version/7.jpg',
-          'title' => 'Spring Rolls',
-          'videoEmbed' => asset('videos/Recipes/SpringRolls.mp4'),
-          'ingredients' => [
-            ['name' => '20 Spring roll wrappers'],
-            ['name' => '6 King Chef Canned Shiitake Mushrooms'],
-            ['name' => '230g skinless, boneless chicken thighs'],
-            ['name' => '110g raw Sea Chef Shrimp, deveined'],
-            ['name' => '600g cabbage shredded'],
-            ['name' => '1 teaspoon sea salt'],
-            ['name' => '1 1/2 tablespoons cornstarch mixed with 3 tablespoons of mushroom soaking liquid'],
-            ['name' => '1 egg'],
-            ['name' => '2 tablespoons onion'],
-            ['name' => '2 teaspoon garlic'],
-            ['name' => '1/4 cup celery'],
-            ['name' => '2 tablespoons oyster sauce'],
-            ['name' => '1 teaspoon spring onions'],
-            ['name' => '1 tablespoon shaoxing wine'],
-            ['name' => '2 tablespoon of dark soy sauce'],
-
-          ],
-
-
-          'instructions' => [
-            'Heat the pan with some oil and put 2 tbsp of onion. Add 1/4 cup of celery and 2 tsp. of garlic.',
-            'Add the chicken thighs, then pour the 1 tbsp of light soy sauce and oyster sauce , stir fry and season with white pepper and salt.',
-            'Cook for a minute, and add 2 tbsp of dark soy sauce.',
-            'When it turns into brown, add the King Chef Shitake Mushroom, shrimp and season with sugar.',
-            'Pour 1tbsp. of shaoxing wine, put the shredded cabbage and gently pour cornstarch slurry and stir fry until softens. Add 1/4 cup spring onions, onions leaks and stir again.',
-            'Place around 2 spoon of filling into the center of the spring roll. Tuck in the sides and roll it up, sealing the edges wit flour mixture.',
-            'Pour enough oil into the pot, and throw spring roll until the skin is golden and crispy. Drain on a paper towel and serve.',
-          ]
-        ],
-
-
-
-
-
-        [
-          'image' => 'images/RECIPE/new version/5.jpg',
-          'title' => 'Longevity Noodles With Chicken And Mushroom',
-          'videoEmbed' => asset('videos/Recipes/LongevityNoodles.mp4'),
-          'ingredients' => [
-            ['name' => '16 ounces fresh noodles'],
-            ['name' => '6 ounces of boneless chicken breast'],
-            ['name' => '12 pieces King Chef Shiitake Mushroom'],
-            ['name' => '3/4 cup Chinese chive chopped'],
-            ['name' => '1 piece carrot julienne'],
-            ['name' => '1/4 cup scallions chopped'],
-            ['name' => '5 tablespoons oyster sauce'],
-            ['name' => '6 cups water'],
-            ['name' => '1/4 cup Shaoxing cooking wine'],
-            ['name' => '3 tablespoons of King Chef Canola Oil'],
-            ['name' => '1/8 teaspoon ground black pepper'],
-            ['name' => '1 tablespoon dark soy sauce'],
-            ['name' => '1/2 cup of chicken broth'],
-          ],
-          'instructions' => [
-            'Over medium high heat, add 3 tbsp of king chef canola oil in a wok. Add in the chicken and stir-fry for 3 minutes or until cooked. Transfer into a bowl and set aside',
-            'Add in the shrimp. Season it with salt and pepper. Stir-fry for 3 minutes. Transfer into a separate bowl and set aside.',
-            'In the same wok, sauté onion and garlic. Pour in the dark soy sauce and shaoxing wine. Add in the cooked chicken, carrots, and shiitake mushroom. Pour in the chicken broth and mix everything.',
-            'Transfer the noodles into the wok. then toss gently for a minute or two, just enough to combine everything well and ensure an even color. Add the chives, spring onions, and cooked shrimp. Transfer on plate.',
-          ]
-        ],
-
-
-
-        [
-          'image' => 'images/RECIPE/new version/6.jpg',
-          'title' => 'Pad Thai',
-          'videoEmbed' => asset('videos/Recipes/PadThai.mp4'),
-          'ingredients' => [
-            ['name' => '4 tbsp. King Chef Canola Oil'],
-            ['name' => 'About 8 pcs Sea Chef Shrimp'],
-            ['name' => '4 pcs chicken thigh fillet, diced'],
-            ['name' => '2 tbsp. garlic, chopped finely'],
-            ['name' => '3 tbsp. onions, chopped finely'],
-            ['name' => '2 square firm tofu, diced'],
-            ['name' => '1 pack Lami Rice Noodle 200g (soaked in warm water for 10 minutes)'],
-            ['name' => '1 cup Thai Dancer Pad Thai Stir-Fry Sauce'],
-            ['name' => '2-3 pcs eggs'],
-            ['name' => '2 cups bean sprouts'],
-            ['name' => '1/2 cup chives, cut into 3” strips'],
-          ],
-          'instructions' => [
-            'In a work over medium heat, pour King Chef Canola Oil and add some of the garlic.',
-            'Cook Sea Chef Shrimp until pink. Remove from pan.',
-            'Brown chicken pieces until half cooked.',
-            'Add the rest of the garlic and onions',
-            'Add tofu, Lami Rice Noodle 200g, and sauté.',
-            'Add Thai Dancer Pad Thai Stir-Fry Sauce. Sauté to coat noodles evenly.',
-            'Push noodles to the side to add in unbeaten eggs. Sauté with the rest of the ingredients.',
-            'Add cooked shrimp back the pan.',
-            'Sauté in bean sprouts and some of the chive.',
-            'Remove from heat and add remaining chives for garnish.',
-            'Best consumed immediately.',
-
-          ]
-        ],
-
-
-
-
-
-
-
-        [
-            'image' => 'images/RECIPE/new version/8.jpg',
-            'title' => 'Cantonese Wonton Soup',
-            'videoEmbed' => asset('videos/Recipes/ChineseWontonSoup.mp4'),
-            'ingredients' => [
-            ['name' => '1 pack of wonton wrappers, around 50'],
-            ['name' => '2 lb shell-on medium shrimp (0r 1lb 10oz deshelled)'],
-            ['name' => '4 pcs chicken thigh fillet, diced'],
-            ['name' => '2 tbsp. garlic, chopped finely'],
-            ['name' => '3 tbsp. onions, chopped finely'],
-            ['name' => '2 square firm tofu, diced'],
-            ['name' => '1 pack Lami Rice Noodle 200g (soaked in warm water for 10 minutes)'],
-            ['name' => '1 cup Thai Dancer Pad Thai Stir-Fry Sauce'],
-            ['name' => '2-3 pcs eggs'],
-            ['name' => '2 cups bean sprouts'],
-            ['name' => '1/2 cup chives, cut into 3” strips'],
-
-          ],
-
-          
-          'instructions' => [
-            'On a mixing bowl, pour Sea Chef Shrimp and mix the 2 tbsp. of Shaoxing Wine',
-            'Gently add 2 tbsp. corn starch, 1 tsp. salt, sugar, and sesame oil. Add also the 1 tsp. of white pepper powder',
-            'Pour the egg white in the mixture and combine all the ingredients then set aside',
-            'Prepare a wrapper and place 1 tbsp. of the shrimp mixture. Flip the corner of the wrapper inward to wrap, the fold the two sides.',
-            'Repeat these steps until you finish the filling or wonton wrapper',
-            'Bring a medium pot of broth to boil and cook the wonton,  then serve the hot soup!',
-          ]
-    ],
-
-
-          [
-          'image' => 'images/RECIPE/new version/4.jpg',
-          'title' => 'Coconut Milk Shake',
-          'videoEmbed' => asset('videos/Recipes/CoconutMilkShake.mp4'),
-          'ingredients' => [
-            ['name' => '2 cups vanilla ice cream'],
-            ['name' => 'coconut flakes (optional)'],
-            ['name' => '1 cup crushed iced'],
-            ['name' => '2/3 cups Vico Rich Coconut Milk'],
-            ['name' => '2/3 cups Vico Fresh Natural Coconut Water'],
-          ],
-          'instructions' => [
-            'Add all ingredients to a large blender.',
-            'Blend until smooth and creamy.',
-            'Pour into a chilled glass and top with coconut flakes if desired.',
-          ]
-        ],
-
-
-         [
-          'image' => 'images/RECIPE/new version/3.jpg',
-          'title' => 'Bubble Milk Tea',
-          'videoEmbed' => asset('videos/Recipes/MeetUCoffeeMilkTea.mp4'),
-          'ingredients' => [
-            ['name' => '500ml of hot water'],
-            ['name' => '1000ml of cold water'],
-            ['name' => '1 pack MEET U Milk White Tea 3-in-1'],
-            ['name' => 'Tapioca pearls (cooked)'],
-          ],
-          'instructions' => [
-            'Pour hot water to dissolve the milk tea powder',
-            'Mix and stir until fully dissolved',
-            'Add in cold water and stir',
-            'Add tapioca pearls',
-            'Pour the milk tea mixture in a glass and enjoy'
-          ]
-        ]
-
-
-      ];
-    @endphp
-
-      <!-- Recipe Thumbnails -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          @foreach($recipes as $recipe)
-              <div class="bg-white rounded-xl shadow-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
-                   @click="setRecipe({{ json_encode($recipe) }}); open = true;">
-                  <img src="{{ $recipe['image'] }}" class="w-full h-64 object-cover" alt="{{ $recipe['title'] }}">
-                  <div class="p-4">
-                      <h3 class="font-bold text-xl text-red-600">{{ $recipe['title'] }}</h3>
-                  </div>
-              </div>
-          @endforeach
-
-
-          
-      </div>
-<div class="h-20"></div>
-
-    <a href="#" onclick="history.back(); return false;"
-   class="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-20 mt-30"
-   style="font-size: 20px;">
-
-    <i class="fa-solid fa-arrow-left"></i>
-    <span>Back</span>
-</a>
-
-      
-
-      <!-- Modal -->
-<div x-show.transition.opacity="open" x-cloak
-     class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999]">
-          <div class="bg-white rounded-xl shadow-2xl w-11/12 md:w-4/5 lg:w-2/3 max-h-[95vh] overflow-y-auto flex flex-col"
-               @click.away="closeModal()">
-
-              <!-- Header -->
-              <div class="flex justify-between items-center p-5 border-b sticky top-0 bg-white z-10">
-                  <h2 class="text-2xl font-bold text-black" x-text="recipe?.title"></h2>
-                  <button @click="closeModal()" class="text-gray-600 hover:text-black text-1xl">X</button>
-              </div>
-
-              <!-- Content -->
-              <div class="p-6 space-y-8">
-
-                  <!-- Video or Image -->
-                  <div>
-                      <!-- If has video -->
-                      <template x-if="recipe?.videoEmbed && recipe.videoEmbed !== ''">
-                          <div :key="videoSrc">
-                              <video 
-                                  class="w-full rounded-lg"
-                                  autoplay
-                                  playsinline
-                                  controls
-                              >
-                                  <source :src="videoSrc" type="video/mp4">
-                              </video>
-                          </div>
-                      </template>
-
-                      <!-- If image only -->
-                      <template x-if="!recipe?.videoEmbed || recipe.videoEmbed === ''">
-                          <img :src="recipe?.image" class="w-full h-80 md:h-96 object-cover rounded-lg">
-                      </template>
-                  </div>
-
-                  <!-- Side by Side Layout -->
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <!-- Ingredients -->
-                      <div>
-                          <h3 class="text-xl font-semibold mb-4 text-black">🧂 Ingredients</h3>
-                          <ul class="space-y-3 text-gray-700">
-                              <template x-for="ingredient in recipe?.ingredients" :key="ingredient.name">
-                                  <li class="flex items-center space-x-3">
-                                      <span x-text="ingredient.name"></span>
-                                  </li>
-                              </template>
-                          </ul>
-                      </div>
-
-                      <!-- Instructions -->
-                      <div>
-                          <h3 class="text-xl font-semibold mb-4 text-black">👨‍🍳 Instructions</h3>
-                          <ol class="list-decimal list-inside space-y-3 text-gray-700">
-                              <template x-for="step in recipe?.instructions" :key="step">
-                                  <li x-text="step"></li>
-                              </template>
-                          </ol>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-      </div>
-
-  </div>
-</div>
-
-
-
-
-
-
-<div class="h-20"></div>
-
-
-<!--------------------------------------------------------------END OF CODE-------------------------------------------->
-
-
-
-
-
-
-
-
-
-
-
-@include('components.footer')
-
+    [x-cloak] {
+        display: none !important;
+    }
+
+    .recipe-card {
+        border: 1px solid #e5e7eb;
+        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .recipe-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.14);
+    }
+
+    .modal-shell {
+        background: rgba(15, 23, 42, 0.72);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal-panel {
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+    }
+
+    .recipe-pill {
+        border: 1px solid #e5e7eb;
+        background: #f8fafc;
+    }
+</style>
+
+<main class="w-full overflow-x-hidden">
+    <div class="pt-20 lg:pt-32"></div>
+
+    <section class="relative w-full h-64 sm:h-80 lg:h-[500px] overflow-hidden bg-black">
+        <div id="slideshow" class="w-full h-full relative">
+            <img src="{{ asset('images/EXPLORE NEW RECEIPES/1.png') }}" class="absolute top-0 left-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000" />
+            <img src="{{ asset('images/EXPLORE NEW RECEIPES/2.png') }}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
+            <img src="{{ asset('images/EXPLORE NEW RECEIPES/3.png') }}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
+            <img src="{{ asset('images/EXPLORE NEW RECEIPES/4.png') }}" class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
+        </div>
+    </section>
+
+    <section id="recipesSection" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12"
+        x-data="{
+            open: false,
+            recipe: null,
+            videoSrc: null,
+            setRecipe(data) {
+                this.recipe = data;
+                this.videoSrc = data.videoEmbed ?? null;
+                this.open = true;
+                document.body.style.overflow = 'hidden';
+            },
+            closeModal() {
+                this.open = false;
+                this.recipe = null;
+                this.videoSrc = null;
+                document.body.style.overflow = '';
+            }
+        }">
+
+        @php
+            $recipes = [
+                [
+                    'image' => 'images/RECIPE/new version/1.jpg',
+                    'title' => 'Mixed Seafood',
+                    'videoEmbed' => asset('videos/Recipes/MixedSeaFood.mp4'),
+                    'ingredients' => [
+                        ['name' => '1 pack Lobo Chinese Five Spice Blend Powder'],
+                        ['name' => '1 kg marble potatoes'],
+                        ['name' => '1 pack Hungarian sausage'],
+                        ['name' => '3 pcs fresh corn, cut in three'],
+                        ['name' => '4 pcs crabs, cut into 2'],
+                        ['name' => '500g Sea Chef shrimp, peeled and deveined'],
+                        ['name' => '1/4 cup garlic'],
+                        ['name' => '1 lemon or lime'],
+                        ['name' => '1 onion'],
+                        ['name' => 'Salt and pepper to taste'],
+                    ],
+                    'instructions' => [
+                        'Boil 5L of water over medium-high heat and add the Lobo Chinese Five Spice blend powder.',
+                        'Add salt, pepper, marble potatoes, Hungarian sausage, lemon, onions, and garlic. Cover and boil for 10 minutes.',
+                        'Add corn and cook for 5 minutes.',
+                        'Add crab and cook for 5 minutes.',
+                        'Add Sea Chef shrimp and cook for another 3 to 4 minutes.',
+                        'Drain off water and pour the contents into a serving tray.',
+                    ],
+                ],
+                [
+                    'image' => 'images/RECIPE/new version/2.jpg',
+                    'title' => 'Pork Adobo',
+                    'videoEmbed' => asset('videos/Recipes/PorkAdobo.mp4'),
+                    'ingredients' => [
+                        ['name' => '2 lbs pork belly'],
+                        ['name' => '2 tbsp garlic (minced or crushed)'],
+                        ['name' => '2 pcs bay leaves'],
+                        ['name' => '4 tbsp vinegar'],
+                        ['name' => '1/2 cup Kikkoman Soy Sauce Koikuchi'],
+                        ['name' => '1 tbsp peppercorn'],
+                        ['name' => '2 cups water'],
+                        ['name' => '1 cup stock'],
+                        ['name' => 'Salt to taste'],
+                    ],
+                    'instructions' => [
+                        'Mix pork belly with soy sauce, vinegar, bay leaves, peppercorn, and garlic.',
+                        'Sear the marinated pork until brown on all sides, then set aside.',
+                        'In the same pan, saute garlic until fragrant.',
+                        'Put back the pork into the pan, cover, and bring to a boil.',
+                        'Once boiling, add the stock.',
+                        'Simmer for 20 to 25 minutes or until the pork is tender.',
+                        'Transfer to a platter and serve hot.',
+                    ],
+                ],
+                [
+                    'image' => 'images/RECIPE/new version/7.jpg',
+                    'title' => 'Spring Rolls',
+                    'videoEmbed' => asset('videos/Recipes/SpringRolls.mp4'),
+                    'ingredients' => [
+                        ['name' => '20 spring roll wrappers'],
+                        ['name' => '6 King Chef canned shiitake mushrooms'],
+                        ['name' => '230g skinless, boneless chicken thighs'],
+                        ['name' => '110g raw Sea Chef shrimp, deveined'],
+                        ['name' => '600g cabbage, shredded'],
+                        ['name' => '1 tsp sea salt'],
+                        ['name' => '1 1/2 tbsp cornstarch mixed with 3 tbsp mushroom soaking liquid'],
+                        ['name' => '1 egg'],
+                        ['name' => '2 tbsp onion'],
+                        ['name' => '2 tsp garlic'],
+                        ['name' => '1/4 cup celery'],
+                        ['name' => '2 tbsp oyster sauce'],
+                        ['name' => '1 tsp spring onions'],
+                        ['name' => '1 tbsp shaoxing wine'],
+                        ['name' => '2 tbsp dark soy sauce'],
+                    ],
+                    'instructions' => [
+                        'Heat the pan with oil and saute onion, celery, and garlic.',
+                        'Add chicken thighs, then light soy sauce and oyster sauce. Stir-fry and season with white pepper and salt.',
+                        'Cook for a minute, then add dark soy sauce.',
+                        'Add King Chef shiitake mushroom and shrimp, then season with sugar.',
+                        'Add shaoxing wine, shredded cabbage, and cornstarch slurry. Stir-fry until softened.',
+                        'Place around 2 spoons of filling in the wrapper center. Tuck sides and roll, sealing edges with flour mixture.',
+                        'Deep-fry until golden and crispy. Drain and serve.',
+                    ],
+                ],
+                [
+                    'image' => 'images/RECIPE/new version/5.jpg',
+                    'title' => 'Longevity Noodles with Chicken and Mushroom',
+                    'videoEmbed' => asset('videos/Recipes/LongevityNoodles.mp4'),
+                    'ingredients' => [
+                        ['name' => '16 oz fresh noodles'],
+                        ['name' => '6 oz boneless chicken breast'],
+                        ['name' => '12 pcs King Chef shiitake mushroom'],
+                        ['name' => '3/4 cup Chinese chives, chopped'],
+                        ['name' => '1 carrot, julienned'],
+                        ['name' => '1/4 cup scallions, chopped'],
+                        ['name' => '5 tbsp oyster sauce'],
+                        ['name' => '6 cups water'],
+                        ['name' => '1/4 cup shaoxing cooking wine'],
+                        ['name' => '3 tbsp King Chef canola oil'],
+                        ['name' => '1/8 tsp ground black pepper'],
+                        ['name' => '1 tbsp dark soy sauce'],
+                        ['name' => '1/2 cup chicken broth'],
+                    ],
+                    'instructions' => [
+                        'Over medium-high heat, add oil in a wok. Add chicken and stir-fry for 3 minutes or until cooked. Set aside.',
+                        'Add shrimp, season with salt and pepper, and stir-fry for 3 minutes. Set aside.',
+                        'In the same wok, saute onion and garlic. Add dark soy sauce and shaoxing wine.',
+                        'Add cooked chicken, carrots, and shiitake mushroom. Pour in chicken broth and mix.',
+                        'Add noodles and toss gently for 1 to 2 minutes until evenly coated.',
+                        'Add chives, spring onions, and cooked shrimp. Plate and serve.',
+                    ],
+                ],
+                [
+                    'image' => 'images/RECIPE/new version/6.jpg',
+                    'title' => 'Pad Thai',
+                    'videoEmbed' => asset('videos/Recipes/PadThai.mp4'),
+                    'ingredients' => [
+                        ['name' => '4 tbsp King Chef canola oil'],
+                        ['name' => '8 pcs Sea Chef shrimp'],
+                        ['name' => '4 pcs chicken thigh fillet, diced'],
+                        ['name' => '2 tbsp garlic, chopped finely'],
+                        ['name' => '3 tbsp onions, chopped finely'],
+                        ['name' => '2 squares firm tofu, diced'],
+                        ['name' => '1 pack Lami Rice Noodle 200g (soaked in warm water for 10 minutes)'],
+                        ['name' => '1 cup Thai Dancer Pad Thai Stir-Fry Sauce'],
+                        ['name' => '2 to 3 eggs'],
+                        ['name' => '2 cups bean sprouts'],
+                        ['name' => '1/2 cup chives, cut into 3-inch strips'],
+                    ],
+                    'instructions' => [
+                        'Heat oil in a wok and add some garlic.',
+                        'Cook shrimp until pink, then remove.',
+                        'Brown chicken until half-cooked.',
+                        'Add remaining garlic and onions.',
+                        'Add tofu and noodles, then saute.',
+                        'Add Pad Thai sauce and toss evenly.',
+                        'Push noodles aside and add eggs. Cook and combine.',
+                        'Return cooked shrimp to the pan.',
+                        'Add bean sprouts and some chives, then toss.',
+                        'Remove from heat and garnish with remaining chives.',
+                    ],
+                ],
+                [
+                    'image' => 'images/RECIPE/new version/8.jpg',
+                    'title' => 'Cantonese Wonton Soup',
+                    'videoEmbed' => asset('videos/Recipes/ChineseWontonSoup.mp4'),
+                    'ingredients' => [
+                        ['name' => '1 pack wonton wrappers (around 50)'],
+                        ['name' => '2 lbs shell-on medium shrimp (or 1 lb 10 oz deshelled)'],
+                        ['name' => '2 tbsp shaoxing wine'],
+                        ['name' => '2 tbsp cornstarch'],
+                        ['name' => '1 tsp salt'],
+                        ['name' => '1 tsp sugar'],
+                        ['name' => '1 tsp sesame oil'],
+                        ['name' => '1 tsp white pepper powder'],
+                        ['name' => '1 egg white'],
+                    ],
+                    'instructions' => [
+                        'In a bowl, mix Sea Chef shrimp with shaoxing wine.',
+                        'Add cornstarch, salt, sugar, sesame oil, and white pepper.',
+                        'Add egg white and combine well. Set aside.',
+                        'Place 1 tablespoon of filling on a wrapper and fold to seal.',
+                        'Repeat until all filling or wrappers are used.',
+                        'Boil broth, cook wontons, and serve hot.',
+                    ],
+                ],
+                [
+                    'image' => 'images/RECIPE/new version/4.jpg',
+                    'title' => 'Coconut Milk Shake',
+                    'videoEmbed' => asset('videos/Recipes/CoconutMilkShake.mp4'),
+                    'ingredients' => [
+                        ['name' => '2 cups vanilla ice cream'],
+                        ['name' => 'Coconut flakes (optional)'],
+                        ['name' => '1 cup crushed ice'],
+                        ['name' => '2/3 cup Vico Rich Coconut Milk'],
+                        ['name' => '2/3 cup Vico Fresh Natural Coconut Water'],
+                    ],
+                    'instructions' => [
+                        'Add all ingredients to a blender.',
+                        'Blend until smooth and creamy.',
+                        'Pour into a chilled glass and top with coconut flakes if desired.',
+                    ],
+                ],
+                [
+                    'image' => 'images/RECIPE/new version/3.jpg',
+                    'title' => 'Bubble Milk Tea',
+                    'videoEmbed' => asset('videos/Recipes/MeetUCoffeeMilkTea.mp4'),
+                    'ingredients' => [
+                        ['name' => '500ml hot water'],
+                        ['name' => '1000ml cold water'],
+                        ['name' => '1 pack MEET U Milk White Tea 3-in-1'],
+                        ['name' => 'Cooked tapioca pearls'],
+                    ],
+                    'instructions' => [
+                        'Pour hot water to dissolve the milk tea powder.',
+                        'Stir until fully dissolved.',
+                        'Add cold water and stir.',
+                        'Add tapioca pearls.',
+                        'Pour in a glass and enjoy.',
+                    ],
+                ],
+            ];
+        @endphp
+
+        <div class="flex items-center justify-between mb-6 sm:mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Recipes</h2>
+            <a href="#" onclick="history.back(); return false;" class="inline-flex items-center gap-2 text-sm sm:text-base text-gray-700 hover:text-red-600 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back</span>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            @foreach($recipes as $recipe)
+                <button type="button" class="recipe-card rounded-xl overflow-hidden text-left"
+                    @click="setRecipe({{ json_encode($recipe) }})">
+                    <img src="{{ $recipe['image'] }}" class="w-full h-56 sm:h-60 object-cover" alt="{{ $recipe['title'] }}">
+                    <div class="p-4 sm:p-5">
+                        <h3 class="font-bold text-lg sm:text-xl text-red-600">{{ $recipe['title'] }}</h3>
+                    </div>
+                </button>
+            @endforeach
+        </div>
+
+        <div x-show="open" x-cloak x-transition.opacity.duration.250ms class="modal-shell fixed inset-0 flex items-center justify-center z-[9999] p-3 sm:p-4" @keydown.escape.window="closeModal()">
+            <div x-show="open" x-transition:enter="transition ease-out duration-250" x-transition:enter-start="opacity-0 translate-y-4 scale-[0.98]" x-transition:enter-end="opacity-100 translate-y-0 scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0 scale-100" x-transition:leave-end="opacity-0 translate-y-4 scale-[0.98]"
+                class="modal-panel bg-white rounded-2xl w-full max-w-4xl max-h-[92vh] overflow-y-auto" @click.away="closeModal()">
+                <div class="flex justify-between items-center p-4 sm:p-5 border-b sticky top-0 bg-white/95 backdrop-blur-sm z-10">
+                    <div>
+                        <p class="text-xs sm:text-sm uppercase tracking-wider text-gray-500">Recipe Details</p>
+                        <h2 class="text-xl sm:text-2xl font-bold text-black" x-text="recipe?.title"></h2>
+                    </div>
+                    <button @click="closeModal()" class="h-9 w-9 inline-flex items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:text-black hover:bg-gray-100 text-xl leading-none" aria-label="Close">&times;</button>
+                </div>
+
+                <div class="p-4 sm:p-6 space-y-6 sm:space-y-8">
+                    <div>
+                        <template x-if="recipe?.videoEmbed && recipe.videoEmbed !== ''">
+                            <div :key="videoSrc">
+                                <video class="w-full rounded-lg" autoplay playsinline controls>
+                                    <source :src="videoSrc" type="video/mp4">
+                                </video>
+                            </div>
+                        </template>
+
+                        <template x-if="!recipe?.videoEmbed || recipe.videoEmbed === ''">
+                            <img :src="recipe?.image" class="w-full h-72 sm:h-96 object-cover rounded-lg" alt="Recipe image">
+                        </template>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-semibold mb-4 text-black">Ingredients</h3>
+                            <ul class="space-y-2.5 text-gray-700">
+                                <template x-for="ingredient in recipe?.ingredients" :key="ingredient.name">
+                                    <li class="recipe-pill rounded-lg px-3 py-2 text-sm sm:text-base" x-text="ingredient.name"></li>
+                                </template>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-semibold mb-4 text-black">Instructions</h3>
+                            <ol class="space-y-2.5 text-gray-700">
+                                <template x-for="step in recipe?.instructions" :key="step">
+                                    <li class="flex items-start gap-3 text-sm sm:text-base">
+                                        <span class="mt-0.5 h-6 w-6 shrink-0 inline-flex items-center justify-center rounded-full bg-red-50 text-red-600 text-xs font-bold" x-text="$index + 1"></span>
+                                        <span x-text="step"></span>
+                                    </li>
+                                </template>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @include('components.footer')
+</main>
 @endsection
-
 
 @push('scripts')
 @vite('resources/js/consumer_products.js')
 @endpush
-

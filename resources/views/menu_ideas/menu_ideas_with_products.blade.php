@@ -17,25 +17,116 @@
 
 
 <style>
+    :root {
+        --topbar-h: 56px;
+    }
 
-.back-btn {
-    position: fixed;    /* keeps it visible even when scrolling */
-    z-index: 9999;      /* very high so it stays on top */
-	
-}
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        background: #111827;
+        color: #f9fafb;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-	
+    .catalog-topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--topbar-h);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 14px;
+        background: rgba(17, 24, 39, 0.85);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .catalog-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .catalog-btn {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 7px 12px;
+        transition: background 0.2s ease;
+    }
+
+    .catalog-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .catalog-title {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #canvas {
+        min-height: 100vh;
+        padding-top: var(--topbar-h);
+        box-sizing: border-box;
+    }
+
+    .magazine-viewport {
+        height: calc(100vh - var(--topbar-h)) !important;
+    }
+
+    .back-btn {
+        position: static;
+        z-index: auto;
+    }
+
+    @media (max-width: 640px) {
+        :root {
+            --topbar-h: 52px;
+        }
+
+        .catalog-topbar {
+            padding: 8px 10px;
+        }
+
+        .catalog-btn {
+            font-size: 12px;
+            padding: 6px 10px;
+        }
+
+        .catalog-title {
+            font-size: 13px;
+        }
+    }
 </style>
 
 
 </head>
 <body>
+    <header class="catalog-topbar">
+        <div class="catalog-actions">
+            <button type="button" class="catalog-btn" onclick="window.location.href='/'">Home</button>
+            <button type="button" class="catalog-btn" onclick="history.back()">Back</button>
+        </div>
+        <div class="catalog-title">Menu Ideas</div>
+    </header>
 
 <div id="canvas">
 
 
     <div class="zoom-icon zoom-icon-in"></div>
-    <button type="button" class="btn btn-primary back-btn" onclick="window.location.href='/'">Home</button>
 
 
 <div class="magazine-viewport">

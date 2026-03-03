@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="card_display grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card_display grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
 
             <!-- Card 1 -->
             <div data-aos="fade-up" data-aos-duration="700" data-aos-delay="0"
