@@ -328,7 +328,6 @@
                             <img src="{{ $eventImages[0] }}" alt="{{ $event['title'] }}"
                                 class="w-full h-44 sm:h-48 object-cover rounded-lg mb-3">
                             <h4 class="text-lg font-semibold line-clamp-2">{{ $event['title'] }}</h4>
-                            <p class="text-sm text-gray-500 mt-1">{{ $event['date'] ?? '' }}</p>
                         </button>
 
                         <div x-show="open" x-cloak x-transition.opacity.duration.250ms
