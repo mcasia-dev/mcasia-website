@@ -1,4 +1,4 @@
-<header class="hidden lg:block bg-white shadow-sm fixed top-0 left-0 w-full z-[200] transition-all duration-300">
+<header class="hidden xl:block bg-white shadow-sm fixed top-0 left-0 w-full z-[200] transition-all duration-300">
     <div class="w-full max-w-7xl mx-auto px-4 xl:px-6 py-3">
         <div class="flex items-center justify-between gap-5 xl:gap-8">
             <a href="/" class="flex items-center logo-img shrink-0">

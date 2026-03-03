@@ -34,9 +34,42 @@
 </script>
 
 <script>
+    function setMobileMenuState(open) {
+        const menu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('mobileMenuIcon');
+        if (!menu) return;
+
+        if (menu._hideTimer) {
+            clearTimeout(menu._hideTimer);
+            menu._hideTimer = null;
+        }
+
+        if (open) {
+            menu.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                menu.classList.remove('opacity-0', '-translate-y-2');
+                menu.classList.add('opacity-100', 'translate-y-0');
+            });
+        } else {
+            menu.classList.remove('opacity-100', 'translate-y-0');
+            menu.classList.add('opacity-0', '-translate-y-2');
+            menu._hideTimer = setTimeout(() => {
+                menu.classList.add('hidden');
+            }, 300);
+        }
+
+        if (menuIcon) {
+            menuIcon.classList.toggle('fa-bars', !open);
+            menuIcon.classList.toggle('fa-xmark', open);
+            menuIcon.classList.toggle('rotate-90', open);
+        }
+    }
+
     function toggleMobileMenu() {
         const menu = document.getElementById('mobileMenu');
-        menu.classList.toggle('hidden');
+        if (!menu) return;
+        const isOpen = !menu.classList.contains('hidden') && menu.classList.contains('opacity-100');
+        setMobileMenuState(!isOpen);
     }
 </script>
 
@@ -44,6 +77,12 @@
     function toggleDropdown(id) {
         const dropdown = document.getElementById(id);
         const arrow = document.getElementById(id + 'Arrow');
+        const menu = document.getElementById('mobileMenu');
+
+        if (id === 'mobileProductDropdown' && menu && !menu.classList.contains('hidden')) {
+            setMobileMenuState(false);
+        }
+
         if (!dropdown) return;
         dropdown.classList.toggle('hidden');
         if (arrow) {

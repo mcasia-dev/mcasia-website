@@ -1,5 +1,5 @@
 {{--Mobile View--}}
-<header class="lg:hidden fixed top-0 left-0 w-full bg-white shadow-sm z-[200]">
+<header class="xl:hidden fixed top-0 left-0 w-full bg-white shadow-sm z-[200]">
     <div class="px-4 py-3">
         <div class="flex items-center justify-between gap-3">
             <a href="/" class="flex items-center shrink-0">
@@ -7,7 +7,7 @@
             </a>
 
             <button onclick="toggleMobileMenu()" class="text-2xl text-gray-700 leading-none shrink-0">
-                <i class="fa-solid fa-bars"></i>
+                <i id="mobileMenuIcon" class="fa-solid fa-bars transition-all duration-300"></i>
             </button>
         </div>
 
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <nav id="mobileMenu" class="hidden bg-white border-t shadow-lg">
+    <nav id="mobileMenu" class="hidden opacity-0 -translate-y-2 transition-all duration-300 ease-out bg-white border-t shadow-lg">
         <ul class="flex flex-col text-gray-700 text-[15px]">
             <li><a href="/" class="block px-4 py-3 border-b">Home</a></li>
             <li><a href="/about_us" class="block px-4 py-3 border-b">Our Story</a></li>
@@ -94,7 +94,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/foodservice_solutions" class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
+                                <a href="/foodservice_solutions"
+                                    class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
                                     Food
                                 </a>
                             </li>
