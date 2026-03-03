@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -8,7 +7,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PartnershipMail extends Mailable
+class ReachUsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,7 +25,7 @@ class PartnershipMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Partnership Mail',
+            subject: 'McAsia User Concern / Feedback',
         );
     }
 
@@ -36,9 +35,12 @@ class PartnershipMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.partnership-mail',
+            view: 'mail.reach-us-mail',
             with: [
-                'data' => $this->data,
+                'full_name' => $this->data['full_name'] ?? '',
+                'email'     => $this->data['email'] ?? '',
+                'phone'     => $this->data['phone'] ?? '',
+                'user_message' => $this->data['message'] ?? '',
             ],
         );
     }
@@ -53,3 +55,4 @@ class PartnershipMail extends Mailable
         return [];
     }
 }
+
