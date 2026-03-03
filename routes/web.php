@@ -105,11 +105,12 @@ Route::get('/partnership', function () {
     return view('partnership');
 })->name('partnership');
 
-Route::post('/partnership/submit', [\App\Http\Controllers\InsertDataInformation::class, 'submit_partnership_form']);
+// Route::post('/partnership/submit', [\App\Http\Controllers\InsertDataInformation::class, 'submit_partnership_form']);
 
 #--------------------------------------------------------------------------
 
-Route::post('/send-mail', [MailController::class, 'sendTestEmail']);
+Route::post('/send-mail', [MailController::class, 'sendReachUs']);
+Route::post('/partnership/submit', [MailController::class, 'sendPartnership']);
 
 #------------------------------BRANDS--------------------------------------
 Route::get('/abc', function () {
