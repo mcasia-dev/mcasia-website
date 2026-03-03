@@ -2,13 +2,13 @@
     <div class="">
         <div data-aos="fade-up" data-aos-duration="700" class="relative overflow-hidden">
             <img src="{{ asset('images/home/our-recipe/recipe-banner.png') }}" alt="Recipes"
-                class="w-full h-[420px] md:h-full object-cover">
-            <div class="absolute inset-0 bg-black/10"></div>
+                class="w-full h-[500px] sm:h-[420px] md:h-full object-cover">
+            <div class="absolute inset-0 bg-black/20"></div>
 
             <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="120"
-                class="absolute left-1 lg:left-10 bottom-3 md:bottom-36 bg-white/95 backdrop-blur rounded-4xl items-center p-8 md:p-10 max-w-sm md:max-w-md">
+                class="absolute left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 lg:left-10 bottom-3 sm:bottom-8 md:bottom-36 w-[calc(100%-1.5rem)] max-w-[340px] sm:max-w-sm md:max-w-md bg-white/95 backdrop-blur rounded-[2rem] sm:rounded-4xl items-center p-5 sm:p-8 md:p-10">
                 <p class="font-yellowtail text-red-600 text-4xl leading-none mb-2">Recipes</p>
-                <h3 class="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                <h3 class="text-[2.15rem] sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
                     Cook Like A Chef!
                 </h3>
                 <p class="text-gray-600 font-onest text-sm md:text-base leading-relaxed mb-6 text-justify">

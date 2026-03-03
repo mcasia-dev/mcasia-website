@@ -2,272 +2,253 @@
 @section('title', 'McAsia - Reliable Facilities')
 @section('content')
 
-    <style>
-        body.fade-in {
-            opacity: 1;
-        }
+<style>
+    body.fade-in {
+        opacity: 1;
+    }
 
-        /* Fade-in animation for sections */
-        .fade-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
+    .fade-section {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
 
-        .fade-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .fade-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-        /*-------------Viewing for Monitor going 2k - 4k resolution----------*/
-        @media (min-width: 1440px) {
-            .content-wrapper {
-                margin-left: -17rem;
-                /* Move content slightly right */
-                margin-top: 8rem;
-                /* Optional vertical offset */
-            }
+    .facility-hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.34));
+    }
 
-            .image_cover {
-                object-fit: cover;
-                height: 76%;
-                width: 100%;
-            }
+    .brand-slide img {
+        width: 100%;
+        height: clamp(170px, 24vw, 280px);
+        object-fit: contain;
+    }
 
-            .content_text {
-                margin-top: -10%;
-            }
+    .carousel-track {
+        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-            .spacing_1 {
-                margin-bottom: 1rem;
-            }
+    .brand-tile {
+        border: 1px solid #e5e7eb;
+        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
 
-            .images-preview {
-                width: 110%;
-                height: auto;
-                max-height: 280px;
-                object-fit: contain;
-            }
-        }
+    .brand-tile:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    }
 
-        /*------------------------Smaller Screens-----------------------------*/
-        @media (min-width: 641px) and (max-width: 1439px) {
-            .image_cover {
+    .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #d1d5db;
+        transition: all 250ms ease;
+    }
 
-                height: 60%;
-                margin-top: 1%;
-                width: 100%;
-                object-fit: cover;
+    .carousel-dot.active {
+        width: 28px;
+        background: #dc2626;
+    }
+</style>
 
-            }
+<main class="w-full overflow-x-hidden">
+    <div class="pt-20 lg:pt-32"></div>
 
-            .content_text {
-                margin-top: -20%;
-            }
-        }
+    <section class="facility-hero relative h-[36vh] sm:h-[46vh] lg:h-[58vh] overflow-hidden">
+        <img src="{{ asset('images/reliable_facilities/1.jpg') }}" alt="Reliable Facilities"
+            class="absolute inset-0 w-full h-full object-cover">
+        <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
+            <div>
+                {{-- <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-white">Built On Reliable Facilities</h1>
+                <p class="text-white/90 mt-3 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto">
+                    Advanced warehousing and logistics infrastructure built for speed, safety, and consistency.
+                </p> --}}
+            </div>
+        </div>
+    </section>
 
-        /*--------------------Mobile Resolution-------------*/
-        @media (max-width: 414px) {
-            .image_cover {
-                object-fit: cover;
-                height: 40%;
-                width: max-content;
-            }
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14 lg:py-16 space-y-8 sm:space-y-10">
+        <article class="fade-section space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Built on Reliable Facilities</h2>
+            <p class="text-gray-600 leading-relaxed text-justify text-sm sm:text-base">
+                Committed to maintaining the highest standards of safety and quality,
+                <span class="font-semibold text-gray-800">McAsia Foodtrade Corporation</span> made a strategic
+                investment in a state-of-the-art warehouse established in early 2022. The facility is designed to
+                optimize storage capacity, streamline inventory management, and support efficient distribution
+                operations. Equipped with advanced
+                <span class="font-semibold text-gray-800">Warehouse Management System (WMS) technology</span>
+                and a fleet of dedicated delivery trucks, the warehouse ensures a seamless, reliable, and fully
+                integrated supply chain, reinforcing
+                <span class="font-semibold text-gray-800">McAsia's</span> commitment to operational excellence and
+                timely delivery across the nation.
+            </p>
+        </article>
 
-            .content_text {
-                margin-top: -120%;
-            }
-        }
-    </style>
+        <article class="fade-section space-y-4">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900">Technology-Enabled Operations</h3>
+            <p class="text-gray-600 leading-relaxed text-justify text-sm sm:text-base">
+                Leveraging technology and industry best practices,
+                <span class="font-semibold text-gray-800">McAsia Foodtrade Corporation</span> continuously enhances
+                its logistics and supply chain operations. The integration of real-time inventory tracking, automated
+                processes, and optimized delivery routes allows the company to maintain product integrity, reduce lead
+                times, and respond swiftly to customer demands. This forward-looking approach ensures that
+                <span class="font-semibold text-gray-800">McAsia</span> not only meets but exceeds the expectations
+                of its partners and clients, reinforcing its reputation as a reliable and innovative leader in food
+                distribution nationwide.
+            </p>
+        </article>
 
-    <div class="relative overflow-hidden">
-        {{-- Hero Section --}}
-        <section class="relative h-screen overflow-hidden"> {{-- Reduced height --}}
-            <img src="{{ asset('images/reliable_facilities/1.jpg') }}" alt="Background"
-                class="image_cover absolute inset-0">
-        </section>
+        <article class="fade-section space-y-4">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900">Dependable Delivery Standards</h3>
+            <p class="text-gray-600 leading-relaxed text-justify text-sm sm:text-base">
+                Through these advanced systems and meticulous operational standards,
+                <span class="font-semibold text-gray-800">McAsia</span> ensures that every product reaches its
+                destination safely, efficiently, and in optimal condition, reflecting the Company's unwavering
+                commitment to quality, safety, and customer satisfaction.
+            </p>
+        </article>
 
-        <!-----------------------------------ABOUT US SECTION--------------------------------------------------------->
-        <section class="content_text mx-auto px-4 py-12 space-y-10">
-            <!-- Intro Section -->
-            <div class="fade-section">
-                <h2 class="text-2xl font-bold text-gray-900">Built on Reliable Facilities</h2>
+        <div class="fade-section">
+            <a href="#" onclick="history.back(); return false;"
+                class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="py-10 sm:py-14 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6" x-data="{
+                currentIndex: 0,
+                interval: null,
+                isMobile: window.innerWidth < 768,
+                get batchSize() { return this.isMobile ? 1 : 2; },
+                products: [
+                    { name: 'ABC', link: '/abc', images: [{ src: 'images/BRAND/ABC/1.png' }] },
+                    { name: 'DAISHO', link: '/daisho', images: [{ src: 'images/BRAND/DAISHO/1.png' }] },
+                    { name: 'OXFORD', link: '/oxford', images: [{ src: 'images/BRAND/OXFORD/1.png' }] },
+                    { name: 'HENG', link: '/heng', images: [{ src: 'images/BRAND/HENG/1.png' }] },
+                    { name: 'MILCASA', link: '/milcasa', images: [{ src: 'images/BRAND/MILCASA/1.png' }] },
+                    { name: 'KING CHEF', link: '/king-chef', images: [{ src: 'images/BRAND/KING CHEF/1.png' }] },
+                    { name: 'OTAFUKU', link: '/otafuku', images: [{ src: 'images/BRAND/OTAFUKU/1.png' }] },
+                    { name: 'SEA CHEF', link: '/sea-chef', images: [{ src: 'images/BRAND/SEA CHEF/1.png' }] },
+                    { name: 'UM-MAMI', link: '/ummami', images: [{ src: 'images/BRAND/UM-MAMI/1.png' }] },
+                    { name: 'OZAKI', link: '/ozaki', images: [{ src: 'images/BRAND/OZAKI/1.png' }] }
+                ],
+                get totalBatches() { return Math.ceil(this.products.length / this.batchSize); },
+                startSlideshow() {
+                    this.stopSlideshow();
+                    this.interval = setInterval(() => {
+                        this.currentIndex = (this.currentIndex + 1) % this.totalBatches;
+                    }, 5000);
+                },
+                stopSlideshow() {
+                    if (this.interval) {
+                        clearInterval(this.interval);
+                        this.interval = null;
+                    }
+                },
+                resetSlideshow() {
+                    this.stopSlideshow();
+                    this.startSlideshow();
+                },
+                onResize() {
+                    this.isMobile = window.innerWidth < 768;
+                    if (this.currentIndex >= this.totalBatches) {
+                        this.currentIndex = 0;
+                    }
+                    this.resetSlideshow();
+                },
+                goToSlide(index) {
+                    this.currentIndex = index;
+                    this.resetSlideshow();
+                }
+            }" x-init="startSlideshow(); window.addEventListener('resize', () => onResize())">
+
+            <div class="fade-section flex items-center justify-between mb-4 sm:mb-6">
+                <h2 class="text-xl sm:text-2xl font-semibold text-gray-900">Featured Brands</h2>
             </div>
 
-            <div class="fade-section">
-                <p class="text-gray-600 leading-relaxed text-justify">
-                    Committed to maintaining the highest standards of safety and quality,
-                    <span class="font-semibold text-gray-800">McAsia Foodtrade Corporation</span>, made a strategic
-                    investment in a state-of-the-art warehouse, established in early 2022.
-                    The facility is designed to optimize storage capacity, streamline inventory management, and support
-                    efficient distribution operations.
-                    Equipped with advanced <span class="font-semibold text-gray-800">Warehouse Management System (WMS)
-                        technology</span> and a fleet of dedicated delivery trucks, the warehouse ensures a seamless,
-                    reliable, and fully integrated supply chain, reinforcing <span
-                        class="font-semibold text-gray-800">McAsia's</span> commitment to operational excellence and timely
-                    delivery across the nation.
-                </p>
-            </div>
-
-            <!-- Innovation Section -->
-            <div class="fade-section">
-                <p class="text-gray-600 leading-relaxed text-justify">
-                    Leveraging technology and industry best practices, <span class="font-semibold text-gray-800">McAsia
-                        Foodtrade Corporation</span>, continuously enhances its logistics and supply chain operations.
-                    The integration of real-time inventory tracking, automated processes, and optimized delivery routes
-                    allows the company to maintain product integrity, reduce lead times, and respond swiftly to customer
-                    demands.
-                    This forward-looking approach ensures that <span class="font-semibold text-gray-800">McAsia</span> not
-                    only meets but exceeds the expectations of its partners and clients, reinforcing its reputation as a
-                    reliable and innovative leader in food distribution nationwide.
-                </p>
-            </div>
-
-            <!-- Commitment Section -->
-            <div class="fade-section">
-                <p class="text-gray-600 leading-relaxed text-justify">
-                    Through these advanced systems and meticulous operational standards, <span
-                        class="font-semibold text-gray-800">McAsia</span> ensures that every product reaches its destination
-                    safely, efficiently, and in optimal condition, reflecting the Company’s unwavering commitment to
-                    quality, safety, and customer satisfaction.
-                </p>
-            </div>
-        </section>
-
-        <!------------------------------------------------------------------------------------------------------------------------------->
-        <a href="#" onclick="history.back(); return false;"
-            class="btn btn-outline-light d-inline-flex align-items-center gap-2 px-3 py-2" style="font-size: 16px;">
-
-            <i class="fa-solid fa-arrow-left"></i>
-            <span>Back</span>
-        </a>
-
-        <div class="spacing_1"></div>
-
-        <!--------------------------------------------3rd Section: Products & Brands Showcase-------------------------------------->
-        <div class="section min-h-screen flex flex-col items-center justify-start text-white px-4 md:px-6 relative"
-            id="section3" x-data="{
-            openModal: false,
-            activeProduct: null,
-            currentIndex: 0,
-            interval: null,
-            thumbIndex: 0,
-            selectedImage: null,
-            isMobile: window.innerWidth <= 434,
-            get batchSize() { return this.isMobile ? 1 : 2 },
-
-                    products: [
-                        { name: 'ABC', link: '/abc', images: [{ src: 'images/BRAND/ABC/1.png' }] },
-                        { name: 'DAISHO', link: '/daisho', images: [{ src: 'images/BRAND/DAISHO/1.png' }] },
-                        { name: 'OXFORD', link: '/oxford', images: [{ src: 'images/BRAND/OXFORD/1.png' }] },
-                        { name: 'HENG', link: '/heng', images: [{ src: 'images/BRAND/HENG/1.png' }] },
-                        { name: 'MILCASA', link: '/milcasa', images: [{ src: 'images/BRAND/MILCASA/1.png' }] },
-                        { name: 'KING CHEF', link: '/king-chef', images: [{ src: 'images/BRAND/KING CHEF/1.png' }] },
-                        { name: 'OTAFUKU', link: '/otafuku', images: [{ src: 'images/BRAND/OTAFUKU/1.png' }] },
-                        { name: 'SEA CHEF', link: '/sea-chef', images: [{ src: 'images/BRAND/SEA CHEF/1.png' }] },
-                        { name: 'UM-MAMI', link: '/ummami', images: [{ src: 'images/BRAND/UM-MAMI/1.png' }] },
-                        { name: 'OZAKI', link: '/ozaki', images: [{ src: 'images/BRAND/OZAKI/1.png' }] },
-                    ],
-
-            startSlideshow() {
-                this.interval = setInterval(() => {
-                    this.currentIndex = (this.currentIndex + 1) % Math.ceil(this.products.length / this.batchSize);
-                }, 5000);
-            },
-
-            stopSlideshow() {
-                clearInterval(this.interval);
-                this.interval = null;
-            },
-
-            resetSlideshow() {
-                this.stopSlideshow();
-                this.startSlideshow();
-            }
-         }" x-init="
-            startSlideshow();
-            window.addEventListener('resize', () => { isMobile = window.innerWidth <= 434 })
-         ">
-
-            <div class="w-full flex center ml-210"></div>
-
-            <!-- Showcase Slider -->
-            <div class="relative w-screen h-auto md:h-[370px] overflow-hidden rounded-none shadow-2xl image-container">
-                <!-- Sliding Wrapper -->
-                <div class="flex transition-transform duration-700 ease-in-out"
-                    :style="`transform: translateX(-${currentIndex * 100}%)`">
-
-                    <!-- Each batch -->
-                    <template x-for="batch in Math.ceil(products.length / batchSize)" :key="batch">
-                        <div class="flex-shrink-0 w-full flex flex-col md:flex-row gap-6 p-6 justify-center items-center">
-
-                            <!-- PRODUCTS -->
-                            <template
-                                x-for="(product, i) in products.slice((batch-1)*batchSize, (batch-1)*batchSize + batchSize)"
-                                :key="product.name">
-                                <div class="w-full md:w-1/2 cursor-pointer transition transform hover:scale-[1.02] flex justify-center"
-                                    @click="window.location.href = product.link">
-                                    <img :src="product.images[0].src" :alt="product.name" class="images-preview">
-                                </div>
-                            </template>
-
-                            <!-- Desktop placeholder -->
-                            <template
-                                x-if="products.slice((batch-1)*batchSize, (batch-1)*batchSize + batchSize).length < batchSize">
-                                <div class="hidden md:block w-1/2 h-[180px] md:h-[220px] bg-transparent"></div>
-                            </template>
-
+            <div class="relative overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100"
+                @mouseenter="stopSlideshow()" @mouseleave="startSlideshow()">
+                <div class="flex carousel-track" :style="`transform: translateX(-${currentIndex * 100}%);`">
+                    <template x-for="batch in totalBatches" :key="batch">
+                        <div class="flex-shrink-0 w-full p-4 sm:p-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                                <template x-for="(product, i) in products.slice((batch - 1) * batchSize, (batch - 1) * batchSize + batchSize)" :key="product.name">
+                                    <button type="button" class="brand-tile brand-slide rounded-xl p-4 sm:p-5 transition text-left"
+                                        @click="window.location.href = product.link">
+                                        <img :src="product.images[0].src" :alt="product.name">
+                                        <div class="mt-3 text-center">
+                                            <span class="inline-block text-xs sm:text-sm font-semibold tracking-wide text-gray-700" x-text="product.name"></span>
+                                        </div>
+                                    </button>
+                                </template>
+                            </div>
                         </div>
                     </template>
                 </div>
 
-                <!-- Controls -->
-                <button @click="
-          currentIndex = (currentIndex - 1 + Math.ceil(products.length / batchSize)) % Math.ceil(products.length / batchSize);
-          resetSlideshow();
-        " class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white hover:bg-red-600 transition z-10">
-                    ‹
+                <button type="button" @click="currentIndex = (currentIndex - 1 + totalBatches) % totalBatches; resetSlideshow();"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/55 p-2.5 rounded-full text-white hover:bg-red-600 transition z-10"
+                    aria-label="Previous slide">
+                    <span aria-hidden="true">&#8249;</span>
                 </button>
 
-                <button @click="
-          currentIndex = (currentIndex + 1) % Math.ceil(products.length / batchSize);
-          resetSlideshow();
-        " class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white hover:bg-red-600 transition z-10">
-                    ›
+                <button type="button" @click="currentIndex = (currentIndex + 1) % totalBatches; resetSlideshow();"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/55 p-2.5 rounded-full text-white hover:bg-red-600 transition z-10"
+                    aria-label="Next slide">
+                    <span aria-hidden="true">&#8250;</span>
                 </button>
+
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-2 rounded-full border border-gray-200">
+                    <template x-for="(_, index) in Array.from({ length: totalBatches })" :key="index">
+                        <button type="button" class="carousel-dot" :class="{ 'active': currentIndex === index }"
+                            @click="goToSlide(index)" :aria-label="`Go to slide ${index + 1}`">
+                        </button>
+                    </template>
+                </div>
             </div>
-
-            <div class="h-30"></div>
         </div>
-    </div>
+    </section>
 
     @include('components.footer')
+</main>
 
-    <script>
-        // Fade-in for entire page
-        window.addEventListener("load", () => {
-            document.body.classList.add("fade-in");
+<script>
+    window.addEventListener('load', () => {
+        document.body.classList.add('fade-in');
+    });
+
+    const fadeSections = document.querySelectorAll('.fade-section');
+
+    const fadeInOnScroll = () => {
+        const triggerBottom = window.innerHeight * 0.85;
+        fadeSections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop < triggerBottom) {
+                section.classList.add('visible');
+            }
         });
+    };
 
-        // Fade-in each section on scroll
-        const fadeSections = document.querySelectorAll('.fade-section');
+    window.addEventListener('scroll', fadeInOnScroll);
+    window.addEventListener('load', fadeInOnScroll);
 
-        const fadeInOnScroll = () => {
-            const triggerBottom = window.innerHeight * 0.85;
-            fadeSections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                if (sectionTop < triggerBottom) {
-                    section.classList.add('visible');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', fadeInOnScroll);
-        window.addEventListener('load', fadeInOnScroll);
-
+    if (window.AOS) {
         AOS.init({
             duration: 1000,
             once: true,
         });
-    </script>
+    }
+</script>
 @endsection

@@ -2,26 +2,48 @@
 @section('title', 'News & Events')
 @section('content')
 
-    <style>
+        <style>
         html,
         body {
             overflow-x: hidden;
         }
 
-        /* Animation: from center to top-left (inside section) */
-        @keyframes moveToTopLeft {
-            0% {
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(1);
-            }
+        [x-cloak] {
+            display: none !important;
+        }
 
-            100% {
-                top: -26px;
-                left: -140px;
-                transform: translate(0, 0) scale(0.5);
-                /* Grows 1.5x larger */
-            }
+        .event-card {
+            border: 1px solid #e5e7eb;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+        }
+
+        .event-modal-shell {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(4px);
+        }
+
+        .event-modal-panel {
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.32);
+        }
+
+        .event-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: #d1d5db;
+            transition: all 200ms ease;
+        }
+
+        .event-dot.active {
+            width: 24px;
+            background: #dc2626;
         }
     </style>
 
@@ -59,7 +81,7 @@
                 [
                     'title' => 'MAFBEX 2025',
                     'date' => 'August 2025',
-                    'description' => 'MAFBEX 2025 was held at the World Trade Center Manila, and McAsia Foodtrade Corporation was proud to be part of this exciting event. At our booth, we shared product samples, fun giveaways, and had the chance to meet with partners and food enthusiasts. It was a great way to show our quality products and connect with more people in the industry. Thank you to everyone who visited—we look forward to serving more flavors soon!',
+                    'description' => 'MAFBEX 2025 was held at the World Trade Center Manila, and McAsia Foodtrade Corporation was proud to be part of this exciting event. At our booth, we shared product samples, fun giveaways, and had the chance to meet with partners and food enthusiasts. It was a great way to show our quality products and connect with more people in the industry. Thank you to everyone who visited - we look forward to serving more flavors soon!',
                     'images' => [
                         'images/EVENTS/MAFBEX 2025/1.jpg',
                         'images/EVENTS/MAFBEX 2025/2.jpg',
@@ -71,7 +93,7 @@
                 [
                     'title' => 'WOFEX lloilo 2025',
                     'date' => 'August 2025',
-                    'description' => 'McAsia Foodtrade Corporation brought bold flavors and kitchen excitement to WOFEX Iloilo 2025! We proudly joined the event to showcase our wide range of sauces, condiments, and Asian ingredients that bring authentic flavors to every kitchen. It was a great opportunity to connect with chefs, food entrepreneurs, and partners who share our passion for quality and taste. We’re grateful to everyone who visited our booth and look forward to bringing more Asian flavors closer to you.',
+                    'description' => 'McAsia Foodtrade Corporation brought bold flavors and kitchen excitement to WOFEX Iloilo 2025! We proudly joined the event to showcase our wide range of sauces, condiments, and Asian ingredients that bring authentic flavors to every kitchen. It was a great opportunity to connect with chefs, food entrepreneurs, and partners who share our passion for quality and taste. We\'re grateful to everyone who visited our booth and look forward to bringing more Asian flavors closer to you.',
                     'images' => [
                         'images/EVENTS/WOFEX lloilo 2025/1.jpg',
                         'images/EVENTS/WOFEX lloilo 2025/2.jpg',
@@ -82,7 +104,6 @@
                     ],
                 ],
                 [
-
                     'title' => 'WOFEX Manila 2025',
                     'date' => 'August 2025',
                     'images' => [
@@ -92,10 +113,9 @@
                         'images/EVENTS/WOFEX MANILA 2025/4.JPG',
                         'images/EVENTS/WOFEX MANILA 2025/5.JPG',
                     ],
-                    'description' => 'McAsia Foodtrade Corporation brought authentic Asian flavors to life at the recently concluded WOFEX Manila World Food Expo 2025, the country’s biggest stage for food and beverage innovation. Visitors at our booth experienced the taste of Asia through free samples, live cooking demos, and exciting dishes prepared by celebrity chefs Niño Logarta, Ryan Siapian, and Tina Agregado, together with our valued principals. From sauces and condiments to specialty ingredients, we showcased how our products can make every kitchen adventure easier and more flavorful. It was a truly inspiring and delicious experience. Thank you for making this event a success—we look forward to sharing more flavors with you soon!'
+                    'description' => 'McAsia Foodtrade Corporation brought authentic Asian flavors to life at the recently concluded WOFEX Manila World Food Expo 2025, the country\'s biggest stage for food and beverage innovation. Visitors at our booth experienced the taste of Asia through free samples, live cooking demos, and exciting dishes prepared by celebrity chefs Nino Logarta, Ryan Siapian, and Tina Agregado, together with our valued principals. From sauces and condiments to specialty ingredients, we showcased how our products can make every kitchen adventure easier and more flavorful. It was a truly inspiring and delicious experience. Thank you for making this event a success - we look forward to sharing more flavors with you soon!'
                 ],
                 [
-
                     'title' => 'WOFEX Visayas 2025',
                     'date' => 'August 2025',
                     'images' => [
@@ -120,7 +140,7 @@
                         'images/EVENTS/WOFEX Davao 2025/4.jpg',
                         'images/EVENTS/WOFEX Davao 2025/5.jpg',
                     ],
-                    'description' => 'McAsia Foodtrade Corporation proudly joined WOFEX Mindanao, one of Mindanao’s biggest food and beverage gatherings. The event was a flavorful stage for us to showcase our trusted range of Asian products that make every dish more delicious and convenient. We were delighted to meet industry partners, chefs, and food lovers who share the same passion for quality and taste.  As we continue our journey, we are slowly bringing the home of Asian cravings to Davao—thank you to everyone who visited and shared this experience with us! '
+                    'description' => 'McAsia Foodtrade Corporation proudly joined WOFEX Mindanao, one of Mindanao\'s biggest food and beverage gatherings. The event was a flavorful stage for us to showcase our trusted range of Asian products that make every dish more delicious and convenient. We were delighted to meet industry partners, chefs, and food lovers who share the same passion for quality and taste.  As we continue our journey, we are slowly bringing the home of Asian cravings to Davao - thank you to everyone who visited and shared this experience with us! '
                 ],
                 [
                     'title' => 'WOFEX Manila 2023',
@@ -137,7 +157,7 @@
 
                     ],
                     'description' =>
-                        'McAsia’s booth at the World Food Expo last August 2-5, 2023 at the SMX Convention Center Manila, was a symphony of flavors and aromas, designed to captivate the palates of visitors. From the moment attendees stepped into our space, they were enveloped in an ambiance that celebrated the artistry and passion behind our culinary creations.',
+                        'McAsia\'s booth at the World Food Expo last August 2-5, 2023 at the SMX Convention Center Manila, was a symphony of flavors and aromas, designed to captivate the palates of visitors. From the moment attendees stepped into our space, they were enveloped in an ambiance that celebrated the artistry and passion behind our culinary creations.',
                     'The carefully curated displays featured our signature dishes, highlighting the quality of our Asian ingredients and the craftsmanship that sets us apart'
                 ],
                 // [
@@ -204,7 +224,7 @@
                         'images/EVENTS/NOEL Bazaar 2022/noel_bazaar15.JPG',
                         'images/EVENTS/NOEL Bazaar 2022/noel_bazaar16.JPG',
                     ],
-                    'description' => 'As the holiday season unfolded, our team had the pleasure of participating in the much-anticipated Christmas Bazaar of 2022, Noel Bazaar—an event that transformed the ordinary into the extraordinary and spread festive cheer throughout the community. McAsias booth, adorned with twinkling lights and exuding a warm and welcoming ambiance, became a haven for holiday shoppers seeking unique gifts and delightful Asian products Our participation in the Christmas Bazaar allowed us to present exclusive holiday offerings that resonated with the festive spirit We want to send thanks to all who participated with us last November and December event dates that happened at Filinvest Tent, Alabang and World Trade Center'
+                    'description' => 'As the holiday season unfolded, our team had the pleasure of participating in the much-anticipated Christmas Bazaar of 2022, Noel Bazaar - an event that transformed the ordinary into the extraordinary and spread festive cheer throughout the community. McAsias booth, adorned with twinkling lights and exuding a warm and welcoming ambiance, became a haven for holiday shoppers seeking unique gifts and delightful Asian products Our participation in the Christmas Bazaar allowed us to present exclusive holiday offerings that resonated with the festive spirit We want to send thanks to all who participated with us last November and December event dates that happened at Filinvest Tent, Alabang and World Trade Center'
                 ],
                 // [
                 //     'title' => 'WOFEX Manila 2022',
@@ -220,7 +240,7 @@
                 //     'description' => 'The World Food Expo (WOFEX) 2022 was a feast for the senses, bringing together food enthusiasts, industry leaders, and culinary innovators from around the country. This happened last August 3-6, 2023 at SMX Convention Center, Pasay City. This was the first-ever expo experience of McAsia. This culinary extravaganza was a testament to our commitment to showcasing the best in food and beverage',
                 // ],
                 // [
-                //     'title' => 'McAsia & Kobeya New Year’s Toast 2022',
+                //     'title' => 'McAsia & Kobeya New Year's Toast 2022',
                 //     'date' => 'January 7, 2023',
                 //     'images' => [
                 //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/thumbnail-1.jpg',
@@ -243,129 +263,183 @@
                 //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401093252_657908609790801_6297931591554095694_n.jpg',
                 //         'https://mcasiafoodtrade.ph/wp-content/uploads/2023/11/401063216_657908746457454_1719933888189202571_n.jpg',
                 //     ],
-                //     'description' => 'As part of McAsia Foodtrade Corporation’s Corporate Social Responsibility, we are able to donate boxes of ABC Sauces PH goods to our neighboring communities:',
+                //     'description' => 'As part of McAsia Foodtrade Corporation's Corporate Social Responsibility, we are able to donate boxes of ABC Sauces PH goods to our neighboring communities:',
                 // ],
             ];
         @endphp
 
         <div class="h-10"></div>
 
-        <section id="news-events" class="min-h-screen text-black px-4 md:px-8 py-8">
-            <!-- Page Title -->
-            <h2 class="sm:text-1xl md:text-2xl lg:text-3xl font-bold text-center text-black mb-6 font-chendolle">
-                McAsia Flavourful Happenings
-            </h2>
-            <!-- Events Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <section id="news-events" class="max-w-7xl mx-auto text-black px-4 sm:px-6 py-10 sm:py-12">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">McAsia Flavourful Happenings</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 @foreach($events as $event)
                     @php
                         $eventImages = array_map(fn($img) => asset($img), $event['images']);
                         $hasDescription = filled(trim($event['description'] ?? ''));
                     @endphp
-                    <div class="cursor-pointer rounded-lg shadow-md transition p-2 md:p-4"
-                        x-data="{ open: false, index: 0, fullImage: null, images: {{ json_encode($eventImages) }} }">
+                    <article class="event-card rounded-xl p-3 sm:p-4"
+                        x-data="{
+                            open: false,
+                            index: 0,
+                            fullImage: null,
+                            images: {{ json_encode($eventImages) }},
+                            slideshow: null,
+                            openModal() {
+                                this.open = true;
+                                this.index = 0;
+                                this.startSlideshow();
+                                document.body.style.overflow = 'hidden';
+                            },
+                            closeModal() {
+                                this.open = false;
+                                this.fullImage = null;
+                                this.stopSlideshow();
+                                document.body.style.overflow = '';
+                            },
+                            startSlideshow() {
+                                this.stopSlideshow();
+                                this.slideshow = setInterval(() => {
+                                    this.index = (this.index + 1) % this.images.length;
+                                }, 4500);
+                            },
+                            stopSlideshow() {
+                                if (this.slideshow) {
+                                    clearInterval(this.slideshow);
+                                    this.slideshow = null;
+                                }
+                            },
+                            next() {
+                                this.index = (this.index + 1) % this.images.length;
+                                this.startSlideshow();
+                            },
+                            prev() {
+                                this.index = (this.index - 1 + this.images.length) % this.images.length;
+                                this.startSlideshow();
+                            },
+                            goTo(i) {
+                                this.index = i;
+                                this.startSlideshow();
+                            }
+                        }">
 
-                        <!-- Event Card -->
-                        <div @click="open = true">
+                        <button type="button" class="w-full text-left" @click.stop="openModal()">
                             <img src="{{ $eventImages[0] }}" alt="{{ $event['title'] }}"
-                                class="w-full h-36 sm:h-40 md:h-48 object-cover rounded mb-2 ">
-                            <h4 class="text-lg font-semibold truncate">{{ $event['title'] }}</h4>
-                            {{-- <p class="text-xs sm:text-sm text-gray-400">{{ $event['date'] }}</p> --}}
-                        </div>
+                                class="w-full h-44 sm:h-48 object-cover rounded-lg mb-3">
+                            <h4 class="text-lg font-semibold line-clamp-2">{{ $event['title'] }}</h4>
+                            <p class="text-sm text-gray-500 mt-1">{{ $event['date'] ?? '' }}</p>
+                        </button>
 
-                        <!-- Event Modal -->
-                        <div x-show="open" x-data="{
-                                                                                        index: 0,
-                                                                                        fullImage: null,
-                                                                                        images: {{ json_encode($eventImages) }},
-                                                                                        slideshow: null,
-                                                                                        startSlideshow() {
-                                                                                            this.slideshow = setInterval(() => {
-                                                                                                this.index = (this.index + 1) % this.images.length;
-                                                                                            }, 5000);
-                                                                                        },
-                                                                                        stopSlideshow() {
-                                                                                            clearInterval(this.slideshow);
-                                                                                            this.index = 0;
-                                                                                        }
-                                                                                    }" x-init="startSlideshow()"
-                            @click.away="open = false; stopSlideshow()"
-                            class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[9999] overflow-auto p-4">
+                        <div x-show="open" x-cloak x-transition.opacity.duration.250ms
+                            class="event-modal-shell fixed inset-0 flex items-center justify-center z-[9999] p-3 sm:p-4"
+                            @click.self="closeModal()"
+                            @keydown.escape.window="closeModal()">
 
-                            <div
-                                class="bg-white rounded-xl w-full max-w-6xl max-h-[95vh] flex flex-col relative overflow-hidden">
+                            <div x-show="open"
+                                x-transition:enter="transition ease-out duration-250"
+                                x-transition:enter-start="opacity-0 translate-y-4 scale-[0.98]"
+                                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                                x-transition:leave-end="opacity-0 translate-y-4 scale-[0.98]"
+                                class="event-modal-panel bg-white rounded-2xl w-full max-w-6xl max-h-[94vh] overflow-y-auto relative"
+                                @mouseenter="stopSlideshow()"
+                                @mouseleave="startSlideshow()">
 
-                                <div
-                                    class="relative w-full p-6 md:p-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+                                <button @click="closeModal()"
+                                    class="absolute top-3 right-3 sm:top-4 sm:right-4 h-10 w-10 inline-flex items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 z-20"
+                                    aria-label="Close">
+                                    <span class="text-xl leading-none">&times;</span>
+                                </button>
 
-                                    <!-- Left: Slideshow -->
-                                    <div class="relative flex-shrink-0 w-full md:w-1/2 flex justify-center">
-
-                                        <!-- Slideshow Container -->
-                                        <div class="relative mb-4 w-full max-w-[560px] h-[52vh] md:h-[60vh]">
-                                            <template x-for="(img, i) in images" :key="i">
-                                                <img x-show="i === index" x-transition:enter="transition-opacity duration-500"
-                                                    x-transition:enter-start="opacity-0 scale-95"
+                                <div class="p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+                                    <div>
+                                        <div class="relative w-full aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden">
+                                            <template x-for="(img, i) in images" :key="img + i">
+                                                <img x-show="i === index"
+                                                    x-transition:enter="transition ease-out duration-350"
+                                                    x-transition:enter-start="opacity-0 scale-[0.98]"
                                                     x-transition:enter-end="opacity-100 scale-100"
-                                                    x-transition:leave="transition-opacity duration-500"
+                                                    x-transition:leave="transition ease-in duration-250"
                                                     x-transition:leave-start="opacity-100 scale-100"
-                                                    x-transition:leave-end="opacity-0 scale-95" :src="img"
-                                                    class="w-full h-full object-contain rounded-md cursor-zoom-in absolute inset-0"
+                                                    x-transition:leave-end="opacity-0 scale-[0.98]"
+                                                    :src="img"
+                                                    class="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
                                                     @click="fullImage = img">
                                             </template>
 
-                                            <!-- Prev Button -->
-                                            <button @click="index = (index - 1 + images.length) % images.length"
-                                                class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 text-black px-4 py-2 rounded-full text-2xl z-10 hover:bg-opacity-80 transition">‹</button>
+                                            <button @click="prev()"
+                                                class="absolute left-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-black/60 text-white hover:bg-red-600 transition"
+                                                aria-label="Previous image">
+                                                <span aria-hidden="true">&#8249;</span>
+                                            </button>
 
-                                            <!-- Next Button -->
-                                            <button @click="index = (index + 1) % images.length"
-                                                class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-60 text-black px-4 py-2 rounded-full text-2xl z-10 hover:bg-opacity-80 transition">›</button>
+                                            <button @click="next()"
+                                                class="absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-black/60 text-white hover:bg-red-600 transition"
+                                                aria-label="Next image">
+                                                <span aria-hidden="true">&#8250;</span>
+                                            </button>
+
+                                            <div class="absolute bottom-2 right-2 bg-black/65 text-white text-xs px-2 py-1 rounded-md">
+                                                <span x-text="index + 1"></span>/<span x-text="images.length"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <div class="flex items-center justify-center gap-2">
+                                                <template x-for="(img, i) in images" :key="'dot-' + i">
+                                                    <button type="button" class="event-dot"
+                                                        :class="{ 'active': i === index }"
+                                                        @click="goTo(i)"
+                                                        :aria-label="`Go to image ${i + 1}`"></button>
+                                                </template>
+                                            </div>
+
+                                            <div class="mt-3 grid grid-cols-5 gap-2 max-h-28 overflow-y-auto pr-1">
+                                                <template x-for="(img, i) in images" :key="'thumb-' + i">
+                                                    <button type="button"
+                                                        class="rounded-md overflow-hidden border-2"
+                                                        :class="i === index ? 'border-red-600' : 'border-transparent'"
+                                                        @click="goTo(i)">
+                                                        <img :src="img" class="w-full h-14 object-cover" alt="">
+                                                    </button>
+                                                </template>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Right: Title + Date + Description -->
-                                    <div
-                                        class="flex-1 flex flex-col justify-center p-4 text-center md:text-left">
-                                        <h2 class="text-3xl font-bold text-black mb-2">{{ $event['title'] }}</h2>
-                                        {{-- <p class="text-sm md:text-base text-gray-500 {{ $hasDescription ? 'mb-4' : '' }}">
-                                            {{ $event['date'] }}
-                                        </p> --}}
+                                    <div class="flex flex-col">
+                                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $event['title'] }}</h3>
+                                        <p class="text-sm text-gray-500 mt-1 mb-4">{{ $event['date'] ?? '' }}</p>
                                         @if ($hasDescription)
-                                            <p
-                                                class="text-base md:text-lg text-gray-700 text-justify leading-relaxed overflow-auto">
+                                            <p class="text-gray-700 text-sm sm:text-base leading-relaxed text-justify">
                                                 {{ $event['description'] }}
                                             </p>
+                                        @else
+                                            <p class="text-gray-500 text-sm">No description available.</p>
                                         @endif
                                     </div>
+                                </div>
 
-                                    <!-- Close Button -->
-                                    <button @click="open = false; stopSlideshow()"
-                                        class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/95 text-black hover:bg-white text-2xl leading-none font-bold z-[10001] shadow-md">X</button>
-
-                                    <!-- Fullscreen Preview -->
-                                    <div x-show="fullImage"
-                                        class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 cursor-zoom-out"
-                                        @click="fullImage = null">
-                                        <img :src="fullImage" class="max-w-full max-h-full object-contain rounded-md shadow-xl">
-                                    </div>
+                                <div x-show="fullImage"
+                                    class="fixed inset-0 bg-black/95 flex items-center justify-center z-[10000] p-4"
+                                    @click="fullImage = null">
+                                    <img :src="fullImage" class="max-w-full max-h-full object-contain rounded-md shadow-2xl">
                                 </div>
                             </div>
                         </div>
-
-                    </div>
+                    </article>
                 @endforeach
             </div>
 
-            <div class="h-20"></div>
-
-            <a href="#" onclick="history.back(); return false;"
-                class="btn btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-20 mt-30"
-                style="font-size: 20px;">
-
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>Back</span>
-            </a>
+            <div class="pt-10 text-center">
+                <a href="#" onclick="history.back(); return false;"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+            </div>
 
         </section>
     </div>

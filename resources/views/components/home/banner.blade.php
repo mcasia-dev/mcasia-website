@@ -16,7 +16,7 @@
 
 <section class="relative text-white overflow-hidden h-screen">
     <img id="heroImage" src="{{ $heroImages[0] ?? '' }}" alt=""
-        class="absolute inset-0 w-full h-[800px] object-cover z-0 hero-fade" />
+        class="absolute inset-0 w-full h-full object-cover z-0 hero-fade" />
 
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/30 z-10"></div>
 
