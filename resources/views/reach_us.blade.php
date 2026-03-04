@@ -36,7 +36,7 @@
     <main class="w-full overflow-x-hidden">
         <div class="pt-20 lg:pt-32"></div>
 
-        <section class="reach-hero relative h-[34vh] sm:h-[44vh] lg:h-[56vh] overflow-hidden">
+        <section class="reach-hero relative h-[34vh] sm:h-[44vh] lg:h-[86vh] overflow-hidden">
             <img src="{{ asset('images/HOMEPAGE/4.jpg') }}" alt="Reach Us"
                 class="absolute inset-0 w-full h-full object-cover">
             <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
