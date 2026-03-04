@@ -215,16 +215,18 @@
                         </div>
                     </article>
                 </div>
+
+                <div class="text-center pt-8 sm:pt-4 fade-section">
+                    <a href="#" onclick="history.back(); return false;"
+                        class="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 rounded-lg text-gray-700 hover:border-gray-400 hover:bg-gray-50 transition-colors duration-300">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back</span>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <div class="text-center pt-2 sm:pt-4 fade-section">
-            <a href="#" onclick="history.back(); return false;"
-                class="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 rounded-lg text-gray-700 hover:border-gray-400 hover:bg-gray-50 transition-colors duration-300">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>Back</span>
-            </a>
-        </div>
+
 
         @include('components.footer')
     </main>

@@ -26,7 +26,7 @@ class PartnershipMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Partnership Mail',
+            subject: 'New Partnership Request',
         );
     }
 

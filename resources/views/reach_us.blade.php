@@ -95,11 +95,11 @@
                     @endif
 
                     <div class="space-y-4">
-                        <form action="{{ url('/send-mail') }}" method="POST">
+                        <form id="reach-us-form" action="{{ url('/send-mail') }}" method="POST" novalidate>
                             @csrf
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div>
-                                    <label for="first_name" class="block text-gray-700 font-medium mb-1">First Name</label>
+                                    <label for="first_name" class="block text-gray-700 font-medium mb-1">First Name*</label>
                                     <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
                                         class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-yellow-500 focus:outline-none @error('first_name') field-error @enderror"
                                         required>
@@ -113,7 +113,7 @@
                                         class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-yellow-500 focus:outline-none">
                                 </div>
                                 <div>
-                                    <label for="last_name" class="block text-gray-700 font-medium mb-1">Last Name</label>
+                                    <label for="last_name" class="block text-gray-700 font-medium mb-1">Last Name*</label>
                                     <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}"
                                         class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-yellow-500 focus:outline-none @error('last_name') field-error @enderror"
                                         required>
@@ -124,7 +124,7 @@
                             </div>
 
                             <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-1">Email</label>
+                                <label for="email" class="block text-gray-700 font-medium mb-1">Email*</label>
                                 <input type="email" id="email" name="email" value="{{ old('email') }}"
                                     class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-yellow-500 focus:outline-none @error('email') field-error @enderror"
                                     required>
@@ -134,7 +134,7 @@
                             </div>
 
                             <div>
-                                <label for="phone" class="block text-gray-700 font-medium mb-1">Phone (PH)</label>
+                                <label for="phone" class="block text-gray-700 font-medium mb-1">Phone (PH)*</label>
                                 <input type="tel" id="phone" name="phone" placeholder="+639XXXXXXXXX"
                                     value="{{ old('phone') }}"
                                     class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-yellow-500 focus:outline-none @error('phone') field-error @enderror"
@@ -145,7 +145,7 @@
                             </div>
 
                             <div>
-                                <label for="message" class="block text-gray-700 font-medium mb-1">Message</label>
+                                <label for="message" class="block text-gray-700 font-medium mb-1">Message*</label>
                                 <textarea id="message" name="message" rows="5"
                                     class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-yellow-500 focus:outline-none @error('message') field-error @enderror"
                                     placeholder="Write your message here..." required>{{ old('message') }}</textarea>
@@ -155,9 +155,9 @@
                             </div>
 
                             <div class="pt-2">
-                                <button type="submit"
-                                    class="w-full sm:w-auto bg-black hover:bg-yellow-700 text-white px-6 py-2.5 rounded-md transition-all duration-300">
-                                    Submit
+                                <button id="reach-us-submit-btn" type="submit"
+                                    class="w-full sm:w-auto bg-black hover:bg-yellow-700 disabled:bg-gray-500 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-md transition-all duration-300">
+                                    <span id="reach-us-submit-text">Submit</span>
                                 </button>
                             </div>
                         </form>
@@ -171,6 +171,9 @@
 
     <script>
         const fadeSections = document.querySelectorAll('.fade-section');
+        const reachUsForm = document.getElementById('reach-us-form');
+        const submitBtn = document.getElementById('reach-us-submit-btn');
+        const submitText = document.getElementById('reach-us-submit-text');
 
         const fadeInOnScroll = () => {
             const triggerBottom = window.innerHeight * 0.85;
@@ -184,5 +187,20 @@
 
         window.addEventListener('scroll', fadeInOnScroll);
         window.addEventListener('load', fadeInOnScroll);
+
+        if (reachUsForm && submitBtn && submitText) {
+            let isSubmitting = false;
+
+            reachUsForm.addEventListener('submit', (event) => {
+                if (isSubmitting) {
+                    event.preventDefault();
+                    return;
+                }
+
+                isSubmitting = true;
+                submitBtn.disabled = true;
+                submitText.textContent = 'Submitting...';
+            });
+        }
     </script>
 @endsection
