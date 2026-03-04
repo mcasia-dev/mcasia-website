@@ -52,10 +52,10 @@
                     </div>
                 @endif
 
-                <form action="{{ url('/partnership/submit') }}" method="POST" class="space-y-6">
+                <form id="partnership-form" action="{{ url('/partnership/submit') }}" method="POST" class="space-y-6">
                     @csrf
                     <div>
-                        <label class="font-semibold text-gray-700" for="name">Name</label>
+                        <label class="font-semibold text-gray-700" for="name">Name*</label>
                         <input type="text" id="name" name="name" value="{{ old('name') }}"
                             class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('name') field-error @enderror"
                             placeholder="Enter full name">
@@ -74,7 +74,7 @@
                                     class="w-full mt-1 p-3 border border-gray-300 rounded-xl" placeholder="Blk #">
                             </div>
                             <div>
-                                <label class="text-gray-600 text-sm" for="street">Street</label>
+                                <label class="text-gray-600 text-sm" for="street">Street*</label>
                                 <input type="text" id="street" name="street" value="{{ old('street') }}"
                                     class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('street') field-error @enderror"
                                     placeholder="Street name">
@@ -86,7 +86,7 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="text-gray-600 text-sm" for="barangay">Barangay</label>
+                                <label class="text-gray-600 text-sm" for="barangay">Barangay*</label>
                                 <input type="text" id="barangay" name="barangay" value="{{ old('barangay') }}"
                                     class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('barangay') field-error @enderror"
                                     placeholder="Barangay">
@@ -104,7 +104,7 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="text-gray-600 text-sm" for="country">Country</label>
+                                <label class="text-gray-600 text-sm" for="country">Country*</label>
                                 <select id="country" name="country"
                                     class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('country') field-error @enderror"
                                     data-old="{{ old('country', 'Philippines') }}">
@@ -115,7 +115,7 @@
                                 @enderror
                             </div>
                             <div>
-                                <label class="text-gray-600 text-sm" for="zip_code">Zip Code</label>
+                                <label class="text-gray-600 text-sm" for="zip_code">Zip Code*</label>
                                 <input type="text" id="zip_code" name="zip_code" value="{{ old('zip_code') }}"
                                     class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('zip_code') field-error @enderror"
                                     placeholder="Zip code">
@@ -128,7 +128,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label class="font-semibold text-gray-700" for="mobile_number">Mobile Number</label>
+                            <label class="font-semibold text-gray-700" for="mobile_number">Mobile Number*</label>
                             <input type="text" id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}"
                                 class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('mobile_number') field-error @enderror"
                                 placeholder="+639XXXXXXXXX or 09XXXXXXXXX">
@@ -144,7 +144,7 @@
                     </div>
 
                     <div>
-                        <label class="font-semibold text-gray-700" for="business_name">Business Name</label>
+                        <label class="font-semibold text-gray-700" for="business_name">Business Name*</label>
                         <input type="text" id="business_name" name="business_name" value="{{ old('business_name') }}"
                             class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('business_name') field-error @enderror"
                             placeholder="Enter business name">
@@ -154,7 +154,7 @@
                     </div>
 
                     <div>
-                        <label class="font-semibold text-gray-700" for="business_address">Business Address</label>
+                        <label class="font-semibold text-gray-700" for="business_address">Business Address*</label>
                         <input type="text" id="business_address" name="business_address" value="{{ old('business_address') }}"
                             class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('business_address') field-error @enderror"
                             placeholder="Complete business address">
@@ -177,7 +177,7 @@
                     </div>
 
                     <div>
-                        <label class="font-semibold text-gray-700" for="business_email">Business Email Address</label>
+                        <label class="font-semibold text-gray-700" for="business_email">Business Email Address*</label>
                         <input type="email" id="business_email" name="business_email" value="{{ old('business_email') }}"
                             class="w-full mt-1 p-3 border border-gray-300 rounded-xl @error('business_email') field-error @enderror"
                             placeholder="email@company.com">
@@ -187,9 +187,9 @@
                     </div>
 
                     <div class="pt-2">
-                        <button type="submit"
-                            class="w-full sm:w-auto bg-black hover:bg-yellow-700 text-white px-6 py-2.5 rounded-md transition-all duration-300">
-                            Submit
+                        <button id="partnership-submit-btn" type="submit"
+                            class="w-full sm:w-auto bg-black hover:bg-yellow-700 disabled:bg-gray-500 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-md transition-all duration-300">
+                            <span id="partnership-submit-text">Submit</span>
                         </button>
                     </div>
                 </form>
@@ -200,6 +200,10 @@
     </main>
 
     <script>
+        const partnershipForm = document.getElementById('partnership-form');
+        const partnershipSubmitBtn = document.getElementById('partnership-submit-btn');
+        const partnershipSubmitText = document.getElementById('partnership-submit-text');
+
         $(document).ready(function () {
             $.ajax({
                 url: "https://countriesnow.space/api/v0.1/countries/positions",
@@ -223,5 +227,20 @@
                 }
             });
         });
+
+        if (partnershipForm && partnershipSubmitBtn && partnershipSubmitText) {
+            let isSubmitting = false;
+
+            partnershipForm.addEventListener('submit', (event) => {
+                if (isSubmitting) {
+                    event.preventDefault();
+                    return;
+                }
+
+                isSubmitting = true;
+                partnershipSubmitBtn.disabled = true;
+                partnershipSubmitText.textContent = 'Submitting...';
+            });
+        }
     </script>
 @endsection
