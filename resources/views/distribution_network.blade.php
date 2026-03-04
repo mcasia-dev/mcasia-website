@@ -64,7 +64,7 @@
     <div class="pt-20 lg:pt-32"></div>
 
     <section class="network-hero relative h-[36vh] sm:h-[46vh] lg:h-[58vh] overflow-hidden">
-        <img src="{{ asset('images/distribution_network/1.jpg') }}" alt="Distribution Network"
+        <img src="{{ asset('images/distribution_network/1.JPG') }}" alt="Distribution Network"
             class="absolute inset-0 w-full h-full object-cover">
         <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
             <div>
