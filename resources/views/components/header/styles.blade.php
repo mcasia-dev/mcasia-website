@@ -24,7 +24,7 @@
 
     /* Logo */
     .header-logo {
-        max-height: 64px;
+        max-height: 70px;
         transition: max-height 0.3s ease;
     }
 

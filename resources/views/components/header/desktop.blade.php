@@ -1,8 +1,9 @@
-<header class="hidden xl:block bg-white shadow-sm fixed top-0 left-0 w-full z-[200] transition-all duration-300">
+<header class="hidden md:block bg-white shadow-sm fixed top-0 left-0 w-full z-[200] transition-all duration-300">
     <div class="w-full max-w-7xl mx-auto px-4 xl:px-6 py-3">
         <div class="flex items-center justify-between gap-5 xl:gap-8">
             <a href="/" class="flex items-center logo-img shrink-0">
-                <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}" alt="Logo" class="header-logo w-auto">
+                <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}" alt="McAsia Foodtrade Corporation Logo"
+                    class="header-logo w-auto">
             </a>
 
             <div class="flex-1 min-w-0 flex flex-col gap-2 my-3 justify-center">
@@ -16,7 +17,7 @@
 
                 <nav class="flex-1 flex flex-wrap justify-center">
                     <div
-                        class="header-nav flex items-center justify-center gap-4 xl:gap-7 whitespace-nowrap w-full text-[13px] xl:text-sm mt-1.5">
+                        class="header-nav flex flex-wrap items-center justify-center gap-4 xl:gap-7 whitespace-nowrap w-full text-[13px] xl:text-sm mt-1.5">
                         <div class="relative group">
                             <a href="/about_us"
                                 class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
