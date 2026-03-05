@@ -77,11 +77,6 @@
     function toggleDropdown(id) {
         const dropdown = document.getElementById(id);
         const arrow = document.getElementById(id + 'Arrow');
-        const menu = document.getElementById('mobileMenu');
-
-        if (id === 'mobileProductDropdown' && menu && !menu.classList.contains('hidden')) {
-            setMobileMenuState(false);
-        }
 
         if (!dropdown) return;
         dropdown.classList.toggle('hidden');

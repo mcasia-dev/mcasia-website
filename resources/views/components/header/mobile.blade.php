@@ -1,9 +1,9 @@
 {{--Mobile View--}}
-<header class="xl:hidden fixed top-0 left-0 w-full bg-white shadow-sm z-[200]">
+<header class="md:hidden fixed top-0 left-0 w-full bg-white shadow-sm z-[200]">
     <div class="px-4 py-3">
         <div class="flex items-center justify-between gap-3">
             <a href="/" class="flex items-center shrink-0">
-                <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}" alt="Logo" class="h-12 w-auto">
+                <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}" alt="Logo" class="h-16 w-auto">
             </a>
 
             <button onclick="toggleMobileMenu()" class="text-2xl text-gray-700 leading-none shrink-0">
@@ -11,50 +11,61 @@
             </button>
         </div>
 
-        <button onclick="toggleDropdown('mobileProductDropdown')"
-            class="mt-3 w-full flex items-center justify-center text-gray-700 px-3 py-2 bg-gray-100 rounded hover:bg-gray-200 transition">
-            <img src="{{ asset('images/check_list_pen_ico.png') }}" alt="Product List" class="w-4 h-4 mr-2">
-            <span class="font-medium">Product List</span>
-            <i class="fa-solid fa-chevron-down ml-2 transition-transform" id="mobileProductDropdownArrow"></i>
-        </button>
-
-        <div id="mobileProductDropdown"
-            class="hidden mt-2 bg-white border border-gray-100 rounded-md shadow-sm max-h-[60vh] overflow-y-auto">
-            <ul class="flex flex-col divide-y divide-gray-100">
-                @foreach($products as $product)
-                    <li class="px-4 py-2">
-                        @if(!empty($product['url']))
-                            <a href="{{ $product['url'] }}" class="block font-semibold text-gray-700 hover:text-red-600">
-                                {{ $product['title'] }}
-                            </a>
-                        @else
-                            <span class="block font-semibold text-gray-700">
-                                {{ $product['title'] }}
-                            </span>
-                        @endif
-
-                        @if(!empty($product['subheader']))
-                            <ul class="mt-1 pl-4">
-                                @foreach($product['subheader'] as $subhead)
-                                    <li>
-                                        <a href="{{ $subhead['url'] ?: '#' }}"
-                                            class="block py-1 text-sm text-gray-600 hover:text-red-600">
-                                            {{ $subhead['title'] }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
-        </div>
     </div>
 
-    <nav id="mobileMenu" class="hidden opacity-0 -translate-y-2 transition-all duration-300 ease-out bg-white border-t shadow-lg">
+    <nav id="mobileMenu"
+        class="hidden opacity-0 -translate-y-2 transition-all duration-300 ease-out bg-white border-t shadow-lg overflow-y-auto max-h-screen">
         <ul class="flex flex-col text-gray-700 text-[15px]">
             <li><a href="/" class="block px-4 py-3 border-b">Home</a></li>
             <li><a href="/about_us" class="block px-4 py-3 border-b">Our Story</a></li>
+
+            <li class="border-b">
+                <button onclick="toggleDropdown('mobileProductDropdown')"
+                    class="w-full text-left px-4 py-3 flex justify-between items-center">
+                    <span class="flex items-center">
+                        Our Products
+                    </span>
+                    <i class="fa-solid fa-chevron-down transition-transform" id="mobileProductDropdownArrow"></i>
+                </button>
+
+                <div id="mobileProductDropdown" class="hidden bg-gray-50 overflow-y-auto">
+                    <ul class="flex flex-col divide-y divide-gray-100">
+                        @foreach($products as $product)
+                            <li class="ml-3 pl-3 px-4 py-2">
+                                @if(!empty($product['subheader']))
+                                    @php($productDropdownId = 'mobileProductSubheader' . $loop->index)
+                                    <button onclick="toggleDropdown('{{ $productDropdownId }}')"
+                                        class="w-full text-left text-gray-700 flex justify-between items-center hover:text-red-600">
+                                        {{ $product['title'] }}
+                                        <i class="fa-solid fa-chevron-down transition-transform"
+                                            id="{{ $productDropdownId }}Arrow"></i>
+                                    </button>
+
+                                    <ul id="{{ $productDropdownId }}" class="hidden mt-1 pl-4">
+                                        @foreach($product['subheader'] as $subhead)
+                                            <li>
+                                                <a href="{{ $subhead['url'] ?: '#' }}"
+                                                    class="block py-1 text-sm text-gray-600 hover:text-red-600">
+                                                    {{ $subhead['title'] }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @elseif(!empty($product['url']))
+                                    <a href="{{ $product['url'] }}"
+                                        class="block text-gray-700 hover:text-red-600">
+                                        {{ $product['title'] }}
+                                    </a>
+                                @else
+                                    <span class="block font-semibold text-gray-700">
+                                        {{ $product['title'] }}
+                                    </span>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </li>
 
             <li class="border-b">
                 <button onclick="toggleDropdown('ourEdgeDropdown')"
