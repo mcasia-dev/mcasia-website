@@ -27,7 +27,7 @@
                         We source and import a diverse selection of authentic Asian food products from countries such as
                         Japan, China, Thailand, Malaysia, Indonesia, Taiwan, and more.
                     </p>
-                    <a href="/about_us"
+                    <a href="/our-story"
                         class="inline-flex items-center gap-2 text-red-600 font-semibold hover:text-red-700 transition-all duration-300 group/link">
                         Learn More
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -57,7 +57,7 @@
                         life.
                     </p>
                     <a href="/our_impact"
-                        class="inline-flex items-center gap-2 text-red-600 font-semibold hover:text-red-700 transition-all duration-300 group/link">
+                        class="inline-flex items-center gap-2 text-red-600 font-semibold hover:text-red-700 transition-all duration-300 group/link truncate">
                         Learn More
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor"
@@ -72,7 +72,7 @@
             <div data-aos="fade-up" data-aos-duration="700" data-aos-delay="200"
                 class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
                 <div class="relative overflow-hidden">
-                    <img src="{{ asset('images/HOMEPAGE/3.png') }}" alt="Our Channel"
+                    <img src="{{ asset('images/home/asian-cravings/our-channel-tile.jpg') }}" alt="Our Channel"
                         class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="p-6">

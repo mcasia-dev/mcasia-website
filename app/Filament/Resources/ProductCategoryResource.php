@@ -66,6 +66,11 @@ class ProductCategoryResource extends Resource
                 Forms\Components\SpatieMediaLibraryFileUpload::make('icon')
                     ->label('Icon')
                     ->collection('category-icons')
+                    ->image()
+                    ->optimize('webp')
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                    ->maxSize(2048)
             ]);
     }
 
