@@ -1,3 +1,4 @@
+@props(['brands' => collect()])
 @php
     $brandLogos = [
         ['name' => 'ABC', 'src' => asset('images/home/our-brands/abc.png'), 'url' => 'abc'],
@@ -30,27 +31,59 @@
         </div>
 
         <div class="grid grid-cols-3 sm:grid-cols-4 gap-6 items-center">
-            @foreach ($brandLogos as $brand)
-                @if ($brand['url'] != null)
-                    <a href="{{ $brand['url'] }}"
-                        data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}" class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
-                        <img src="{{ $brand['src'] }}" alt="{{ $brand['name'] }}" class="h-28 w-28 object-contain p-3 ">
+            @if ($brands->isNotEmpty())
+                @foreach ($brands as $brand)
+                    @if ($brand->slug != null)
+                        <a href="/brands/{{ $brand->slug }}"
+                           data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
+                           class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
+                            <img src="{{ $brand->media[0]->original_url }}" alt="{{ $brand->brand_name }}"
+                                 class="h-28 w-28 object-contain p-3 ">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
+                                {{ $brand->brand_name }}
+                            </div>
+                        </a>
+                    @else
                         <div
-                            class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
-                            {{ $brand['name'] }}
+                            data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
+                            class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
+                            <img src="{{ $brand->media[0]->original_url }}" alt="{{ $brand->brand_name }}"
+                                 class="h-28 w-28 object-contain p-3 ">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
+                                {{ $brand->brand_name }}
+                            </div>
                         </div>
-                    </a>
-                @else
-                    <div
-                        data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}" class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
-                        <img src="{{ $brand['src'] }}" alt="{{ $brand['name'] }}" class="h-28 w-28 object-contain p-3 ">
+                    @endif
+                @endforeach
+            @else
+                @foreach ($brandLogos as $brand)
+                    @if ($brand['url'] != null)
+                        <a href="{{ $brand['url'] }}"
+                           data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
+                           class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
+                            <img src="{{ $brand['src'] }}" alt="{{ $brand['name'] }}"
+                                 class="h-28 w-28 object-contain p-3 ">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
+                                {{ $brand['name'] }}
+                            </div>
+                        </a>
+                    @else
                         <div
-                            class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
-                            {{ $brand['name'] }}
+                            data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
+                            class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
+                            <img src="{{ $brand['src'] }}" alt="{{ $brand['name'] }}"
+                                 class="h-28 w-28 object-contain p-3 ">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
+                                {{ $brand['name'] }}
+                            </div>
                         </div>
-                    </div>
-                @endif
-            @endforeach
+                    @endif
+                @endforeach
+            @endif
         </div>
     </div>
 </section>

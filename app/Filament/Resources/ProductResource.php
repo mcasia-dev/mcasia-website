@@ -8,6 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class ProductResource extends Resource
@@ -26,7 +27,17 @@ class ProductResource extends Resource
             ->schema([
                 Forms\Components\SpatieMediaLibraryFileUpload::make('image')
                     ->collection('products')
+                    ->image()
+                    ->optimize('webp')
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(5120)
                     ->required(),
+
+                Forms\Components\Select::make('brand_id')
+                    ->relationship('brand', 'brand_name')
+                    ->preload()
+                    ->searchable(),
 
                 Forms\Components\TextInput::make('name')
                     ->maxLength(180),
@@ -56,14 +67,22 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
                     ->collection('products'),
+
+                TextColumn::make('brand.brand_name')
+                    ->searchable()
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('categories.name')
                     ->badge()
                     ->separator(',')
                     ->limitList(3),
+
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()

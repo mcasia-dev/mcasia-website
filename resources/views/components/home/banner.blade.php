@@ -26,16 +26,16 @@
                 <div class="h-full flex items-center">
                     <div class="max-w-2xl">
                         <div class="flex flex-col items-start gap-4">
-                            <div class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/80 shine-pill"
+                            <div class="inline-flex items-center gap-2 text-6xl font-brophyscript font-medium italic leading-8 text-white"
                                 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                                 Our Story
                             </div>
-                            <h1 class="text-white text-5xl md:text-7xl font-extrabold mb-3 md:mb-6 leading-tight shine-text py-2"
+                            <h1 class="text-white text-5xl md:text-7xl font-modica-bold font-extrabold mb-3 md:mb-6 leading-tight shine-text py-2"
                                 data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                                 HOME TO YOUR ASIAN CRAVINGS
                             </h1>
-                            <a href="/about_us"
-                                class="custom-border bg-red-700 text-white text-sm text-center rounded-full font-semibold hover:bg-red-500 transition-colors"
+                            <a href="/our-story"
+                                class="custom-border bg-red-700 text-white text-sm text-center font-semibold hover:bg-red-500 transition-colors"
                                 data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
                                 Read More
                             </a>
