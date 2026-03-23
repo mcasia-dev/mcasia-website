@@ -17,7 +17,7 @@
         class="hidden opacity-0 -translate-y-2 transition-all duration-300 ease-out bg-white border-t shadow-lg overflow-y-auto max-h-screen">
         <ul class="flex flex-col text-gray-700 text-[15px]">
             <li><a href="/" class="block px-4 py-3 border-b">Home</a></li>
-            <li><a href="/about_us" class="block px-4 py-3 border-b">Our Story</a></li>
+            <li><a href="/our-story" class="block px-4 py-3 border-b">Our Story</a></li>
 
             <li class="border-b">
                 <button onclick="toggleDropdown('mobileProductDropdown')"
@@ -147,7 +147,7 @@
 
             <li><a href="/recipes" class="block px-4 py-3 border-b">Recipes</a></li>
             <li><a href="/news_event" class="block px-4 py-3 border-b">Events</a></li>
-            <li><a href="/reach_us" class="block px-4 py-3 border-b">Reach Us</a></li>
+            <li><a href="/reach-us" class="block px-4 py-3 border-b">Reach Us</a></li>
             <li><a href="/partnership" class="block px-4 py-3 border-b">Be Our Partners</a></li>
             <li><a href="https://mcasiamart.ph" class="block px-4 py-3 border-b">Shop Online</a></li>
         </ul>

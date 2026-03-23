@@ -1,3 +1,4 @@
+@props(['brands' => collect()])
 @php
     $fallbackProductHighlights = [
         [
@@ -57,14 +58,14 @@
                 Essentials, Frozen Meat & Seafood, Beverages, and Snacks—bringing genuine flavors and quality to modern
                 consumers.
             </p>
-            <a href="/view_all_brands"
+            <a href="/products/cooking-essentials/cooking-essentials-canned-goods"
                 class="custom-border inline-flex items-center justify-center bg-red-700 text-white text-sm px-8 py-3 rounded-full font-semibold hover:bg-red-500 transition-colors">
                 All Products
             </a>
         </div>
     </div>
 
-    <x-home.our-brands />
+    <x-home.our-brands :brands="$brands" />
 </section>
 
 <style>

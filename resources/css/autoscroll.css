@@ -32,6 +32,27 @@ body.modal-open {
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Modica";
+    src: url("fonts/Modica-regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Modica Bold";
+    src: url("fonts/Modica-bold.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Brophy Script";
+    src: url("fonts/Brophy Script AT Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Utility class for using the font */
 .font-chendolle {
     font-family: "Chendolle", sans-serif;
@@ -47,6 +68,18 @@ body.modal-open {
 
 .font-onest {
     font-family: "Onest", sans-serif;
+}
+
+.font-modica {
+    font-family: "Modica", sans-serif;
+}
+
+.font-modica-bold {
+    font-family: "Modica Bold", sans-serif;
+}
+
+.font-brophyscript  {
+    font-family: "Brophy Script", sans-serif;
 }
 
 /* Make the section relative to hold absolute background images */

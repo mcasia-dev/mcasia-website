@@ -103,22 +103,4 @@ return [
             'subheader' => [],
         ],
     ],
-    'our_edges' => [
-        [
-            'title' => 'Driven by Innovation',
-            'url' => '/driven_innovation',
-        ],
-        [
-            'title' => 'Committed to Quality & Safety',
-            'url' => '/committed_quality_safety',
-        ],
-        [
-            'title' => 'Built on Reliable Facilities',
-            'url' => '/reliable_facilities',
-        ],
-        [
-            'title' => 'Distribution Network',
-            'url' => '/distribution_network',
-        ],
-    ],
 ];

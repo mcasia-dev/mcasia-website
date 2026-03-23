@@ -1,11 +1,24 @@
 <?php
 
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PublicPageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [PublicPageController::class, 'home'])->name('home');
+
+Route::controller(PublicPageController::class)
+    ->group(function () {
+        Route::get('/our-story', 'ourStory')->name('our-story');
+        Route::get('/our-edge/{slug}', 'ourEdge')->name('our-edge');
+        Route::get('/recipes', 'recipes')->name('recipes');
+        Route::get('/recipes/{slug}', 'recipeShow')->name('recipes.show');
+        Route::get('/news_event', 'newsEvents')->name('news_event');
+        Route::get('/sales-avenue/{slug}', 'salesAvenue')->name('sales-avenue');
+        Route::get('/reach-us', 'reachUs')->name('reach-us');
+        Route::get('/our_channel', 'ourChannel')->name('our_channel');
+        Route::get('/our_impact', 'ourImpact')->name('our_impact');
+        Route::get('/brands/{slug}', 'showBrands')->name('show-brands');
+    });
 
 Route::get('/product_catalog', function () {
     return view('product_catalog.product_catalog');
@@ -31,13 +44,9 @@ Route::get('/foodservice_solutions', function () {
     return view('foodservice_solutions'); // <-- plural
 })->name('foodservice_solutions');    // <-- plural
 
-Route::get('/about_us', function () {
-    return view('about_us');
-})->name('about_us');
-
-Route::get('/news_event', function () {
-    return view('news_event');
-})->name('news_event');
+Route::get('/our_story', function () {
+    return view('our_story');
+})->name('our_story');
 
 Route::get('/test', function () {
     return view('test');
@@ -63,21 +72,13 @@ Route::get('/distribution_network', function () {
     return view('distribution_network');
 })->name('distribution_network');
 
-Route::get('/our_channel', function () {
-    return view('our_channel');
-})->name('our_channel');
-
-Route::get('/our_impact', function () {
-    return view('our_impact');
-})->name('our_impact');
-
 Route::get('/reach_us', function () {
     return view('reach_us');
 })->name('reach_us');
 
-Route::get('/recipes', function () {
-    return view('recipes');
-})->name('recipes');
+//Route::get('/recipes', function () {
+//    return view('recipes');
+//})->name('recipes');
 
 Route::get('/retail_product', function () {
     return view('retail_product');
@@ -178,8 +179,8 @@ Route::get('/oatdaily', function () {
 })->name('oatdaily');
 
 Route::controller(\App\Http\Controllers\ProductPageController::class)
-->group(function () {
-    Route::get('/products/{categorySlug}/images', 'images')->name('products.images');
-    Route::get('/products/{categorySlug}/{subcategorySlug}/images', 'images')->name('products.images.subcategory');
-    Route::get('/products/{categorySlug}/{subcategorySlug?}', 'show')->name('products.show');
-});
+    ->group(function () {
+        Route::get('/products/{categorySlug}/images', 'images')->name('products.images');
+        Route::get('/products/{categorySlug}/{subcategorySlug}/images', 'images')->name('products.images.subcategory');
+        Route::get('/products/{categorySlug}/{subcategorySlug?}', 'show')->name('products.show');
+    });

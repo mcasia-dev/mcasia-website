@@ -11,7 +11,7 @@
 
 
 
-  
+
 <!-- First Section: Main Page -->
 <div class="section h-[77vh] flex items-center justify-center text-white relative px-4 md:px-6
     bg-gradient-to-r from-red-300/70 via-red-200/50 to-red-100/30 bg-[length:239%_630%] animate-gradient"
@@ -24,8 +24,8 @@
         <div class="w-full md:w-4/5 flex flex-col items-center text-center mb-10 md:mb-0 z-10">
 
             <!-- Logo -->
-            <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}" 
-                 alt="Logo" 
+            <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}"
+                 alt="Logo"
                  class="w-64 md:w-70 h-auto mb-6">
 
             <!-- Heading -->
@@ -36,11 +36,11 @@
 
             <!-- Buttons -->
             <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
-                <a href="{{ route('consumer_products') }}" 
+                <a href="{{ route('consumer_products') }}"
                    class="px-6 py-3 bg-red-400 text-white font-semibold rounded-lg hover:bg-red-700 transition text-center">
                     Discover Consumer Products
                 </a>
-                <a href="{{ route('foodservice_solutions') }}" 
+                <a href="{{ route('foodservice_solutions') }}"
                    class="px-6 py-3 bg-red-400 text-white font-semibold rounded-lg border border-red-600 hover:bg-red-700 transition text-center">
                     See Foodservice Solutions
                 </a>
@@ -64,13 +64,13 @@
 
 
 <!-- Second Section (Compressed, Auto Height) -->
-<div class="section flex items-center justify-center relative text-white px-4 md:px-6 py-12" 
+<div class="section flex items-center justify-center relative text-white px-4 md:px-6 py-12"
      id="section2"
      style="background-size: cover; background-position: center;">
-    
+
     <!-- Dark Overlay -->
     <div class="absolute inset-0 bg-black/60"></div>
-    
+
     <div class="flex flex-col md:flex-row items-center justify-between w-full relative z-10">
 
       <!-- Left Column (Text) -->
@@ -81,7 +81,7 @@
     <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 text-white/95 leading-relaxed">
         McAsia Foodtrade Corporation is a leading importer, distributor, and brand partner of authentic Asian food and beverage products in the Philippines.
     </p>
-<a href="/about_us" 
+<a href="/our-story"
    class="mt-6 w-48 px-6 py-2 bg-red-600 text-white text-base md:text-lg font-semibold rounded-lg shadow-md hover:bg-red-700 transition inline-block text-center">
     About Us
 </a>
@@ -89,13 +89,13 @@
 
 <!-- Right Column (Image) -->
 <div class="w-full md:w-1/2 flex items-center justify-center relative mt-4 md:mt-0">
-    
+
     <!-- Overlay Highlight Box -->
     <div class="absolute inset-y-0 right-0 w-full bg-gradient-to-l from-red-900/70 to-transparent"></div>
-    
+
     <!-- Highlighted Image -->
-    <img src="{{ asset('images/LOGO.jpg') }}" 
-         alt="Highlighted Food" 
+    <img src="{{ asset('images/LOGO.jpg') }}"
+         alt="Highlighted Food"
          class="relative w-105 max-w-lg object-contain shadow-xl transform hover:scale-105 transition duration-500">
 </div>
 
@@ -262,7 +262,7 @@
                     <template x-for="product in products.slice((batch-1)*3, (batch-1)*3 + 3)" :key="product.name">
                         <div class="w-1/3 flex flex-col items-center justify-between bg-gray-800/80 p-4 cursor-pointer h-full"
                              @click="activeProduct = product; openModal = true; thumbIndex = 0; selectedImage = product.images[0]">
-                            
+
                             <!-- Product Image -->
                             <div class="flex-grow flex items-center justify-center">
                                 <img :src="product.images[0].src" :alt="product.name"
@@ -463,7 +463,7 @@
           <div>
             <template x-if="recipe?.videoEmbed">
               <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
-              <iframe 
+              <iframe
                 class="absolute top-0 left-0 w-full h-full"
                 x-bind:src="open ? recipe.videoEmbed + '&autoplay=1&mute=1' : recipe.videoEmbed"
                 frameborder="0"
@@ -522,60 +522,60 @@
 
 
 
-            { 
-              name: 'ABC CHILI SAUCE SAMBAL ASLI 335ML', 
+            {
+              name: 'ABC CHILI SAUCE SAMBAL ASLI 335ML',
               description: 'Made from high-quality selection of fresh chili peppers and fresh garlic',
               price: '₱54.00',
-              image: 'https://mcasiamart.ph/cdn/shop/files/ABCCHILISAUCESAMBALASLI_f49d3448-12cc-4dd4-a2dc-2326e55dc8e8_1024x1024.png?v=1749452680', 
-              link: 'https://mcasiamart.ph/products/abc-chili-sauce-sambal-asli-335ml' 
+              image: 'https://mcasiamart.ph/cdn/shop/files/ABCCHILISAUCESAMBALASLI_f49d3448-12cc-4dd4-a2dc-2326e55dc8e8_1024x1024.png?v=1749452680',
+              link: 'https://mcasiamart.ph/products/abc-chili-sauce-sambal-asli-335ml'
             },
 
 
-            
 
-            { name: 'MEET U CLASSIC COFFEE 3IN1', description: 'A convenient and delicious instant coffee mix that combines premium coffee, non-dairy creamer, and sugar.', 
-             price: '₱150.00', 
-             image: 'https://mcasiamart.ph/cdn/shop/files/MeetUClassicCoffee3in110SX20G_1024x1024.png?v=1749453046', 
-             link: 'https://mcasiamart.ph/collections/non-alcoholic/products/meet-u-classic-coffee-3in1-10sx20g' 
+
+            { name: 'MEET U CLASSIC COFFEE 3IN1', description: 'A convenient and delicious instant coffee mix that combines premium coffee, non-dairy creamer, and sugar.',
+             price: '₱150.00',
+             image: 'https://mcasiamart.ph/cdn/shop/files/MeetUClassicCoffee3in110SX20G_1024x1024.png?v=1749453046',
+             link: 'https://mcasiamart.ph/collections/non-alcoholic/products/meet-u-classic-coffee-3in1-10sx20g'
              },
 
 
 
 
             { name: 'KIRISHIMA SHOCHU KURO IMO 1.8L',
-            description: 'Sip gentle sensation of sweet aroma with this Sochu! Kuro Kirishima was the first shochu made by the founder of Kirishima Brewery, Kichikuse Enatsu.', 
-            price: '₱1,032.00', 
-            image: 'https://mcasiamart.ph/cdn/shop/files/KIRISHIMA_SHOCHUKUROIMO1.8L_1024x1024.jpg?v=1749452776', 
-            link: 'https://mcasiamart.ph/collections/alcoholic/products/kirishima-shochu-kuro-kirishima-imo-1-8l' 
+            description: 'Sip gentle sensation of sweet aroma with this Sochu! Kuro Kirishima was the first shochu made by the founder of Kirishima Brewery, Kichikuse Enatsu.',
+            price: '₱1,032.00',
+            image: 'https://mcasiamart.ph/cdn/shop/files/KIRISHIMA_SHOCHUKUROIMO1.8L_1024x1024.jpg?v=1749452776',
+            link: 'https://mcasiamart.ph/collections/alcoholic/products/kirishima-shochu-kuro-kirishima-imo-1-8l'
             },
 
 
 
-            { name: 'ABC SOY SAUCE 620ML', 
-             description: 'Delicious tasting for cooking all types of meat, poultry, seafood, vegetable or tofu and fried rice, as well as for a table sauce', 
-             price: '₱200.00', 
-             image: 'https://mcasiamart.ph/cdn/shop/files/ABCSWEETSAUCE620ML_1024x1024.png?v=1749452724', 
-             link: 'https://mcasiamart.ph/collections/food-and-pantry-staples/products/abc-sweet-sauce-620ml' 
+            { name: 'ABC SOY SAUCE 620ML',
+             description: 'Delicious tasting for cooking all types of meat, poultry, seafood, vegetable or tofu and fried rice, as well as for a table sauce',
+             price: '₱200.00',
+             image: 'https://mcasiamart.ph/cdn/shop/files/ABCSWEETSAUCE620ML_1024x1024.png?v=1749452724',
+             link: 'https://mcasiamart.ph/collections/food-and-pantry-staples/products/abc-sweet-sauce-620ml'
              },
 
 
 
 
-            { name: 'OZAKI CRABSTICK 500G', 
-             description: 'Crab sticks, krab sticks, imitation crab meat or seafood sticks are a type of seafood made of starch and finely pulverized white fish', 
-             price: '₱275.00', 
-             image: 'https://mcasiamart.ph/cdn/shop/files/OZAKICRABSTICK500G_1024x1024.png?v=1749452684', 
-             link: 'https://mcasiamart.ph/collections/meat-poultry-seafoods/products/ozaki-crabstick-500g' 
+            { name: 'OZAKI CRABSTICK 500G',
+             description: 'Crab sticks, krab sticks, imitation crab meat or seafood sticks are a type of seafood made of starch and finely pulverized white fish',
+             price: '₱275.00',
+             image: 'https://mcasiamart.ph/cdn/shop/files/OZAKICRABSTICK500G_1024x1024.png?v=1749452684',
+             link: 'https://mcasiamart.ph/collections/meat-poultry-seafoods/products/ozaki-crabstick-500g'
             },
 
 
 
 
-            { name: 'SEA CHEF CRABSTICK FOR HOT POT 1KG', 
-             description: 'Crab sticks, krab sticks, imitation crab meat or seafood sticks are a type of seafood made of starch and finely pulverized white fish that has been shaped and cured to resemble the leg meat of snow crab or Japanese spider crab.', 
-             price: '₱363.00', 
-             image: 'https://mcasiamart.ph/cdn/shop/files/SEACHEFCRABSTICKFORHOTPOT1KG_1024x1024.png?v=1749452755', 
-             link: 'https://mcasiamart.ph/collections/frozen-ready-to-eat-goods/products/sea-chef-crabstick-for-hot-pot-1kg' 
+            { name: 'SEA CHEF CRABSTICK FOR HOT POT 1KG',
+             description: 'Crab sticks, krab sticks, imitation crab meat or seafood sticks are a type of seafood made of starch and finely pulverized white fish that has been shaped and cured to resemble the leg meat of snow crab or Japanese spider crab.',
+             price: '₱363.00',
+             image: 'https://mcasiamart.ph/cdn/shop/files/SEACHEFCRABSTICKFORHOTPOT1KG_1024x1024.png?v=1749452755',
+             link: 'https://mcasiamart.ph/collections/frozen-ready-to-eat-goods/products/sea-chef-crabstick-for-hot-pot-1kg'
              }
 
 
@@ -675,7 +675,7 @@
         <li>Get Recipes &amp; Meal Ideas</li>
         <li>Find us in McAsia Mart, Shopee, Lazada, TikTok, or your nearest supermarket</li>
       </ul>
-      <a href="#" 
+      <a href="#"
          class="inline-block bg-white text-pink-600 px-5 py-2 rounded-lg font-semibold shadow hover:bg-gray-100 transition self-start">
         View Retail Products
       </a>
@@ -683,8 +683,8 @@
 
     <!-- Right Image -->
     <div class="flex justify-center" data-aos="fade-left">
-      <img src="{{ asset('images/Everyday Moments/1.png') }}" 
-           alt="Featured Recipe" 
+      <img src="{{ asset('images/Everyday Moments/1.png') }}"
+           alt="Featured Recipe"
            class="rounded-xl shadow-lg object-cover w-full h-72">
     </div>
 
@@ -715,7 +715,7 @@
         <li>Trusted By Restaurants, Hotels, Cafés</li>
         <li>Download Product Catalog</li>
       </ul>
-      <a href="#" 
+      <a href="#"
          class="inline-block bg-white text-pink-600 px-5 py-2 rounded-lg font-semibold shadow hover:bg-gray-100 transition self-start">
         View Foodservice Products
       </a>
@@ -736,8 +736,8 @@
 
 
 <!-- Shop & News Section -->
-<div class="section min-h-screen flex items-center justify-center 
-            text-white px-6 py-12" 
+<div class="section min-h-screen flex items-center justify-center
+            text-white px-6 py-12"
      id="section9"
      style="background: linear-gradient(90deg, #000000ff 30%, #ff0f0fff 50%, #ff0077ff 100%);">
 
@@ -754,32 +754,32 @@
       <div class="grid grid-cols-2 gap-10 items-center justify-center">
         <div class="flex justify-center" data-aos="zoom-in" data-aos-delay="100">
           <a href="https://shopee.ph/mcasiamart" target="_blank" rel="noopener">
-            <img src="{{ asset('images/Shopee-Mall.jpeg') }}" 
-                 alt="Shopee" 
+            <img src="{{ asset('images/Shopee-Mall.jpeg') }}"
+                 alt="Shopee"
                  class="w-32 h-32 md:w-40 md:h-40 object-contain hover:scale-110 transition-transform duration-300">
           </a>
         </div>
 
         <div class="flex justify-center" data-aos="zoom-in" data-aos-delay="300">
           <a href="https://www.lazada.com.ph/shop/mcasia-mart/" target="_blank" rel="noopener">
-            <img src="{{ asset('images/lazada.jpg') }}" 
-                 alt="Lazada" 
+            <img src="{{ asset('images/lazada.jpg') }}"
+                 alt="Lazada"
                  class="w-32 h-32 md:w-40 md:h-40 object-contain hover:scale-110 transition-transform duration-300">
           </a>
         </div>
 
         <div class="flex justify-center" data-aos="zoom-in" data-aos-delay="500">
           <a href="https://vt.tiktok.com/ZSAmgrcKv/?page=TikTokShop" target="_blank" rel="noopener">
-            <img src="{{ asset('images/tiktok_icon.png') }}" 
-                 alt="TikTok" 
+            <img src="{{ asset('images/tiktok_icon.png') }}"
+                 alt="TikTok"
                  class="w-32 h-32 md:w-40 md:h-40 object-contain hover:scale-110 transition-transform duration-300">
           </a>
         </div>
 
         <div class="flex justify-center" data-aos="zoom-in" data-aos-delay="700">
           <a href="https://mcasiamart.ph" target="_blank" rel="noopener">
-            <img src="{{ asset('images/McAsiaMart.jpg') }}" 
-                 alt="McAsiaMart" 
+            <img src="{{ asset('images/McAsiaMart.jpg') }}"
+                 alt="McAsiaMart"
                  class="w-32 h-32 md:w-40 md:h-40 object-contain hover:scale-110 transition-transform duration-300">
           </a>
         </div>
@@ -883,7 +883,7 @@
 
       <!-- Check More Button -->
       <div class="mt-6 text-center">
-        <a href="/news_event" 
+        <a href="/news_event"
            class="inline-block bg-red-600 hover:bg-red-700 transition px-6 py-3 rounded-xl font-semibold text-white">
            Check News & Events
         </a>
