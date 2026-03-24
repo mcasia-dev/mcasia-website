@@ -66,6 +66,7 @@ class SalesAvenueResource extends Resource
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(5120)
                     ->multiple()
+                    ->reorderable()
                     ->nullable(),
             ]);
     }

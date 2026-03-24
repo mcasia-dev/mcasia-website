@@ -47,6 +47,7 @@ class EventResource extends Resource
                     ->maxSize(5120)
                     ->required()
                     ->multiple()
+                    ->reorderable()
             ]);
     }
 
