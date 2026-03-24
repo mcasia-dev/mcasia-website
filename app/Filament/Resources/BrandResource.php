@@ -29,8 +29,12 @@ class BrandResource extends Resource
                     ->label('Name')
                     ->required()
                     ->maxLength(255)
-                    ->live()
-                    ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function($state, Forms\Set $set): void {
+                        if (filled($state)) {
+                            $set('slug', Str::slug((string)$state));
+                        }
+                    }),
 
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug')

@@ -42,6 +42,7 @@ class ProductCategoryResource extends Resource
                             $set('slug', Str::slug((string)$state));
                         }
                     }),
+
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(140)

@@ -30,8 +30,12 @@ class OurEdgeResource extends Resource
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255)
-                    ->live()
-                    ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function ($state, Forms\Set $set) {
+                        if (filled($state)) {
+                            $set('slug', Str::slug((string)$state));
+                        }
+                    }),
 
                 TextInput::make('slug')
                     ->readOnly()
