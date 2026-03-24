@@ -1,8 +1,14 @@
+@php
+    use App\Models\Brand;
+    use Illuminate\Support\Facades\Schema;
+@endphp
+
 @props([
     'title' => 'Featured Brands',
     'sectionClass' => 'py-10 sm:py-14 bg-white/65',
     'containerClass' => 'max-w-7xl mx-auto px-4 sm:px-6',
-    'products' => [
+    'products' => null,
+    'fallbackProducts' => [
         ['name' => 'ABC', 'link' => '/abc', 'images' => [['src' => 'images/BRAND/ABC/1.png']]],
         ['name' => 'DAISHO', 'link' => '/daisho', 'images' => [['src' => 'images/BRAND/DAISHO/1.png']]],
         ['name' => 'OXFORD', 'link' => '/oxford', 'images' => [['src' => 'images/BRAND/OXFORD/1.png']]],
@@ -17,7 +23,40 @@
 ])
 
 @php
-    $normalizedProducts = collect($products)
+    $resolvedProducts = collect();
+
+    if (is_iterable($products)) {
+        $resolvedProducts = collect($products);
+    } elseif (Schema::hasTable('brands')) {
+        try {
+            $resolvedProducts = Brand::query()
+                ->with('media')
+                ->isActive()
+                ->orderBy('brand_name')
+                ->get()
+                ->map(function (Brand $brand): array {
+                    $logo = $brand->getFirstMediaUrl('brand-logo');
+                    $banner = $brand->getFirstMediaUrl('brand-banner');
+
+                    return [
+                        'name' => $brand->brand_name,
+                        'link' => $brand->slug ? url('/brands/' . $brand->slug) : '#',
+                        'images' => [[
+                            'src' => $banner ?: ($logo ?: asset('images/BRAND/ABC/1.png')),
+                        ]],
+                    ];
+                })
+                ->values();
+        } catch (\Throwable $exception) {
+            $resolvedProducts = collect();
+        }
+    }
+
+    if ($resolvedProducts->isEmpty()) {
+        $resolvedProducts = collect($fallbackProducts);
+    }
+
+    $normalizedProducts = $resolvedProducts
         ->map(function (array $product): array {
             $images = collect($product['images'] ?? [])
                 ->map(function (array $image): array {
