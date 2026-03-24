@@ -105,7 +105,7 @@
 
         .timeline-panel {
             position: relative;
-            padding: 1.5rem 2.5rem 1.4rem;
+            padding: 1.5rem 1.5rem 1.4rem;
             border-radius: 1.5rem;
             background: rgba(255, 255, 255, 0.92);
             border: 1px solid rgba(15, 23, 42, 0.07);
@@ -306,7 +306,7 @@
 
         <section class="py-12 sm:py-16 lg:py-20 bg-white/90">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 fade-section">
-            <div class="text-gray-600 leading-relaxed text-base sm:text-lg lg:text-xl text-justify">
+            <div class="text-gray-600 leading-relaxed text-sm md:text-lg lg:text-xl text-justify">
                 {!! $ourStory->description ?? '<strong>McAsia Foodtrade Corporation</strong>, established in March 2012, began with a clear vision to bridge the Philippines with the rich flavors of Asia by providing authentic, high-quality food products to businesses and consumers nationwide. Operating under the trading name McAsia, the company set out to become a trusted source of Asian culinary essentials in the country.' !!}
             </div>
         </div>
@@ -321,7 +321,7 @@
                             <div class="timeline-panel story-card">
                                 <span class="timeline-chip">{{ $entry['year'] }}</span>
                                 <h3 class="timeline-heading">{{ $entry['title'] }}</h3>
-                                <div class="timeline-body prose">
+                                <div class="timeline-body text-sm md:text-lg prose">
                                     {!! $entry['body'] !!}
                                 </div>
                             </div>
@@ -349,7 +349,7 @@
                                 <i class="fa-solid fa-bullseye text-teal-600"></i>
                                 Mission
                             </h3>
-                            <p class="text-gray-600 leading-relaxed">
+                            <p class="text-gray-600 leading-relaxed text-sm md:text-base text-justify">
                                 We are dedicated to delivering authentic Asian products that satisfy and elevate every
                                 Filipino's Asian cravings with uncompromising quality.
                             </p>
@@ -367,7 +367,7 @@
                                 <i class="fa-solid fa-eye text-amber-500"></i>
                                 Vision
                             </h3>
-                            <p class="text-gray-600 leading-relaxed">
+                            <p class="text-gray-600 leading-relaxed text-sm md:text-base text-justify">
                                 To be the leading provider of Asian consumer products, offering authentic taste that
                                 uncovers the heart of Asian flavors and beyond.
                             </p>
@@ -385,7 +385,7 @@
                                 <i class="fa-solid fa-gem text-teal-600"></i>
                                 Core Values
                             </h3>
-                            <ul class="space-y-2 text-gray-600">
+                            <ul class="space-y-2 text-gray-600 text-sm md:text-base text-justify">
                                 <li class="flex items-start gap-2"><i
                                         class="fa-solid fa-check text-teal-600 mt-1"></i><span>Excellence in everything we
                                         do</span></li>

@@ -68,7 +68,7 @@
                     <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">{{ $recipe['title'] }}</h1>
 
                     @if(!empty($recipe['description']))
-                        <p class="text-gray-600 leading-relaxed mt-4 max-w-3xl">{{ $recipe['description'] }}</p>
+                        <p class="text-gray-600 leading-relaxed mt-4 max-w-3xl text-sm md:text-base text-justify">{{ $recipe['description'] }}</p>
                     @endif
                 </div>
 
@@ -100,7 +100,7 @@
                 @if(!empty($recipe['instructions']))
                     <ol class="space-y-3 text-gray-700">
                         @foreach($recipe['instructions'] as $index => $step)
-                            <li class="step-card rounded-xl px-3.5 py-3.5 text-sm sm:text-base flex items-start gap-3">
+                            <li class="step-card rounded-xl px-3.5 py-3.5 text-sm sm:text-base flex items-start gap-3 text-justify">
                                 <span class="mt-0.5 h-7 w-7 shrink-0 inline-flex items-center justify-center rounded-full bg-red-50 text-red-600 text-xs font-bold">
                                     {{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}
                                 </span>
