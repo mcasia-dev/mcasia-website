@@ -16,6 +16,7 @@ class Event extends Model implements HasMedia
         'event_name',
         'event_description',
         'event_date',
+        'sort_no',
         'is_published',
     ];
 

@@ -90,9 +90,20 @@ class PublicPageController extends Controller
 
     public function newsEvents()
     {
+
+        // We need to check if the sort_no has value that is greater than 1.
+        // If yes, use that column to sort the events.
+        // If none, use event_date.
+        $getLatestColumn = Event::query()
+            ->isPublished()
+            ->where('sort_no', '>', 0)
+            ->exists()
+            ? 'sort_no'
+            : 'event_date';
+
         $newEvents = Event::with('media')
             ->isPublished()
-            ->latest('event_date')
+            ->orderBy($getLatestColumn)
             ->latest('id')
             ->paginate(15)
             ->through(function (Event $event): array {

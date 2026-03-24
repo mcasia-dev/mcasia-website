@@ -31,6 +31,10 @@ class EventResource extends Resource
                 Forms\Components\RichEditor::make('event_description')
                     ->columnSpanFull(),
 
+                Forms\Components\TextInput::make('sort_no')
+                    ->label('Sort No.')
+                    ->default(0),
+
                 Forms\Components\Toggle::make('is_published')
                     ->required()
                     ->default(true),
