@@ -39,26 +39,26 @@
                             </button>
 
                             <div
-                                class="absolute left-0 top-full mt-0 hidden group-hover:block w-64 bg-white shadow-lg rounded-lg border border-gray-100 z-50">
+                                class="absolute left-0 top-full mt-0 hidden w-64 whitespace-normal rounded-lg border border-gray-100 bg-white shadow-lg z-50 group-hover:block">
                                 <ul class="py-2">
                                     @foreach($products as $product)
                                         <li class="relative group/item">
                                             <a href="{{ $product['url'] ?: '#' }}"
-                                               class="flex items-center justify-between px-4 py-2 text-gray-700 font-bold hover:bg-red-50 hover:text-red-600 transition">
-                                                <span>{{ $product['title'] }}</span>
+                                               class="flex min-w-0 items-start justify-between gap-3 px-4 py-2 text-gray-700 font-bold whitespace-normal hover:bg-red-50 hover:text-red-600 transition">
+                                                <span class="min-w-0 flex-1 break-words whitespace-normal leading-snug">{{ $product['title'] }}</span>
                                                 @if(!empty($product['subheader']))
-                                                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                                                    <i class="fa-solid fa-chevron-right mt-1 shrink-0 text-xs"></i>
                                                 @endif
                                             </a>
 
                                             @if(!empty($product['subheader']))
                                                 <div
-                                                    class="absolute left-full top-0 hidden group-hover/item:block w-64 bg-white shadow-lg rounded-lg border border-gray-100 z-50">
+                                                    class="absolute left-full top-0 ml-2 hidden w-64 whitespace-normal rounded-lg border border-gray-100 bg-white shadow-lg z-50 group-hover/item:block">
                                                     <ul class="py-2">
                                                         @foreach($product['subheader'] as $subhead)
                                                             <li>
                                                                 <a href="{{ $subhead['url'] ?: '#' }}"
-                                                                   class="block px-4 py-2 text-gray-700 font-semibold hover:bg-red-50 hover:text-red-600 transition">
+                                                                   class="block break-words whitespace-normal px-4 py-2 text-gray-700 font-semibold leading-snug hover:bg-red-50 hover:text-red-600 transition">
                                                                     {{ $subhead['title'] }}
                                                                 </a>
                                                             </li>
