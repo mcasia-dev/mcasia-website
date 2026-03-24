@@ -24,7 +24,7 @@
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div data-aos="fade-right" data-aos-duration="650" data-aos-delay="200">
             <h2 class="text-3xl sm:text-5xl font-bold text-gray-900 mb-4">Discover Our Brands</h2>
-            <p class="text-gray-600 leading-relaxed max-w-md">
+            <p class="text-gray-600 leading-relaxed max-w-md text-justify text-sm md:text-base">
                 From everyday meals to special occasions, our brands deliver authentic Asian flavors designed to
                 inspire, connect, and delight.
             </p>
