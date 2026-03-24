@@ -64,8 +64,6 @@
 </style>
 
 <main class="recipes-page w-full overflow-x-hidden">
-    <div class="pt-20 lg:pt-32"></div>
-
     <section class="relative w-full h-64 sm:h-80 lg:h-[500px] overflow-hidden bg-black">
         <div id="slideshow" class="w-full h-full relative">
             <img src="{{ asset('images/EXPLORE NEW RECEIPES/1.png') }}" class="absolute top-0 left-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000" />

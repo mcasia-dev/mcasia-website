@@ -48,8 +48,6 @@
 @endphp
 
 <main class="recipe-page w-full overflow-x-hidden">
-    <div class="pt-20 lg:pt-32"></div>
-
     <section class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12 space-y-6">
         <article class="recipe-surface rounded-3xl p-4 sm:p-6">
             <div class="media-shell rounded-2xl overflow-hidden">

@@ -101,6 +101,30 @@
     } catch (\Throwable $exception) {
         // Keep header functional if database is not ready.
     }
+
+    $navState = [
+        'home' => request()->routeIs('home') || request()->path() === '/',
+        'ourStory' => request()->routeIs('our-story') || request()->is('our-story'),
+        'products' => request()->routeIs('products.show', 'products.images', 'products.images.subcategory', 'show-brands')
+            || request()->is('products*')
+            || request()->is('brands*'),
+        'ourEdge' => request()->routeIs('our-edge') || request()->is('our-edge*'),
+        'salesAvenue' => request()->routeIs('sales-avenue')
+            || request()->is('sales-avenue*')
+            || request()->is('beverage')
+            || request()->is('foodservice_solutions')
+            || request()->is('retail_product')
+            || request()->is('ecommerce'),
+        'catalog' => request()->is('product_catalog')
+            || request()->is('product_catalog_mobile')
+            || request()->is('menu_ideas_with_products')
+            || request()->is('menu_ideas_with_products_mobile'),
+        'recipes' => request()->routeIs('recipes', 'recipes.show') || request()->is('recipes*'),
+        'events' => request()->routeIs('news_event') || request()->is('news_event*'),
+        'reachUs' => request()->routeIs('reach-us') || request()->is('reach-us') || request()->is('reach_us'),
+        'partnership' => request()->is('partnership'),
+    ];
+
 @endphp
 
 @include('components.header.styles')
@@ -109,10 +133,12 @@
     'products' => $products,
     'edges' => $edges ?? [],
     'salesAvenues' => $salesAvenues,
+    'navState' => $navState,
     ])
 @include('components.header.mobile', [
     'products' => $products,
     'edges' => $edges ?? [],
     'salesAvenues' => $salesAvenues,
+    'navState' => $navState,
     ])
 @include('components.header.scripts')

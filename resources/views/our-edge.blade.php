@@ -108,8 +108,6 @@
     </style>
 
     <main class="edge-page w-full overflow-x-hidden">
-        <div class="pt-20 lg:pt-32"></div>
-
         <section class="innovation-hero relative h-[36vh] sm:h-[46vh] lg:h-[58vh] overflow-hidden">
             <img src="{{ $ourEdge->media[0]->original_url ?? asset('images/driven_innovation/1.jpg') }}" alt="Driven Innovation"
                  class="absolute inset-0 w-full h-full object-cover">
