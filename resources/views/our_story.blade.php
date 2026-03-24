@@ -105,7 +105,7 @@
 
         .timeline-panel {
             position: relative;
-            padding: 1.5rem 1.5rem 1.4rem;
+            padding: 1.5rem 2.5rem 1.4rem;
             border-radius: 1.5rem;
             background: rgba(255, 255, 255, 0.92);
             border: 1px solid rgba(15, 23, 42, 0.07);
@@ -149,6 +149,8 @@
 
         .timeline-body {
             color: #4b5563;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         .timeline-body p,
@@ -156,6 +158,8 @@
         .timeline-body ol {
             margin: 0 0 1rem;
             line-height: 1.9;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         .timeline-body ul,
@@ -302,11 +306,11 @@
 
         <section class="py-12 sm:py-16 lg:py-20 bg-white/90">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 fade-section">
-                <p class="text-gray-600 leading-relaxed text-base sm:text-lg lg:text-xl text-justify prose">
-                    {!! $ourStory->description ?? '<strong>McAsia Foodtrade Corporation</strong>, established in March 2012, began with a clear vision to bridge the Philippines with the rich flavors of Asia by providing authentic, high-quality food products to businesses and consumers nationwide. Operating under the trading name McAsia, the company set out to become a trusted source of Asian culinary essentials in the country.' !!}
-                </p>
+            <div class="text-gray-600 leading-relaxed text-base sm:text-lg lg:text-xl text-justify">
+                {!! $ourStory->description ?? '<strong>McAsia Foodtrade Corporation</strong>, established in March 2012, began with a clear vision to bridge the Philippines with the rich flavors of Asia by providing authentic, high-quality food products to businesses and consumers nationwide. Operating under the trading name McAsia, the company set out to become a trusted source of Asian culinary essentials in the country.' !!}
             </div>
-        </section>
+        </div>
+    </section>
 
         <section class="py-12 sm:py-16 lg:py-20">
             <div class="max-w-6xl mx-auto px-4 sm:px-6">

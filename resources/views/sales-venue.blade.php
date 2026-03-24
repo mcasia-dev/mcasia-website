@@ -35,7 +35,7 @@
     @endphp
 
     <main class="w-full overflow-x-hidden">
-        <div class="pt-24 lg:pt-36"></div>
+        <div class="pt-4"></div>
         @foreach($items as $item)
 
             <section class="max-w-7xl mx-auto px-4 sm:px-6 py-6 lg:py-10">
