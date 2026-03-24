@@ -94,7 +94,7 @@
                                 <div class="grid gap-3 mt-5"
                                      style="grid-template-columns: repeat({{ $gridColumns }}, minmax(0, 1fr));">
                                     @foreach($images as $image)
-                                        <div class="rounded-lg border border-gray-200 bg-white p-2">
+                                        <div class="rounded-lg  bg-white p-2">
                                             <img src="{{ $image->getUrl() }}"
                                                  alt="{{ $item->title }}"
                                                  class="w-full h-32 sm:h-36 object-contain">

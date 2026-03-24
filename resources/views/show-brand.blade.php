@@ -51,7 +51,7 @@
             <section class="mt-8">
                 <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($brand->products as $product)
-                        <article class="overflow-hidden rounded-[24px] border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                        <article class="overflow-hidden rounded-[24px] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
                             <div class="bg-stone-50 p-5">
                                 <div class="flex h-[220px] items-center justify-center rounded-[20px] bg-white">
                                     <img src="{{ $product->media[0]->original_url }}" alt="{{ $product->name }}"
