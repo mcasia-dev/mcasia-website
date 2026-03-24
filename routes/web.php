@@ -184,3 +184,10 @@ Route::controller(\App\Http\Controllers\ProductPageController::class)
         Route::get('/products/{categorySlug}/{subcategorySlug}/images', 'images')->name('products.images.subcategory');
         Route::get('/products/{categorySlug}/{subcategorySlug?}', 'show')->name('products.show');
     });
+
+Route::get('/debug-upload', function () {
+    return [
+        'upload_max_filesize' => ini_get('upload_max_filesize'),
+        'post_max_size' => ini_get('post_max_size'),
+    ];
+});

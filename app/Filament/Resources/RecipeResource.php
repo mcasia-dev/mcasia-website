@@ -29,7 +29,7 @@ class RecipeResource extends Resource
                     ->live(onBlur: true)
                     ->afterStateUpdated(function ($state, Forms\Set $set) {
                         if (filled($state)) {
-                            $set('slug', Str::slug((string) $state));
+                            $set('slug', Str::slug((string)$state));
                         }
                     }),
 
@@ -69,7 +69,6 @@ class RecipeResource extends Resource
                     ->collection('recipe-video')
                     ->acceptedFileTypes(['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/webm'])
                     ->maxSize(102400),
-//                    ->required(),
 
                 Forms\Components\Toggle::make('is_published')
                     ->default(true)

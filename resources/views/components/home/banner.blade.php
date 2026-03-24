@@ -2,7 +2,7 @@
     $fallbackHeroImages = [
         asset('images/home/banner/homepage-banner-1.jpg'),
         asset('images/home/banner/homepage-banner-2.jpg'),
-        asset('images/home/banner/homepage-banner-4.jpg'),
+        asset('images/home/banner/homepage-banner-3.jpg'),
     ];
 
     $fromProps = collect($homepageBanners ?? [])
@@ -15,8 +15,10 @@
 @endphp
 
 <section class="relative text-white overflow-hidden h-screen">
-    <img id="heroImage" src="{{ $heroImages[0] ?? '' }}" alt=""
-        class="absolute inset-0 w-full h-full object-cover z-0 hero-fade" />
+    <img id="heroImageA" src="{{ $heroImages[0] ?? '' }}" alt=""
+        class="hero-layer is-active absolute inset-0 w-full h-full object-cover z-0" />
+    <img id="heroImageB" src="" alt=""
+        class="hero-layer absolute inset-0 w-full h-full object-cover z-0" />
 
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/30 z-10"></div>
 
@@ -55,28 +57,17 @@
     </div>
 </section>
 <style>
-    @keyframes heroFadeIn {
-        from {
-            opacity: 0.1;
-            transform: scale(1.01);
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    .hero-fade {
-        animation: heroFadeIn 1600ms ease-in-out;
+    .hero-layer {
+        opacity: 0;
+        transform: scale(1.015);
         will-change: opacity, transform;
-        transition: opacity 900ms ease-in-out;
-        opacity: 1;
+        transition: opacity 1200ms ease-in-out, transform 1400ms ease-in-out;
         background-color: #000;
     }
 
-    .hero-fade.is-fading {
-        opacity: 0;
+    .hero-layer.is-active {
+        opacity: 1;
+        transform: scale(1);
     }
 
     .hero-dot.is-active {
@@ -99,12 +90,16 @@
 <script>
     (function () {
         const heroImages = @json($heroImages);
-        const heroImageEl = document.getElementById("heroImage");
+        const heroImageA = document.getElementById("heroImageA");
+        const heroImageB = document.getElementById("heroImageB");
         const heroDots = Array.from(document.querySelectorAll(".hero-dot"));
-        if (!heroImageEl || heroImages.length === 0) return;
+        if (!heroImageA || !heroImageB || heroImages.length === 0) return;
 
         let heroIndex = 0;
         let heroTimer = null;
+        let isTransitioning = false;
+        let activeImageEl = heroImageA;
+        let inactiveImageEl = heroImageB;
 
         const setActiveDot = (index) => {
             heroDots.forEach((dot, i) => {
@@ -113,56 +108,65 @@
         };
 
         const swapHeroImage = (nextIndex) => {
+            if (isTransitioning || nextIndex === heroIndex) return;
+
             const nextSrc = heroImages[nextIndex] || "";
             if (!nextSrc) return;
 
+            isTransitioning = true;
+            heroIndex = nextIndex;
             const preload = new Image();
-            preload.onload = () => {
-                heroImageEl.classList.add("is-fading");
+            const commitSwap = () => {
+                inactiveImageEl.src = nextSrc;
+                inactiveImageEl.classList.add("is-active");
+                activeImageEl.classList.remove("is-active");
+
                 window.setTimeout(() => {
-                    heroImageEl.src = nextSrc;
-                    heroImageEl.classList.remove("is-fading");
-                }, 250);
+                    const previousActive = activeImageEl;
+                    activeImageEl = inactiveImageEl;
+                    inactiveImageEl = previousActive;
+                    isTransitioning = false;
+                }, 1250);
             };
+            preload.onload = commitSwap;
+            preload.onerror = commitSwap;
             preload.src = nextSrc;
         };
 
-        const startHeroRotation = () => {
+        const restartHeroRotation = () => {
             if (heroTimer) {
                 window.clearInterval(heroTimer);
                 heroTimer = null;
             }
 
-            heroIndex = 0;
-            heroImageEl.src = heroImages[0] || "";
-            setActiveDot(heroIndex);
-
             if (heroImages.length > 1) {
                 heroTimer = window.setInterval(() => {
-                    heroIndex = (heroIndex + 1) % heroImages.length;
-                    swapHeroImage(heroIndex);
-                    setActiveDot(heroIndex);
+                    const nextIndex = (heroIndex + 1) % heroImages.length;
+                    swapHeroImage(nextIndex);
+                    setActiveDot(nextIndex);
                 }, 5000);
             }
         };
 
+        const startHeroRotation = () => {
+            heroIndex = 0;
+            heroImageA.src = heroImages[0] || "";
+            heroImageA.classList.add("is-active");
+            heroImageB.classList.remove("is-active");
+            activeImageEl = heroImageA;
+            inactiveImageEl = heroImageB;
+            setActiveDot(heroIndex);
+            restartHeroRotation();
+        };
+
         heroDots.forEach((dot) => {
             dot.addEventListener("click", () => {
-                const index = Number(dot.dataset.index || 0);
-                heroIndex = index;
-                swapHeroImage(heroIndex);
-                setActiveDot(heroIndex);
-                if (heroTimer) {
-                    window.clearInterval(heroTimer);
-                    heroTimer = null;
-                }
-                if (heroImages.length > 1) {
-                    heroTimer = window.setInterval(() => {
-                        heroIndex = (heroIndex + 1) % heroImages.length;
-                        heroImageEl.src = heroImages[heroIndex];
-                        setActiveDot(heroIndex);
-                    }, 5000);
-                }
+                const nextIndex = Number(dot.dataset.index || 0);
+                if (nextIndex === heroIndex) return;
+
+                swapHeroImage(nextIndex);
+                setActiveDot(nextIndex);
+                restartHeroRotation();
             });
         });
 
