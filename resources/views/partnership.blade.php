@@ -23,8 +23,6 @@
     </style>
 
     <main class="w-full overflow-x-hidden">
-        <div class="pt-20 lg:pt-32"></div>
-
         <section class="partnership-hero relative h-[34vh] sm:h-[44vh] lg:h-[56vh] overflow-hidden">
             <img src="{{ asset('images/partnership/banner.png') }}" alt="Partnership"
                 class="absolute inset-0 w-full h-full object-cover">

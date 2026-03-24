@@ -159,7 +159,7 @@
         ];
     @endphp
 
-    <main class="min-h-screen pt-28 pb-14 bg-gradient-to-b from-[#f2f4f7] via-[#ededed] to-[#f7f7f7]">
+    <main class="min-h-screen pt-4 pb-14 bg-gradient-to-b from-[#f2f4f7] via-[#ededed] to-[#f7f7f7]">
         <div class="max-w-6xl mx-auto px-4">
             <section class="product-page-hero border border-white/40">
                 <div class="relative z-10 w-full px-4 sm:px-8">
@@ -201,23 +201,13 @@
             @endif
 
             <section class="mt-9">
-                <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
                     <h2 class="text-xl sm:text-2xl font-extrabold text-[var(--catalog-ink)]">
                         {{ $activeSubcategory ? $activeSubcategory->name . ' Products' : $activeCategory->name . ' Products' }}
                     </h2>
-                    <span
-                        class="text-xs sm:text-sm font-semibold text-[var(--catalog-muted)] bg-white border border-slate-200 px-3 py-1 rounded-full">
-                        {{ $products->count() }} item(s)
-                    </span>
-                </div>
-
-                <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
-                    <h3 class="text-lg font-bold text-slate-900 uppercase">
-                        {{ $activeSubcategory?->name ?? $activeCategory?->name }}
-                    </h3>
                     <div class="bg-white rounded-lg px-4 py-3 text-center border border-slate-200">
                         <p class="text-sm font-medium text-slate-600">
-                            {{ $productImages->total() }} image(s)
+                            {{ $productImages->total() }} item(s)
                         </p>
                         @if($productImages->total() > 0)
                             <p class="mt-1 text-xs text-slate-500">

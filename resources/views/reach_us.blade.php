@@ -40,8 +40,6 @@
     </style>
 
     <main class="w-full overflow-x-hidden reach-shell">
-        <div class="pt-20 lg:pt-32"></div>
-
         <section class="reach-hero relative h-[34vh] sm:h-[44vh] lg:h-[86vh] overflow-hidden">
             <img src="{{ $data->media[0]->original_url ?? asset('images/HOMEPAGE/4.jpg') }}" alt="Reach Us"
                  class="absolute inset-0 w-full h-full object-cover">

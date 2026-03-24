@@ -1,4 +1,4 @@
-<header class="hidden md:block bg-white shadow-sm fixed top-0 left-0 w-full z-[200] transition-all duration-300">
+<header class="hidden md:block bg-white shadow-sm {{ ($navState['home'] ?? false) ? 'fixed top-0 left-0 w-full' : 'sticky top-0 w-full' }} z-[200] transition-all duration-300">
     <div class="w-full max-w-7xl mx-auto px-4 xl:px-6 py-3">
         <div class="flex items-center justify-between gap-5 xl:gap-8">
             <a href="/" class="flex items-center logo-img shrink-0">
@@ -20,14 +20,14 @@
                         class="header-nav flex flex-wrap items-center justify-center gap-4 xl:gap-7 whitespace-nowrap w-full text-[13px] xl:text-sm mt-1.5">
                         <div class="relative group">
                             <a href="/our-story"
-                               class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
+                               class="{{ ($navState['ourStory'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
                                 Our Story
                             </a>
                         </div>
 
                         <div class="relative group">
                             <button
-                                class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
+                                class="{{ ($navState['products'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
                                 Our Products
 
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@
                         @if($edges)
                             <div class="relative group font-bold">
                                 <button
-                                    class="relative group text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200 focus:outline-none">
+                                    class="relative group {{ ($navState['ourEdge'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200 focus:outline-none">
                                     Our Edge
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          class="h-4 w-4 mt-0.5 transition-transform duration-200 group-hover:rotate-180"
@@ -104,7 +104,7 @@
 
                         <div class="relative group">
                             <button
-                                class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200 focus:outline-none">
+                                class="{{ ($navState['salesAvenue'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200 focus:outline-none">
                                 Sales Avenue
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="h-4 w-4 mt-0.5 transition-transform duration-200 group-hover:rotate-180"
@@ -155,7 +155,7 @@
 
                         <div class="relative group">
                             <button
-                                class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200 focus:outline-none">
+                                class="{{ ($navState['catalog'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200 focus:outline-none">
                                 Catalog
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="h-4 w-4 mt-0.5 transition-transform duration-200 group-hover:rotate-180"
@@ -180,28 +180,28 @@
 
                         <div class="relative group">
                             <a href="/recipes"
-                               class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
+                               class="{{ ($navState['recipes'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
                                 Recipes
                             </a>
                         </div>
 
                         <div class="relative group">
                             <a href="/news_event"
-                               class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
+                               class="{{ ($navState['events'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
                                 Events
                             </a>
                         </div>
 
                         <div class="relative group">
                             <a href="/reach-us"
-                               class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
+                               class="{{ ($navState['reachUs'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
                                 Reach Us
                             </a>
                         </div>
 
                         <div class="relative group">
                             <a href="/partnership"
-                               class="text-gray-700 hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
+                               class="{{ ($navState['partnership'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
                                 Be Our Partners
                             </a>
                         </div>
