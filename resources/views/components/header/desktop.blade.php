@@ -202,7 +202,7 @@
                         <div class="relative group">
                             <a href="/partnership"
                                class="{{ ($navState['partnership'] ?? false) ? 'text-red-600' : 'text-gray-700' }} hover:text-red-600 font-bold flex items-center gap-1 pt-1 transition-colors duration-200">
-                                Be Our Partners
+                                Be Our Partnerss
                             </a>
                         </div>
                     </div>
