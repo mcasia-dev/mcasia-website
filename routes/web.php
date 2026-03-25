@@ -18,6 +18,7 @@ Route::controller(PublicPageController::class)
         Route::get('/our_channel', 'ourChannel')->name('our_channel');
         Route::get('/our_impact', 'ourImpact')->name('our_impact');
         Route::get('/brands/{slug}', 'showBrands')->name('show-brands');
+        Route::get('/reach_us', 'reachUs')->name('reach_us');
     });
 
 Route::get('/product_catalog', function () {
@@ -71,10 +72,6 @@ Route::get('/reliable_facilities', function () {
 Route::get('/distribution_network', function () {
     return view('distribution_network');
 })->name('distribution_network');
-
-Route::get('/reach_us', function () {
-    return view('reach_us');
-})->name('reach_us');
 
 //Route::get('/recipes', function () {
 //    return view('recipes');
