@@ -3,7 +3,7 @@ name: Publishing McAsia Foodtrade Website to cPanel
 on:
   push:
     branches:
-      - v1
+      - v2
 
 jobs:
   web-deploy:
