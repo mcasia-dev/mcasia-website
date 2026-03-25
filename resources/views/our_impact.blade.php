@@ -15,7 +15,39 @@
         background:
             radial-gradient(1000px 500px at 90% -10%, rgba(220, 38, 38, 0.08), transparent 60%),
             radial-gradient(900px 500px at -10% 50%, rgba(239, 68, 68, 0.08), transparent 60%),
-            #f8fafc;
+            linear-gradient(180deg, #f8fafc 0%, #f3f4f6 100%);
+    }
+
+    .impact-banner-frame {
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+    }
+
+    .impact-banner-frame::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.18) 100%);
+        pointer-events: none;
+    }
+
+    .impact-section-card {
+        box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    .impact-title-block {
+        position: relative;
+        padding-top: 1.75rem;
+    }
+
+    .impact-title-block::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4.5rem;
+        height: 0.28rem;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%);
     }
 
     body.fade-in {
@@ -34,78 +66,90 @@
     }
 </style>
 
-<div class="h-26"></div>
-
 <div class="relative overflow-hidden min-h-screen impact-shell">
-    <section class="relative h-[45vh] sm:h-[55vh] md:h-[560px] overflow-hidden">
-        <img src="{{ $bannerImage }}"
-             alt="{{ $pageTitle }}"
-             class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/55"></div>
-
-        <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
-            <div class="max-w-3xl">
-                <h1 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-white">{{ $pageTitle }}</h1>
-                @if(!empty($pageSubtitle))
-                    <p class="text-white/90 mt-3 text-sm sm:text-base lg:text-lg">
-                        {{ $pageSubtitle }}
-                    </p>
-                @endif
+    <section class="px-4 pt-6 sm:px-6 sm:pt-8 lg:pt-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="impact-banner-frame relative overflow-hidden rounded-[28px] border border-white/70 bg-white">
+                <div class="h-[28vh] min-h-[240px] sm:h-[34vh] md:h-[380px]">
+                    <img src="{{ $bannerImage }}"
+                         alt="{{ $pageTitle }}"
+                         class="w-full h-full object-cover">
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 py-10 sm:py-14 lg:py-16 space-y-8 sm:space-y-10">
-        <article class="fade-section rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm p-5 sm:p-7 shadow-sm space-y-5">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $pageTitle }}</h2>
-
-            @if(!empty($pageDescription))
-                <div class="text-gray-600 leading-relaxed prose prose-sm sm:prose-base max-w-none">
-                    {!! $pageDescription !!}
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12 space-y-6 sm:space-y-8">
+        <article class="impact-section-card fade-section rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 lg:p-10">
+            <div class="max-w-4xl">
+                <div class="impact-title-block">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-slate-900">
+                        {{ $pageTitle }}
+                    </h1>
                 </div>
-            @elseif($blocks->isEmpty())
-                <p class="text-gray-600 leading-relaxed">
-                    At <span class="font-semibold text-gray-800">McAsia Foodtrade Corporation</span>, our impact goes beyond distribution. We connect world-class brands with Filipino consumers through a reliable nationwide network, delivering safe, high-quality food and beverage products that enrich everyday living.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    Guided by integrity, sustainability, and innovation, we create long-term value for our partners, support local industries, and contribute to economic growth.
-                    We measure success not only by performance, but by the lasting relationships we build and the positive impact we create across the food ecosystem.
-                </p>
-            @endif
 
-            @foreach($blocks as $block)
-                @php $blockData = $block['data'] ?? []; @endphp
+                @if(!empty($pageSubtitle))
+                    <p class="mt-5 max-w-3xl text-lg sm:text-xl lg:text-2xl font-semibold leading-snug text-slate-800">
+                        {{ $pageSubtitle }}
+                    </p>
+                @endif
 
-                @if(($block['type'] ?? '') === 'paragraph')
-                    <div class="fade-section space-y-2">
+                @if(!empty($pageDescription))
+                    <div class="mt-6 border-t border-slate-200 pt-6 text-gray-600 leading-relaxed prose prose-sm sm:prose-base max-w-none">
+                        {!! $pageDescription !!}
+                    </div>
+                @elseif($blocks->isEmpty())
+                    <div class="mt-6 border-t border-slate-200 pt-6 space-y-4 text-sm sm:text-base text-gray-600 text-justify leading-relaxed">
+                        <p>
+                            At <span class="font-semibold text-gray-800">McAsia Foodtrade Corporation</span>, our impact goes beyond distribution. We connect world-class brands with Filipino consumers through a reliable nationwide network, delivering safe, high-quality food and beverage products that enrich everyday living.
+                        </p>
+                        <p>
+                            Guided by integrity, sustainability, and innovation, we create long-term value for our partners, support local industries, and contribute to economic growth.
+                            We measure success not only by performance, but by the lasting relationships we build and the positive impact we create across the food ecosystem.
+                        </p>
+                    </div>
+                @endif
+            </div>
+        </article>
+
+        @foreach($blocks as $block)
+            @php $blockData = $block['data'] ?? []; @endphp
+
+            @if(($block['type'] ?? '') === 'paragraph')
+                <article class="impact-section-card fade-section rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 lg:p-10">
+                    <div class="max-w-4xl space-y-4">
                         @if(!empty($blockData['heading']))
-                            <h3 class="text-xl font-semibold text-gray-900">{{ $blockData['heading'] }}</h3>
+                            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">{{ $blockData['heading'] }}</h2>
                         @endif
                         <div class="text-gray-600 leading-relaxed prose prose-sm sm:prose-base max-w-none">
                             {!! $blockData['body'] ?? '' !!}
                         </div>
                     </div>
-                @elseif(($block['type'] ?? '') === 'image' && !empty($blockData['image']))
-                    <div class="fade-section">
+                </article>
+            @elseif(($block['type'] ?? '') === 'image' && !empty($blockData['image']))
+                <article class="impact-section-card fade-section overflow-hidden rounded-3xl border border-slate-200/80 bg-white">
+                    <div class="p-3 sm:p-4">
                         <img src="{{ asset('storage/' . $blockData['image']) }}"
                              alt="{{ $blockData['caption'] ?? $pageTitle }}"
-                             class="w-full rounded-xl border border-slate-200 shadow-sm">
-                        @if(!empty($blockData['caption']))
-                            <p class="text-sm text-gray-500 mt-2">{{ $blockData['caption'] }}</p>
-                        @endif
+                             class="w-full max-h-[620px] rounded-2xl object-cover">
                     </div>
-                @endif
-            @endforeach
+                    @if(!empty($blockData['caption']))
+                        <div class="px-5 pb-5 sm:px-6 sm:pb-6">
+                            <p class="text-sm text-gray-500">{{ $blockData['caption'] }}</p>
+                        </div>
+                    @endif
+                </article>
+            @endif
+        @endforeach
 
-            <div class="pt-2">
-                <a href="#"
-                   onclick="history.back(); return false;"
-                   class="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-5 py-2.5 text-sm font-semibold text-red-700 hover:bg-red-50 transition-colors">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back</span>
-                </a>
-            </div>
-        </article>
+        <div class="fade-section pt-2">
+            <a href="#"
+               onclick="history.back(); return false;"
+               class="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-5 py-2.5 text-sm font-semibold text-red-700 shadow-sm hover:bg-red-50 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back</span>
+            </a>
+        </div>
     </section>
 
     @include('components.footer')

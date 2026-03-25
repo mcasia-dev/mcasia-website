@@ -17,14 +17,43 @@
 
         .about-page {
             font-family: 'Onest', sans-serif;
-            background: radial-gradient(1200px 600px at 10% -10%, rgba(15, 118, 110, 0.1), transparent 60%),
-            radial-gradient(1000px 500px at 90% 20%, rgba(245, 158, 11, 0.1), transparent 55%),
-            var(--ivory);
+            background:
+            radial-gradient(1000px 500px at 90% -10%, rgba(220, 38, 38, 0.08), transparent 60%),
+            radial-gradient(900px 500px at -10% 50%, rgba(239, 68, 68, 0.08), transparent 60%),
+            linear-gradient(180deg, #f8fafc 0%, #f3f4f6 100%);
             color: var(--ink);
         }
 
-        .about-heading {
-            letter-spacing: 0.02em;
+        .about-banner-frame {
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+        }
+
+        .about-banner-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.18) 100%);
+            pointer-events: none;
+        }
+
+        .about-intro-card {
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+        }
+
+        .about-title-block {
+            position: relative;
+            padding-top: 1.75rem;
+        }
+
+        .about-title-block::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4.5rem;
+            height: 0.28rem;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #b91c1c 0%, #ef4444 100%);
         }
 
         .timeline {
@@ -286,31 +315,36 @@
     @endphp
 
     <main class="about-page">
-        <section class="relative h-[42vh] sm:h-[50vh] lg:h-[62vh] overflow-hidden pt-16 lg:pt-0">
-            <img src="{{ $ourStory->media[0]->original_url ?? asset('images/HOMEPAGE/1.jpg') }}" alt="McAsia Background"
-                 class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/55"></div>
-            <div class="relative z-10 flex items-center justify-center h-full">
-                <div class="text-center px-4 sm:px-6 max-w-3xl">
-                    <h1 class="about-heading text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-3 sm:mb-4"
-                        data-aos="fade-down" data-aos-duration="1000">
-                        {{ $ourStory->title ?? 'Our Story' }}
-                    </h1>
-                    <p class="text-base sm:text-lg lg:text-xl text-gray-200" data-aos="fade-up" data-aos-duration="1000"
-                       data-aos-delay="200">
-                        {{ $ourStory?->subtitle ?? 'Bridging the Philippines with the authentic flavors of Asia since 2012' }}
-                    </p>
+        <section class="px-4 pt-6 sm:px-6 sm:pt-8 lg:pt-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="about-banner-frame relative overflow-hidden rounded-[28px] border border-white/70 bg-white">
+                    <div class="h-[28vh] min-h-[240px] sm:h-[34vh] md:h-[380px]">
+                        <img src="{{ $ourStory->media[0]->original_url ?? asset('images/HOMEPAGE/1.jpg') }}" alt="McAsia Background"
+                             class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-12 sm:py-16 lg:py-20 bg-white/90">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 fade-section">
-            <div class="text-gray-600 leading-relaxed text-sm md:text-lg lg:text-xl text-justify">
-                {!! $ourStory->description ?? '<strong>McAsia Foodtrade Corporation</strong>, established in March 2012, began with a clear vision to bridge the Philippines with the rich flavors of Asia by providing authentic, high-quality food products to businesses and consumers nationwide. Operating under the trading name McAsia, the company set out to become a trusted source of Asian culinary essentials in the country.' !!}
-            </div>
-        </div>
-    </section>
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12 space-y-6 sm:space-y-8">
+            <article class="about-intro-card fade-section rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 lg:p-10">
+                <div class="max-w-4xl">
+                    <div class="about-title-block">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-slate-900">
+                            {{ $ourStory->title ?? 'Our Story' }}
+                        </h1>
+                    </div>
+
+                    <p class="mt-5 max-w-3xl text-lg sm:text-xl lg:text-2xl font-semibold leading-snug text-slate-800">
+                        {{ $ourStory?->subtitle ?? 'Bridging the Philippines with the authentic flavors of Asia since 2012' }}
+                    </p>
+
+                    <div class="mt-6 border-t border-slate-200 pt-6 text-gray-600 leading-relaxed text-sm md:text-lg lg:text-xl text-justify">
+                        {!! $ourStory->description ?? '<strong>McAsia Foodtrade Corporation</strong>, established in March 2012, began with a clear vision to bridge the Philippines with the rich flavors of Asia by providing authentic, high-quality food products to businesses and consumers nationwide. Operating under the trading name McAsia, the company set out to become a trusted source of Asian culinary essentials in the country.' !!}
+                    </div>
+                </div>
+            </article>
+        </section>
 
         <section class="py-12 sm:py-16 lg:py-20">
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -408,7 +442,7 @@
 
                 <div class="text-center pt-8 sm:pt-4 fade-section">
                     <a href="#" onclick="history.back(); return false;"
-                       class="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 rounded-lg text-gray-700 hover:border-gray-400 hover:bg-gray-50 transition-colors duration-300">
+                       class="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-5 py-2.5 text-sm font-semibold text-red-700 shadow-sm hover:bg-red-50 transition-colors">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>Back</span>
                     </a>
