@@ -58,7 +58,7 @@
                 class="fade-section space-y-4 rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm p-5 sm:p-7 shadow-sm">
                 <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $data->title ?? 'Reach Us'  }}</h2>
                 <div class="text-gray-600 leading-relaxed text-sm sm:text-base prose text-justify">
-                    {!! $data->description ?? '' !!}
+                    {!! $data->description ?? 'At McAsia Foodtrade Corporation, we value meaningful connections with our partners, clients, and customers. Whether you are a supplier looking to collaborate, a retailer interested in our brands, or a customer with an inquiry, our team is ready to assist you. We believe that open communication is key to lasting partnerships. Our dedicated representatives are here to provide support, answer your questions, and explore opportunities that align with your business needs. Let us build something great together. Reach us today.' !!}
                 </div>
             </article>
 

@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100" class="flex flex-col mt-10 md:mt-0">
+        <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="100" class="flex flex-col mt-10 md:mt-0 font-onest">
             <h2 class="text-3xl sm:text-5xl font-bold text-gray-900 mb-4">Our Products</h2>
             <p class="mb-8 text-sm md:text-base text-justify">
                 We offer a carefully curated portfolio of authentic Asian food and beverage products, spanning Cooking

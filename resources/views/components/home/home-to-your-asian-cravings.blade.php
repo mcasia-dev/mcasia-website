@@ -23,7 +23,7 @@
                         class="text-lg font-bold text-gray-800 mb-3 group-hover:text-red-600 transition-colors duration-300">
                         About Us
                     </h3>
-                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify">
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify font-onest">
                         We source and import a diverse selection of authentic Asian food products from countries such as
                         Japan, China, Thailand, Malaysia, Indonesia, Taiwan, and more.
                     </p>
@@ -51,7 +51,7 @@
                         class="text-lg font-bold text-gray-800 mb-3 group-hover:text-red-600 transition-colors duration-300">
                         Our Impact
                     </h3>
-                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify">
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify font-onest">
                         For years, we have served as a reliable bridge between world-class brands and Filipino
                         consumers, ensuring access to safe, high-quality food and beverage products that enrich everyday
                         life.
@@ -80,7 +80,7 @@
                         class="text-lg font-bold text-gray-800 mb-3 group-hover:text-red-600 transition-colors duration-300">
                         Our Channel
                     </h3>
-                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify">
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify font-onest">
                         We take pride in building strong and lasting partnerships that bring high-quality food products
                         closer to consumers. Our distribution channels are strategically developed to ensure efficiency,
                         consistency, and excellence nationwide.
@@ -109,7 +109,7 @@
                         class="text-lg font-bold text-gray-800 mb-3 group-hover:text-red-600 transition-colors duration-300">
                         Reach Us
                     </h3>
-                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify">
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed text-justify font-onest">
                         We believe that open communication is key to lasting partnerships. Our dedicated representatives
                         are here to provide support, answer your questions, and explore opportunities that align with
                         your business needs.
