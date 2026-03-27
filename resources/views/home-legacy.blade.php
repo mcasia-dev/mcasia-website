@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'McAsia')
+@section('title', 'McAsia Foodtrade Corporation')
 @section('content')
 
 
