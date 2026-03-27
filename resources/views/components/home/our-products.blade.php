@@ -34,7 +34,7 @@
 @endphp
 
 <section class="bg-white py-16">
-    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-2 items-center">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-8 xl:gap-2 items-center">
         <div data-aos="fade-right" data-aos-duration="700" class="w-full max-w-[450px] mx-auto lg:mx-0">
             <div class="relative rounded-2xl overflow-hidden shadow-lg">
                 <img id="productHeroImage" src="{{ $productHighlightsData[0]['image'] ?? '' }}" alt=""
