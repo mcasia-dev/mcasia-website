@@ -1,12 +1,21 @@
 {{-- Footer --}}
 <footer class="relative z-20 overflow-hidden bg-[#111827] text-slate-200">
     <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-400/70 to-transparent"></div>
-    <div class="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_top_left,_rgba(239,68,68,0.12),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.08),_transparent_28%)]"></div>
+    <div
+        class="absolute inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_top_left,_rgba(239,68,68,0.12),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.08),_transparent_28%)]"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 lg:py-16 font-onest">
-        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,0.95fr)] gap-8 lg:gap-10">
+        <div
+            class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,0.95fr)] gap-8 lg:gap-10">
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7 backdrop-blur-sm">
-                <img src="{{ asset('images/McAsia_White_Red_Logo.png') }}" alt="McAsia Logo" class="w-40 h-auto mb-5">
+                <img
+                    src="{{ asset('images/McAsia_White_Red_Logo.png') }}"
+                    alt="McAsia Logo"
+                    title="McAsia Foodtrade Corporation"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-40 h-auto mb-5"
+                />
                 <div class="space-y-4 text-sm leading-relaxed text-slate-300">
                     <div>
                         <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-200/90">Main Office</p>
@@ -14,11 +23,13 @@
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-200/90">Manila Office</p>
+                            <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-200/90">Manila
+                                Office</p>
                             <p>(02) 8251-3625 loc 102</p>
                         </div>
                         <div>
-                            <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-200/90">Cebu Office (Fax)</p>
+                            <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-200/90">Cebu Office
+                                (Fax)</p>
                             <p>0917-624-9442</p>
                         </div>
                     </div>
@@ -28,21 +39,45 @@
             <div class="text-center sm:text-left">
                 <h4 class="mb-4 text-lg font-semibold text-white">Links</h4>
                 <div class="space-y-3 text-sm">
-                    <a href="/" class="block text-slate-300 transition hover:text-white">Home</a>
-                    <a href="/privacy_policy" class="block text-slate-300 transition hover:text-white">Privacy Policy</a>
-                    <a href="/termsandcondition" class="block text-slate-300 transition hover:text-white">Terms and Conditions</a>
+                    <a href="/" title="Go to Home" rel="noopener noreferrer" aria-label="Go to Home page" class="block text-slate-300 transition hover:text-white">Home</a>
+                    <a href="/privacy_policy" title="View Privacy Policy" rel="noopener noreferrer" aria-label="View Privacy Policy" class="block text-slate-300 transition hover:text-white">Privacy
+                        Policy</a>
+                    <a href="/terms-and-conditions" title="View Terms and Conditions" rel="noopener noreferrer" aria-label="View Terms and Conditions" class="block text-slate-300 transition hover:text-white">Terms and
+                        Conditions</a>
                 </div>
             </div>
 
             <div class="text-center sm:text-left">
                 <h4 class="mb-4 text-lg font-semibold text-white">Email Us</h4>
                 <div class="space-y-3">
-                    <a href="mailto:sales@mcasiafoodtrade.ph" class="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-white/20 hover:bg-white/10 hover:text-white sm:justify-start">
-                        <img src="{{ asset('images/FOOTER ICON/email_us.png') }}" alt="Email icon" class="w-8 h-8 object-contain">
+                    <a href="mailto:sales@mcasiafoodtrade.ph"
+                       title="Email sales@mcasiafoodtrade.ph"
+                       rel="noopener noreferrer"
+                       aria-label="Email sales at McAsia Foodtrade Corporation"
+                       class="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-white/20 hover:bg-white/10 hover:text-white sm:justify-start">
+                        <img
+                            src="{{ asset('images/FOOTER ICON/email_us.png') }}"
+                            alt="Email icon"
+                            title="Email Us"
+                            loading="lazy"
+                            decoding="async"
+                            class="w-8 h-8 object-contain"
+                        />
                         <span class="text-sm break-all">sales@mcasiafoodtrade.ph</span>
                     </a>
-                    <a href="mailto:purchasing@mcasiafoodtrade.ph" class="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-white/20 hover:bg-white/10 hover:text-white sm:justify-start">
-                        <img src="{{ asset('images/FOOTER ICON/email_us.png') }}" alt="Email icon" class="w-8 h-8 object-contain">
+                    <a href="mailto:purchasing@mcasiafoodtrade.ph"
+                       title="Email purchasing@mcasiafoodtrade.ph"
+                       rel="noopener noreferrer"
+                       aria-label="Email purchasing at McAsia Foodtrade Corporation"
+                       class="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition hover:border-white/20 hover:bg-white/10 hover:text-white sm:justify-start">
+                        <img
+                            src="{{ asset('images/FOOTER ICON/email_us.png') }}"
+                            alt="Email icon"
+                            title="Email Us"
+                            loading="lazy"
+                            decoding="async"
+                            class="w-8 h-8 object-contain"
+                        />
                         <span class="text-sm break-all">purchasing@mcasiafoodtrade.ph</span>
                     </a>
                 </div>
@@ -51,46 +86,53 @@
             <div class="text-center sm:text-left">
                 <h4 class="mb-4 text-lg font-semibold text-white">Follow Us</h4>
                 <div class="flex flex-wrap justify-center gap-3 sm:justify-start">
-                    <a href="https://www.facebook.com/mcasiafoodtrade" target="_blank" rel="noopener noreferrer"
-                        aria-label="Facebook"
-                        class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
+                    <a href="https://www.facebook.com/mcasiafoodtrade" target="_blank" title="Visit McAsia on Facebook" rel="noopener noreferrer"
+                       aria-label="Visit McAsia Facebook page"
+                       class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
                         <svg viewBox="0 0 24 24" class="h-[24px] w-[24px]" fill="currentColor" aria-hidden="true">
-                            <path d="M14 7h2.8V4.2H14c-2 0-3.6 1.6-3.6 3.6v1.8H8v3h2.4V20h3.2v-7.4h2.8l.8-3h-3.6V8c0-.6.4-1 1-1Z"/>
+                            <path
+                                d="M14 7h2.8V4.2H14c-2 0-3.6 1.6-3.6 3.6v1.8H8v3h2.4V20h3.2v-7.4h2.8l.8-3h-3.6V8c0-.6.4-1 1-1Z"/>
                         </svg>
                     </a>
-                    <a href="https://www.linkedin.com/company/mcasia-foodtrade-corporation?originalSubdomain=ph" target="_blank" rel="noopener noreferrer"
-                        aria-label="LinkedIn"
-                        class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
+                    <a href="https://www.linkedin.com/company/mcasia-foodtrade-corporation?originalSubdomain=ph"
+                       target="_blank" title="Visit McAsia on LinkedIn" rel="noopener noreferrer"
+                       aria-label="Visit McAsia LinkedIn page"
+                       class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
                         <svg viewBox="0 0 24 24" class="h-[24px] w-[24px]" fill="currentColor" aria-hidden="true">
-                            <path d="M4.8 3.5A1.3 1.3 0 0 0 3.5 4.8v14.4a1.3 1.3 0 0 0 1.3 1.3h14.4a1.3 1.3 0 0 0 1.3-1.3V4.8a1.3 1.3 0 0 0-1.3-1.3H4.8Zm2.7 5.3a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4Zm-1.1 2h2.2v7H6.4v-7Zm4 0h2.1v1c.5-.8 1.4-1.3 2.6-1.3 2 0 3 1.1 3 3.5v3.8h-2.3v-3.5c0-1.2-.4-1.9-1.4-1.9s-1.7.8-1.7 2v3.4h-2.3v-7Z"/>
+                            <path
+                                d="M4.8 3.5A1.3 1.3 0 0 0 3.5 4.8v14.4a1.3 1.3 0 0 0 1.3 1.3h14.4a1.3 1.3 0 0 0 1.3-1.3V4.8a1.3 1.3 0 0 0-1.3-1.3H4.8Zm2.7 5.3a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4Zm-1.1 2h2.2v7H6.4v-7Zm4 0h2.1v1c.5-.8 1.4-1.3 2.6-1.3 2 0 3 1.1 3 3.5v3.8h-2.3v-3.5c0-1.2-.4-1.9-1.4-1.9s-1.7.8-1.7 2v3.4h-2.3v-7Z"/>
                         </svg>
                     </a>
-                    <a href="https://www.youtube.com/@mcasiamartphilippines" target="_blank" rel="noopener noreferrer"
-                        aria-label="YouTube"
-                        class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
+                    <a href="https://www.youtube.com/@mcasiamartphilippines" target="_blank" title="Visit McAsia on YouTube" rel="noopener noreferrer"
+                       aria-label="Visit McAsia YouTube channel"
+                       class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
                         <svg viewBox="0 0 24 24" class="h-[24px] w-[24px]" fill="currentColor" aria-hidden="true">
-                            <path d="M20.5 8.6a2.5 2.5 0 0 0-1.8-1.8C17.2 6.4 12 6.4 12 6.4s-5.2 0-6.7.4a2.5 2.5 0 0 0-1.8 1.8c-.4 1.5-.4 3.4-.4 3.4s0 1.9.4 3.4a2.5 2.5 0 0 0 1.8 1.8c1.5.4 6.7.4 6.7.4s5.2 0 6.7-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-3.4.4-3.4s0-1.9-.4-3.4ZM10.3 14.7V9.3l4.6 2.7-4.6 2.7Z"/>
+                            <path
+                                d="M20.5 8.6a2.5 2.5 0 0 0-1.8-1.8C17.2 6.4 12 6.4 12 6.4s-5.2 0-6.7.4a2.5 2.5 0 0 0-1.8 1.8c-.4 1.5-.4 3.4-.4 3.4s0 1.9.4 3.4a2.5 2.5 0 0 0 1.8 1.8c1.5.4 6.7.4 6.7.4s5.2 0 6.7-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.5.4-3.4.4-3.4s0-1.9-.4-3.4ZM10.3 14.7V9.3l4.6 2.7-4.6 2.7Z"/>
                         </svg>
                     </a>
-                    <a href="https://www.instagram.com/mcasiafoodtradecorp" target="_blank" rel="noopener noreferrer"
-                        aria-label="Instagram"
-                        class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
+                    <a href="https://www.instagram.com/mcasiafoodtradecorp" target="_blank" title="Visit McAsia on Instagram" rel="noopener noreferrer"
+                       aria-label="Visit McAsia Instagram page"
+                       class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
                         <svg viewBox="0 0 16 16" class="h-[24px] w-[24px]" fill="currentColor" aria-hidden="true">
-                            <path d="M8 0C5.83 0 5.56.01 4.7.05 3.85.09 3.27.22 2.76.42a3.9 3.9 0 0 0-1.4.9 3.9 3.9 0 0 0-.9 1.4C.22 3.27.09 3.85.05 4.7.01 5.56 0 5.83 0 8s.01 2.44.05 3.3c.04.85.17 1.43.37 1.94.2.54.5 1 .9 1.4.4.4.86.7 1.4.9.51.2 1.09.33 1.94.37.86.04 1.13.05 3.3.05s2.44-.01 3.3-.05c.85-.04 1.43-.17 1.94-.37a3.9 3.9 0 0 0 1.4-.9c.4-.4.7-.86.9-1.4.2-.51.33-1.09.37-1.94.04-.86.05-1.13.05-3.3s-.01-2.44-.05-3.3c-.04-.85-.17-1.43-.37-1.94a3.9 3.9 0 0 0-.9-1.4 3.9 3.9 0 0 0-1.4-.9c-.51-.2-1.09-.33-1.94-.37C10.44.01 10.17 0 8 0Zm0 1.44h3.23c.8.04 1.23.17 1.52.29.39.15.67.34.96.63.29.29.48.57.63.96.12.29.25.72.29 1.52.02.87.03 1.12.03 3.16s-.01 2.29-.03 3.16c-.04.8-.17 1.23-.29 1.52-.15.39-.34.67-.63.96-.29.29-.57.48-.96.63-.29.12-.72.25-1.52.29-.87.02-1.12.03-3.16.03s-2.29-.01-3.16-.03c-.8-.04-1.23-.17-1.52-.29a2.45 2.45 0 0 1-.96-.63 2.45 2.45 0 0 1-.63-.96c-.12-.29-.25-.72-.29-1.52A62.9 62.9 0 0 1 1.44 8c0-2.04.01-2.29.03-3.16.04-.8.17-1.23.29-1.52.15-.39.34-.67.63-.96.29-.29.57-.48.96-.63.29-.12.72-.25 1.52-.29.87-.02 1.12-.03 3.16-.03Zm0 2.46A4.1 4.1 0 1 0 8 12.1 4.1 4.1 0 0 0 8 3.9Zm0 6.76A2.66 2.66 0 1 1 8 5.34a2.66 2.66 0 0 1 0 5.32Zm5.23-6.92a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92Z"/>
+                            <path
+                                d="M8 0C5.83 0 5.56.01 4.7.05 3.85.09 3.27.22 2.76.42a3.9 3.9 0 0 0-1.4.9 3.9 3.9 0 0 0-.9 1.4C.22 3.27.09 3.85.05 4.7.01 5.56 0 5.83 0 8s.01 2.44.05 3.3c.04.85.17 1.43.37 1.94.2.54.5 1 .9 1.4.4.4.86.7 1.4.9.51.2 1.09.33 1.94.37.86.04 1.13.05 3.3.05s2.44-.01 3.3-.05c.85-.04 1.43-.17 1.94-.37a3.9 3.9 0 0 0 1.4-.9c.4-.4.7-.86.9-1.4.2-.51.33-1.09.37-1.94.04-.86.05-1.13.05-3.3s-.01-2.44-.05-3.3c-.04-.85-.17-1.43-.37-1.94a3.9 3.9 0 0 0-.9-1.4 3.9 3.9 0 0 0-1.4-.9c-.51-.2-1.09-.33-1.94-.37C10.44.01 10.17 0 8 0Zm0 1.44h3.23c.8.04 1.23.17 1.52.29.39.15.67.34.96.63.29.29.48.57.63.96.12.29.25.72.29 1.52.02.87.03 1.12.03 3.16s-.01 2.29-.03 3.16c-.04.8-.17 1.23-.29 1.52-.15.39-.34.67-.63.96-.29.29-.57.48-.96.63-.29.12-.72.25-1.52.29-.87.02-1.12.03-3.16.03s-2.29-.01-3.16-.03c-.8-.04-1.23-.17-1.52-.29a2.45 2.45 0 0 1-.96-.63 2.45 2.45 0 0 1-.63-.96c-.12-.29-.25-.72-.29-1.52A62.9 62.9 0 0 1 1.44 8c0-2.04.01-2.29.03-3.16.04-.8.17-1.23.29-1.52.15-.39.34-.67.63-.96.29-.29.57-.48.96-.63.29-.12.72-.25 1.52-.29.87-.02 1.12-.03 3.16-.03Zm0 2.46A4.1 4.1 0 1 0 8 12.1 4.1 4.1 0 0 0 8 3.9Zm0 6.76A2.66 2.66 0 1 1 8 5.34a2.66 2.66 0 0 1 0 5.32Zm5.23-6.92a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92Z"/>
                         </svg>
                     </a>
-                    <a href="https://www.tiktok.com/@mcasiafoodtrade_" target="_blank" rel="noopener noreferrer"
-                        aria-label="TikTok"
-                        class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
+                    <a href="https://www.tiktok.com/@mcasiafoodtrade_" target="_blank" title="Visit McAsia on TikTok" rel="noopener noreferrer"
+                       aria-label="Visit McAsia TikTok page"
+                       class="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/90 transition hover:bg-white hover:text-gray-900">
                         <svg viewBox="0 0 24 24" class="h-[24px] w-[24px]" fill="currentColor" aria-hidden="true">
-                            <path d="M14.6 4.6c.4 1.5 1.7 2.8 3.3 3.2v2.5a6 6 0 0 1-3.8-1.2v5.2a4.6 4.6 0 1 1-4.6-4.6h.7v2.4h-.7a2.2 2.2 0 1 0 2.2 2.2V4.6h2.9Z"/>
+                            <path
+                                d="M14.6 4.6c.4 1.5 1.7 2.8 3.3 3.2v2.5a6 6 0 0 1-3.8-1.2v5.2a4.6 4.6 0 1 1-4.6-4.6h.7v2.4h-.7a2.2 2.2 0 1 0 2.2 2.2V4.6h2.9Z"/>
                         </svg>
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="mt-10 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <div
+            class="mt-10 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
             <p>&copy; {{ date('Y') }} MCASIA FOODTRADE CORPORATION</p>
             <p>Bridging the Philippines with the authentic flavors of Asia since 2012.</p>
         </div>

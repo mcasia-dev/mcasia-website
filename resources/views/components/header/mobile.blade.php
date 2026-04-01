@@ -1,9 +1,17 @@
 {{--Mobile View--}}
-<header class="md:hidden {{ ($navState['home'] ?? false) ? 'fixed top-0 left-0 w-full' : 'sticky top-0 w-full' }} bg-white shadow-sm z-[200]">
+<header
+    class="md:hidden {{ ($navState['home'] ?? false) ? 'fixed top-0 left-0 w-full' : 'sticky top-0 w-full' }} bg-white shadow-sm z-[200]">
     <div class="px-4 py-3">
         <div class="flex items-center justify-between gap-3">
             <a href="/" class="flex items-center shrink-0">
-                <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}" alt="Logo" class="h-16 w-auto">
+                <img
+                    src="{{ asset('images/McAsia_Black_Red_Logo.png') }}"
+                    alt="Logo"
+                    title="McAsia Foodtrade Corporation"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-16 w-auto"
+                />
             </a>
 
             <button onclick="toggleMobileMenu()" class="text-2xl text-gray-700 leading-none shrink-0">
@@ -14,14 +22,18 @@
     </div>
 
     <nav id="mobileMenu"
-        class="hidden opacity-0 -translate-y-2 transition-all duration-300 ease-out bg-white border-t shadow-lg overflow-y-auto max-h-screen">
+         class="hidden opacity-0 -translate-y-2 transition-all duration-300 ease-out bg-white border-t shadow-lg overflow-y-auto max-h-screen">
         <ul class="flex flex-col text-gray-700 text-[15px]">
-            <li><a href="/" class="block px-4 py-3 border-b {{ ($navState['home'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Home</a></li>
-            <li><a href="/our-story" class="block px-4 py-3 border-b {{ ($navState['ourStory'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Our Story</a></li>
+            <li><a href="/"
+                   class="block px-4 py-3 border-b {{ ($navState['home'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Home</a>
+            </li>
+            <li><a href="/our-story"
+                   class="block px-4 py-3 border-b {{ ($navState['ourStory'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Our
+                    Story</a></li>
 
             <li class="border-b">
                 <button onclick="toggleDropdown('mobileProductDropdown')"
-                    class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['products'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
+                        class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['products'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
                     <span class="flex items-center">
                         Our Products
                     </span>
@@ -35,17 +47,17 @@
                                 @if(!empty($product['subheader']))
                                     @php($productDropdownId = 'mobileProductSubheader' . $loop->index)
                                     <button onclick="toggleDropdown('{{ $productDropdownId }}')"
-                                        class="w-full text-left text-gray-700 flex justify-between items-center hover:text-red-600">
+                                            class="w-full text-left text-gray-700 flex justify-between items-center hover:text-red-600">
                                         {{ $product['title'] }}
                                         <i class="fa-solid fa-chevron-down transition-transform"
-                                            id="{{ $productDropdownId }}Arrow"></i>
+                                           id="{{ $productDropdownId }}Arrow"></i>
                                     </button>
 
                                     <ul id="{{ $productDropdownId }}" class="hidden mt-1 pl-4">
                                         @foreach($product['subheader'] as $subhead)
                                             <li>
                                                 <a href="{{ $subhead['url'] ?: '#' }}"
-                                                    class="block py-1 text-sm text-gray-600 hover:text-red-600">
+                                                   class="block py-1 text-sm text-gray-600 hover:text-red-600">
                                                     {{ $subhead['title'] }}
                                                 </a>
                                             </li>
@@ -53,7 +65,7 @@
                                     </ul>
                                 @elseif(!empty($product['url']))
                                     <a href="{{ $product['url'] }}"
-                                        class="block text-gray-700 hover:text-red-600">
+                                       class="block text-gray-700 hover:text-red-600">
                                         {{ $product['title'] }}
                                     </a>
                                 @else
@@ -69,7 +81,7 @@
 
             <li class="border-b">
                 <button onclick="toggleDropdown('ourEdgeDropdown')"
-                    class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['ourEdge'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
+                        class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['ourEdge'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
                     Our Edge
                     <i class="fa-solid fa-chevron-down transition-transform" id="ourEdgeDropdownArrow"></i>
                 </button>
@@ -86,17 +98,17 @@
 
             <li class="border-b">
                 <button onclick="toggleDropdown('ourSalesAvenue')"
-                    class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['salesAvenue'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
+                        class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['salesAvenue'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
                     Sales Avenue
                     <i class="fa-solid fa-chevron-down transition-transform" id="ourSalesAvenueArrow"></i>
                 </button>
                 <ul id="ourSalesAvenue" class="hidden flex flex-col bg-gray-50">
                     <li>
                         <button onclick="toggleDropdown('ourSalesAvenueFoodServices')"
-                            class="w-full text-left px-6 py-2 flex justify-between items-center hover:bg-red-50 hover:text-red-600">
+                                class="w-full text-left px-6 py-2 flex justify-between items-center hover:bg-red-50 hover:text-red-600">
                             Food Services
                             <i class="fa-solid fa-chevron-down transition-transform"
-                                id="ourSalesAvenueFoodServicesArrow"></i>
+                               id="ourSalesAvenueFoodServicesArrow"></i>
                         </button>
                         <ul id="ourSalesAvenueFoodServices" class="hidden flex flex-col bg-gray-100">
                             <li>
@@ -106,7 +118,7 @@
                             </li>
                             <li>
                                 <a href="/foodservice_solutions"
-                                    class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
+                                   class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
                                     Food
                                 </a>
                             </li>
@@ -127,7 +139,7 @@
 
             <li class="border-b">
                 <button onclick="toggleDropdown('ourCatalog')"
-                    class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['catalog'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
+                        class="w-full text-left px-4 py-3 flex justify-between items-center {{ ($navState['catalog'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">
                     Catalog
                     <i class="fa-solid fa-chevron-down transition-transform" id="ourCatalogArrow"></i>
                 </button>
@@ -145,10 +157,18 @@
                 </ul>
             </li>
 
-            <li><a href="/recipes" class="block px-4 py-3 border-b {{ ($navState['recipes'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Recipes</a></li>
-            <li><a href="/news_event" class="block px-4 py-3 border-b {{ ($navState['events'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Events</a></li>
-            <li><a href="/reach-us" class="block px-4 py-3 border-b {{ ($navState['reachUs'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Reach Us</a></li>
-            <li><a href="/partnership" class="block px-4 py-3 border-b {{ ($navState['partnership'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Be Our Partners</a></li>
+            <li><a href="/recipes"
+                   class="block px-4 py-3 border-b {{ ($navState['recipes'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Recipes</a>
+            </li>
+            <li><a href="/news_event"
+                   class="block px-4 py-3 border-b {{ ($navState['events'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Events</a>
+            </li>
+            <li><a href="/reach-us"
+                   class="block px-4 py-3 border-b {{ ($navState['reachUs'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Reach
+                    Us</a></li>
+            <li><a href="/partnership"
+                   class="block px-4 py-3 border-b {{ ($navState['partnership'] ?? false) ? 'text-red-600 font-semibold bg-red-50/60' : '' }}">Be
+                    Our Partners</a></li>
             <li><a href="https://mcasiamart.ph" class="block px-4 py-3 border-b">Shop Online</a></li>
         </ul>
     </nav>

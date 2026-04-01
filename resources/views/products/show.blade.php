@@ -173,11 +173,18 @@
                                     : route('products.show', ['categorySlug' => $category->slug]);
                             @endphp
                             <a href="{{ $categoryUrl }}"
+                               title="View {{ $category->name }} products"
+                               rel="noopener noreferrer"
+                               aria-label="View {{ $category->name }} products"
                                class="top-category-card text-center flex flex-col items-center justify-center px-1
                                {{ $isActive ? 'bg-[#c41212] text-white shadow-xl' : 'bg-black/35 text-white hover:bg-black/45' }}">
                                 <span class="top-category-icon {{ $isActive ? 'bg-[#d98282]' : 'bg-white/50' }}">
                                     @foreach($category->media as $icon)
-                                        <img src="{{$icon->original_url}}" alt="">
+                                        <img src="{{$icon->original_url}}" alt="{{ $category->name }} icon"
+                                             title="{{ $category->name }} icon"
+                                             loading="lazy"
+                                             decoding="async"
+                                             fetchpriority="high">
                                     @endforeach
                                 </span>
                                 <p class="mt-2 text-sm font-bold leading-tight drop-shadow">{{ $category->name }}</p>
@@ -192,6 +199,9 @@
                     <div class="flex flex-wrap gap-3">
                         @foreach($activeCategory->children as $child)
                             <a href="{{ route('products.show', ['categorySlug' => $activeCategory->slug, 'subcategorySlug' => $child->slug]) }}"
+                               title="View {{ $child->name }} products"
+                               rel="noopener noreferrer"
+                               aria-label="View {{ $child->name }} products"
                                class="chip px-5 py-2 text-sm font-semibold {{ optional($activeSubcategory)->id === $child->id ? 'is-active' : '' }}">
                                 {{ $child->name }}
                             </a>
@@ -202,9 +212,9 @@
 
             <section class="mt-9">
                 <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-[var(--catalog-ink)]">
+                    <h1 class="text-xl md:text-4xl font-extrabold text-[var(--catalog-ink)]">
                         {{ $activeSubcategory ? $activeSubcategory->name . ' Products' : $activeCategory->name . ' Products' }}
-                    </h2>
+                    </h1>
                     <div class="bg-white rounded-lg px-4 py-3 text-center border border-slate-200">
                         <p class="text-sm font-medium text-slate-600">
                             {{ $productImages->total() }} item(s)
@@ -221,7 +231,11 @@
                     <div id="product-image-grid" class="canned-image-grid">
                         @forelse($productImages as $image)
                             <article class="canned-image-card">
-                                <img src="{{ $image }}" alt="Product" loading="lazy" decoding="async">
+                                <img src="{{ $image }}" alt="Product"
+                                     title="Product image"
+                                     loading="lazy"
+                                     decoding="async"
+                                     fetchpriority="high">
                             </article>
                         @empty
                             <div class="rounded-xl bg-white border border-slate-200 p-6 text-slate-600">

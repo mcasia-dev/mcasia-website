@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\OurEdgeResource\Pages;
 use App\Filament\Resources\OurEdgeResource\RelationManagers;
 use App\Models\PublicPage\OurEdge;
@@ -27,45 +28,56 @@ class OurEdgeResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required()
-                    ->maxLength(255)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function ($state, Forms\Set $set) {
-                        if (filled($state)) {
-                            $set('slug', Str::slug((string)$state));
-                        }
-                    }),
+                Forms\Components\Tabs::make('Our Edge')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                TextInput::make('title')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function ($state, Forms\Set $set) {
+                                        if (filled($state)) {
+                                            $set('slug', Str::slug((string) $state));
+                                        }
+                                    }),
 
-                TextInput::make('slug')
-                    ->readOnly()
-                    ->required()
-                    ->unique(OurEdge::class, 'slug', fn($record) => $record),
+                                TextInput::make('slug')
+                                    ->readOnly()
+                                    ->required()
+                                    ->unique(OurEdge::class, 'slug', fn ($record) => $record),
 
-                Forms\Components\RichEditor::make('description')
-                    ->nullable()
+                                Forms\Components\RichEditor::make('description')
+                                    ->nullable()
+                                    ->columnSpanFull(),
+
+                                Forms\Components\RichEditor::make('content')
+                                    ->nullable()
+                                    ->columnSpanFull(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                                    ->collection('our-edge-image')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->imageEditor()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120),
+
+                                TextInput::make('sort_order')
+                                    ->label('Sort Order')
+                                    ->default(1)
+                                    ->required(),
+
+                                Forms\Components\Toggle::make('is_published')
+                                    ->label('Published')
+                                    ->default(true),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
+                    ])
                     ->columnSpanFull(),
-
-                Forms\Components\RichEditor::make('content')
-                    ->nullable()
-                    ->columnSpanFull(),
-
-                Forms\Components\SpatieMediaLibraryFileUpload::make('image')
-                    ->collection('our-edge-image')
-                    ->image()
-                    ->optimize('webp')
-                    ->imageEditor()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120),
-
-                TextInput::make('sort_order')
-                    ->label('Sort Order')
-                    ->default(1)
-                    ->required(),
-
-                Forms\Components\Toggle::make('is_published')
-                    ->label('Published')
-                    ->default(true)
             ]);
     }
 

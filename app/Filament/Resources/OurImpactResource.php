@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\OurImpactResource\Pages;
 use App\Models\OurImpact;
 use Filament\Forms;
@@ -23,56 +24,67 @@ class OurImpactResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-
-                Forms\Components\Textarea::make('subtitle')
-                    ->columnSpanFull(),
-
-                Forms\Components\RichEditor::make('description')
-                    ->columnSpanFull(),
-
-                Builder::make('content_blocks')
-                    ->label('Content Blocks')
-                    ->collapsible()
-                    ->reorderableWithButtons()
-                    ->addActionLabel('Add block')
-                    ->blocks([
-                        Block::make('paragraph')
+                Forms\Components\Tabs::make('Our Impact')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
                             ->schema([
-                                Forms\Components\TextInput::make('heading')
-                                    ->maxLength(255),
-                                Forms\Components\RichEditor::make('body')
+                                Forms\Components\TextInput::make('title')
                                     ->required()
-                                    ->columnSpanFull(),
-                            ])
-                            ->columns(1),
-                        Block::make('image')
-                            ->schema([
-                                Forms\Components\FileUpload::make('image')
-                                    ->image()
-                                    ->disk('public')
-                                    ->directory('public-pages')
-                                    ->visibility('public')
-                                    ->maxSize(5120)
-                                    ->required(),
-                                Forms\Components\TextInput::make('caption')
                                     ->maxLength(255),
-                            ])
-                            ->columns(1),
+
+                                Forms\Components\Textarea::make('subtitle')
+                                    ->columnSpanFull(),
+
+                                Forms\Components\RichEditor::make('description')
+                                    ->columnSpanFull(),
+
+                                Builder::make('content_blocks')
+                                    ->label('Content Blocks')
+                                    ->collapsible()
+                                    ->reorderableWithButtons()
+                                    ->addActionLabel('Add block')
+                                    ->blocks([
+                                        Block::make('paragraph')
+                                            ->schema([
+                                                Forms\Components\TextInput::make('heading')
+                                                    ->maxLength(255),
+                                                Forms\Components\RichEditor::make('body')
+                                                    ->required()
+                                                    ->columnSpanFull(),
+                                            ])
+                                            ->columns(1),
+                                        Block::make('image')
+                                            ->schema([
+                                                Forms\Components\FileUpload::make('image')
+                                                    ->image()
+                                                    ->disk('public')
+                                                    ->directory('public-pages')
+                                                    ->visibility('public')
+                                                    ->maxSize(5120)
+                                                    ->required(),
+                                                Forms\Components\TextInput::make('caption')
+                                                    ->maxLength(255),
+                                            ])
+                                            ->columns(1),
+                                    ])
+                                    ->columnSpanFull(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('banner')
+                                    ->collection('our-impact-banner')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120),
+
+                                Forms\Components\Toggle::make('is_published')
+                                    ->default(true),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
                     ])
                     ->columnSpanFull(),
-
-                Forms\Components\SpatieMediaLibraryFileUpload::make('banner')
-                    ->collection('our-impact-banner')
-                    ->image()
-                    ->optimize('webp')
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120),
-
-                Forms\Components\Toggle::make('is_published')
-                    ->default(true),
             ]);
     }
 

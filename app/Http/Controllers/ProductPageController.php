@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductPageController extends Controller
 {
@@ -16,11 +18,13 @@ class ProductPageController extends Controller
             ->whereNull('parent_id')
             ->where('is_active', true)
             ->with([
+                'seo',
                 'children' => fn($query) => $query
-                    ->with(['media'])
+                    ->with(['media', 'seo'])
                     ->where('is_active', true)
                     ->orderBy('sort_order')
                     ->orderBy('name'),
+                'media',
             ])
             ->orderBy('sort_order')
             ->orderBy('name')
@@ -92,7 +96,14 @@ class ProductPageController extends Controller
             'activeSubcategory' => $activeSubcategory,
             'products' => $products,
             'productImages' => $paginatedImages,
-        ]);
+        ] + $this->buildSeoViewData(
+            $activeSubcategory ?: $activeCategory,
+            titleField: 'name',
+            descriptionField: null,
+            fallbackTitle: (($activeSubcategory?->name ?: $activeCategory->name) ?: 'Products') . ' | ' . config('app.name', 'McAsia Foodtrade Corporation'),
+            fallbackDescription: 'Browse McAsia product categories, product images, and selections for retail and foodservice needs.',
+            fallbackImage: asset('images/our-products/banner.jpg')
+        ));
     }
 
     public function images(Request $request, string $categorySlug, ?string $subcategorySlug = null): JsonResponse
@@ -166,5 +177,31 @@ class ProductPageController extends Controller
             'next_page' => $page < $lastPage ? $page + 1 : null,
             'total' => $total,
         ]);
+    }
+
+    private function buildSeoViewData(
+        ?Model $record,
+        ?string $titleField = 'title',
+        ?string $descriptionField = 'description',
+        ?string $fallbackTitle = null,
+        ?string $fallbackDescription = null,
+        ?string $fallbackImage = null,
+    ): array {
+        $appName = config('app.name', 'McAsia Foodtrade Corporation');
+        $titleValue = $titleField ? data_get($record, $titleField) : null;
+        $descriptionValue = $descriptionField ? data_get($record, $descriptionField) : null;
+
+        $normalizedDescription = Str::of(strip_tags((string) $descriptionValue))
+            ->replaceMatches('/\s+/', ' ')
+            ->trim()
+            ->limit(160, '')
+            ->value();
+
+        return [
+            'seoMeta' => $record?->seo,
+            'seoFallbackTitle' => $fallbackTitle ?: ($titleValue ? "{$titleValue} | {$appName}" : $appName),
+            'seoFallbackDescription' => $fallbackDescription ?: ($normalizedDescription ?: $appName),
+            'seoFallbackImage' => $fallbackImage ?: asset('images/mcasia_logo_minimal.png'),
+        ];
     }
 }

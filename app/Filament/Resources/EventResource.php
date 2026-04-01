@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\EventResource\Pages;
 use App\Filament\Resources\EventResource\RelationManagers;
 use App\Models\PublicPage\Event;
@@ -21,33 +22,44 @@ class EventResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('event_name')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Tabs::make('Event')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                Forms\Components\TextInput::make('event_name')
+                                    ->required()
+                                    ->maxLength(255),
 
-                Forms\Components\DatePicker::make('event_date')
-                    ->native(false),
+                                Forms\Components\DatePicker::make('event_date')
+                                    ->native(false),
 
-                Forms\Components\RichEditor::make('event_description')
+                                Forms\Components\RichEditor::make('event_description')
+                                    ->columnSpanFull(),
+
+                                Forms\Components\TextInput::make('sort_no')
+                                    ->label('Sort No.')
+                                    ->default(0),
+
+                                Forms\Components\Toggle::make('is_published')
+                                    ->required()
+                                    ->default(true),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('event_image')
+                                    ->collection('event-images')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120)
+                                    ->required()
+                                    ->multiple()
+                                    ->reorderable(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
+                    ])
                     ->columnSpanFull(),
-
-                Forms\Components\TextInput::make('sort_no')
-                    ->label('Sort No.')
-                    ->default(0),
-
-                Forms\Components\Toggle::make('is_published')
-                    ->required()
-                    ->default(true),
-
-                Forms\Components\SpatieMediaLibraryFileUpload::make('event_image')
-                    ->collection('event-images')
-                    ->image()
-                    ->optimize('webp')
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120)
-                    ->required()
-                    ->multiple()
-                    ->reorderable()
             ]);
     }
 
