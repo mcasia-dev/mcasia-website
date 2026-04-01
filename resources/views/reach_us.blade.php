@@ -42,6 +42,10 @@
     <main class="w-full overflow-x-hidden reach-shell">
         <section class="reach-hero relative h-[34vh] sm:h-[44vh] lg:h-[86vh] overflow-hidden">
             <img src="{{ $data->media[0]->original_url ?? asset('images/HOMEPAGE/4.jpg') }}" alt="Reach Us"
+                 title="Reach Us"
+                 loading="lazy"
+                 decoding="async"
+                 fetchpriority="high"
                  class="absolute inset-0 w-full h-full object-cover">
             <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
                 <div>

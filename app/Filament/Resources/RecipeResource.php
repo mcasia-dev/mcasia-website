@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\RecipeResource\Pages;
 use App\Filament\Resources\RecipeResource\RelationManagers;
 use App\Models\PublicPage\OurEdge;
@@ -23,56 +24,67 @@ class RecipeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('recipe_name')
-                    ->required()
-                    ->maxLength(255)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function ($state, Forms\Set $set) {
-                        if (filled($state)) {
-                            $set('slug', Str::slug((string)$state));
-                        }
-                    }),
+                Forms\Components\Tabs::make('Recipe')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                Forms\Components\TextInput::make('recipe_name')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function ($state, Forms\Set $set) {
+                                        if (filled($state)) {
+                                            $set('slug', Str::slug((string) $state));
+                                        }
+                                    }),
 
-                Forms\Components\TextInput::make('slug')
-                    ->readOnly()
-                    ->maxLength(255)
-                    ->unique(Recipe::class, 'slug', fn($record) => $record),
+                                Forms\Components\TextInput::make('slug')
+                                    ->readOnly()
+                                    ->maxLength(255)
+                                    ->unique(Recipe::class, 'slug', fn ($record) => $record),
 
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+                                Forms\Components\Textarea::make('description')
+                                    ->columnSpanFull(),
 
-                Forms\Components\Repeater::make('ingredients')
-                    ->schema([
-                        Forms\Components\TextInput::make('item')->required()->label('Ingredient'),
-                        Forms\Components\TextInput::make('amount')->label('Amount'),
-                        Forms\Components\TextInput::make('unit')->label('Unit'),
+                                Forms\Components\Repeater::make('ingredients')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('item')->required()->label('Ingredient'),
+                                        Forms\Components\TextInput::make('amount')->label('Amount'),
+                                        Forms\Components\TextInput::make('unit')->label('Unit'),
+                                    ])
+                                    ->columns(3)
+                                    ->defaultItems(1)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\RichEditor::make('instructions')
+                                    ->columnSpanFull(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail_image')
+                                    ->label('Thumbnail Image')
+                                    ->collection('recipe-image')
+                                    ->image()
+                                    ->imageEditor()
+                                    ->optimize('webp')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120)
+                                    ->required(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('recipe_video')
+                                    ->label('Recipe Video')
+                                    ->collection('recipe-video')
+                                    ->acceptedFileTypes(['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/webm'])
+                                    ->maxSize(102400),
+
+                                Forms\Components\Toggle::make('is_published')
+                                    ->default(true)
+                                    ->required(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
                     ])
-                    ->columns(3)
-                    ->defaultItems(1)
                     ->columnSpanFull(),
-
-                Forms\Components\RichEditor::make('instructions')
-                    ->columnSpanFull(),
-
-                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail_image')
-                    ->label('Thumbnail Image')
-                    ->collection('recipe-image')
-                    ->image()
-                    ->imageEditor()
-                    ->optimize('webp')
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120)
-                    ->required(),
-
-                Forms\Components\SpatieMediaLibraryFileUpload::make('recipe_video')
-                    ->label('Recipe Video')
-                    ->collection('recipe-video')
-                    ->acceptedFileTypes(['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/webm'])
-                    ->maxSize(102400),
-
-                Forms\Components\Toggle::make('is_published')
-                    ->default(true)
-                    ->required(),
             ]);
     }
 

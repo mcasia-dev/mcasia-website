@@ -173,7 +173,12 @@
                                 <button type="button"
                                         class="fbc-tile fbc-slide rounded-xl p-4 sm:p-5 transition text-left"
                                         @click="window.location.href = product.link">
-                                    <img :src="product.images[0].src" :alt="product.name">
+                                    <img :src="product.images[0].src"
+                                         :alt="product.name"
+                                         :title="product.name"
+                                         loading="lazy"
+                                         decoding="async"
+                                         fetchpriority="high">
                                     <div class="mt-3 text-center">
                                         <span
                                             class="inline-block text-xs sm:text-sm font-semibold tracking-wide text-gray-700"

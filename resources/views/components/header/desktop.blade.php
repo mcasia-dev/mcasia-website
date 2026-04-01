@@ -1,9 +1,16 @@
-<header class="hidden md:block bg-white shadow-sm {{ ($navState['home'] ?? false) ? 'fixed top-0 left-0 w-full' : 'sticky top-0 w-full' }} z-[200] transition-all duration-300">
+<header
+    class="hidden md:block bg-white shadow-sm {{ ($navState['home'] ?? false) ? 'fixed top-0 left-0 w-full' : 'sticky top-0 w-full' }} z-[200] transition-all duration-300">
     <div class="w-full max-w-7xl mx-auto px-4 xl:px-6 py-3">
         <div class="flex items-center justify-between gap-5 xl:gap-8">
             <a href="/" class="flex items-center logo-img shrink-0">
-                <img src="{{ asset('images/McAsia_Black_Red_Logo.png') }}" alt="McAsia Foodtrade Corporation Logo"
-                     class="header-logo w-auto">
+                <img
+                    src="{{ asset('images/McAsia_Black_Red_Logo.png') }}"
+                    alt="McAsia Foodtrade Corporation Logo"
+                    title="McAsia Foodtrade Corporation"
+                    loading="lazy"
+                    decoding="async"
+                    class="header-logo w-auto"
+                />
             </a>
 
             <div class="flex-1 min-w-0 flex flex-col gap-2 my-3 justify-center">
@@ -45,7 +52,8 @@
                                         <li class="relative group/item">
                                             <a href="{{ $product['url'] ?: '#' }}"
                                                class="flex min-w-0 items-start justify-between gap-3 px-4 py-2 text-gray-700 font-bold whitespace-normal hover:bg-red-50 hover:text-red-600 transition">
-                                                <span class="min-w-0 flex-1 break-words whitespace-normal leading-snug">{{ $product['title'] }}</span>
+                                                <span
+                                                    class="min-w-0 flex-1 break-words whitespace-normal leading-snug">{{ $product['title'] }}</span>
                                                 @if(!empty($product['subheader']))
                                                     <i class="fa-solid fa-chevron-right mt-1 shrink-0 text-xs"></i>
                                                 @endif
@@ -53,7 +61,7 @@
 
                                             @if(!empty($product['subheader']))
                                                 <div
-                                                    class="absolute left-full top-0 ml-2 hidden w-64 whitespace-normal rounded-lg border border-gray-100 bg-white shadow-lg z-50 group-hover/item:block">
+                                                    class="absolute left-full top-0 hidden w-64 whitespace-normal rounded-lg border border-gray-100 bg-white shadow-sm ml-1 z-50 group-hover/item:block">
                                                     <ul class="py-2">
                                                         @foreach($product['subheader'] as $subhead)
                                                             <li>
@@ -127,7 +135,7 @@
                                                 </div>
 
                                                 <div
-                                                    class="absolute left-full top-0 hidden group-hover/sales:block w-64 bg-white shadow-lg rounded-lg border border-gray-100 z-50">
+                                                    class="absolute left-full top-0 hidden group-hover/sales:block w-64 bg-white shadow-sm rounded-lg ml-1 border border-gray-100 z-50">
                                                     <ul class="py-2">
                                                         @foreach($salesAvenue['subheader'] as $subheader)
                                                             <li>

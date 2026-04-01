@@ -2,6 +2,7 @@
 
 namespace App\Models\PublicPage;
 
+use App\Traits\HasSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -11,6 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Recipe extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use HasSeo;
 
     protected $fillable = [
         'recipe_name',

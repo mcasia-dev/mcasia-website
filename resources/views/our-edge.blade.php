@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'McAsia - Driven Innovation')
+@section('title', 'Driven By Innovation')
 @section('content')
 
     <style>
@@ -110,6 +110,10 @@
     <main class="edge-page w-full overflow-x-hidden">
         <section class="innovation-hero relative h-[36vh] sm:h-[46vh] lg:h-[58vh] overflow-hidden">
             <img src="{{ $ourEdge->media[0]->original_url ?? asset('images/driven_innovation/1.jpg') }}" alt="Driven Innovation"
+                 title="Driven Innovation"
+                 loading="lazy"
+                 decoding="async"
+                 fetchpriority="high"
                  class="absolute inset-0 w-full h-full object-cover">
             <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
             </div>
@@ -117,7 +121,7 @@
 
         <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14 lg:py-16 space-y-6 sm:space-y-8">
             <article class="content-card rounded-2xl p-6 sm:p-8 space-y-4">
-                <h2 class="text-3xl sm:text-4xl text-gray-900">{{ $ourEdge->title ?? '' }}</h2>
+                <h1 class="text-3xl sm:text-4xl text-gray-900">{{ $ourEdge->title ?? '' }}</h1>
                 <div class="edge-prose text-sm sm:text-base text-justify">
                     {!! $ourEdge->description ?? '' !!}
                 </div>
@@ -130,7 +134,11 @@
             </article>
 
             <div class="fade-section mt-8">
-                <a href="#" onclick="history.back(); return false;"
+                <a href="#"
+                   title="Go back to the previous page"
+                   rel="noopener noreferrer"
+                   aria-label="Go back to the previous page"
+                   onclick="history.back(); return false;"
                    class="edge-back">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back</span>

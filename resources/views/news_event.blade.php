@@ -135,6 +135,10 @@
 
                         <button type="button" class="w-full text-left" @click.stop="openModal()">
                             <img src="{{ $eventImages[0] }}" alt="{{ $event['title'] }}"
+                                title="{{ $event['title'] }}"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="high"
                                 class="w-full h-44 sm:h-48 object-cover rounded-lg mb-3">
                             <h4 class="text-lg font-semibold line-clamp-2">{{ $event['title'] }}</h4>
                         </button>
@@ -173,6 +177,11 @@
                                                     x-transition:leave-start="opacity-100 scale-100"
                                                     x-transition:leave-end="opacity-0 scale-[0.98]"
                                                     :src="img"
+                                                    :alt="`${@js($event['title'])} image ${i + 1}`"
+                                                    :title="`${@js($event['title'])} image ${i + 1}`"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    fetchpriority="high"
                                                     class="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
                                                     @click="fullImage = img">
                                             </template>
@@ -210,7 +219,13 @@
                                                         class="rounded-md overflow-hidden border-2"
                                                         :class="i === index ? 'border-red-600' : 'border-transparent'"
                                                         @click="goTo(i)">
-                                                        <img :src="img" class="w-full h-14 object-cover" alt="">
+                                                        <img :src="img"
+                                                             class="w-full h-14 object-cover"
+                                                             :alt="`${@js($event['title'])} thumbnail ${i + 1}`"
+                                                             :title="`${@js($event['title'])} thumbnail ${i + 1}`"
+                                                             loading="lazy"
+                                                             decoding="async"
+                                                             fetchpriority="high">
                                                     </button>
                                                 </template>
                                             </div>
@@ -233,7 +248,13 @@
                                 <div x-show="fullImage"
                                     class="fixed inset-0 bg-black/95 flex items-center justify-center z-[10000] p-4"
                                     @click="fullImage = null">
-                                    <img :src="fullImage" class="max-w-full max-h-full object-contain rounded-md shadow-2xl">
+                                    <img :src="fullImage"
+                                         :alt="`${@js($event['title'])} full image`"
+                                         :title="`${@js($event['title'])} full image`"
+                                         loading="lazy"
+                                         decoding="async"
+                                         fetchpriority="high"
+                                         class="max-w-full max-h-full object-contain rounded-md shadow-2xl">
                                 </div>
                             </div>
                         </div>
@@ -252,7 +273,11 @@
             @endif
 
             <div class="pt-10 text-center">
-                <a href="#" onclick="history.back(); return false;"
+                <a href="#"
+                    title="Go back to the previous page"
+                    rel="noopener noreferrer"
+                    aria-label="Go back to the previous page"
+                    onclick="history.back(); return false;"
                     class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back</span>

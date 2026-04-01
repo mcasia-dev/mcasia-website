@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PartnershipRequest;
@@ -11,6 +12,11 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
+    public function partnership()
+    {
+        return view('partnership');
+    }
+
     public function sendReachUs(ReachUsRequest $request): RedirectResponse
     {
 
@@ -22,9 +28,9 @@ class MailController extends Controller
 
         $data = [
             'full_name' => $fullName,
-            'email'     => $request->email,
-            'phone'     => $request->phone,
-            'message'   => $request->message,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'message' => $request->message,
         ];
 
         Mail::to(config('mail.contact.reach_us'))->send(new ReachUsMail($data));
@@ -35,20 +41,20 @@ class MailController extends Controller
     public function sendPartnership(PartnershipRequest $request)
     {
         $data = [
-            'name'             => $request->name,
-            'blk_no'           => $request->blk_no,
-            'street'           => $request->street,
-            'barangay'         => $request->barangay,
-            'subdivision'      => $request->subdivision,
-            'country'          => $request->country,
-            'zip_code'         => $request->zip_code,
-            'mobile_number'    => $request->mobile_number,
-            'landline_number'  => $request->landline_number,
-            'business_name'    => $request->business_name,
+            'name' => $request->name,
+            'blk_no' => $request->blk_no,
+            'street' => $request->street,
+            'barangay' => $request->barangay,
+            'subdivision' => $request->subdivision,
+            'country' => $request->country,
+            'zip_code' => $request->zip_code,
+            'mobile_number' => $request->mobile_number,
+            'landline_number' => $request->landline_number,
+            'business_name' => $request->business_name,
             'business_address' => $request->business_address,
-            'business_number'  => $request->business_number,
+            'business_number' => $request->business_number,
             'business_website' => $request->business_website,
-            'business_email'   => $request->business_email,
+            'business_email' => $request->business_email,
         ];
         try {
             Mail::to(config('mail.contact.partnership'))->send(new PartnershipMail($data));

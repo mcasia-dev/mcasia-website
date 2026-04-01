@@ -2,11 +2,12 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\HomePageResource\Pages;
+use App\Models\Brand;
 use App\Models\PublicPage\HomePage;
+use App\Models\PublicPage\Recipe;
 use Filament\Forms;
-use Filament\Forms\Components\Builder;
-use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -29,145 +30,232 @@ class HomePageResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->maxLength(255)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug((string) $state))),
-
-                TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(HomePage::class, 'slug', fn ($record) => $record),
-
-                Toggle::make('is_published')
-                    ->label('Is Published')
-                    ->default(false),
-
-                Builder::make('blocks')
-                    ->label('Sections')
-                    ->collapsible()
-                    ->reorderableWithButtons()
-                    ->addActionLabel('Add section')
-                    ->blocks([
-                        Block::make('hero')
-                            ->label('Hero')
+                Forms\Components\Tabs::make('Home Page')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
                             ->schema([
-                                TextInput::make('eyebrow')->maxLength(80)->default('Our Story'),
-                                TextInput::make('heading')->required()->maxLength(255),
-                                Textarea::make('subheading')->rows(3),
-                                FileUpload::make('background_image')
-                                    ->image()
-                                    ->multiple()
-                                    ->maxFiles(8)
-                                    ->disk('public')
-                                    ->directory('home-blocks')
-                                    ->visibility('public')
-                                    ->maxSize(5120),
-                                TextInput::make('button_label')->maxLength(80),
-                                TextInput::make('button_url')->maxLength(255),
-                                Select::make('text_align')
-                                    ->options([
-                                        'left' => 'Left',
-                                        'center' => 'Center',
-                                        'right' => 'Right',
-                                    ])
-                                    ->default('center'),
-                            ])->columns(2),
-
-                        Block::make('image_text')
-                            ->label('Image + Text')
-                            ->schema([
-                                TextInput::make('title')->required()->maxLength(255),
-                                Textarea::make('body')->rows(5),
-                                TextInput::make('image_label')
-                                    ->label('Image Label')
-                                    ->maxLength(120),
-                                FileUpload::make('image')
-                                    ->image()
-                                    ->multiple()
-                                    ->maxFiles(8)
-                                    ->disk('public')
-                                    ->directory('home-blocks')
-                                    ->visibility('public')
-                                    ->maxSize(5120),
-                                Select::make('image_display')
-                                    ->label('Image Display')
-                                    ->options([
-                                        'carousel' => 'Carousel',
-                                        'grid' => 'Grid',
-                                    ])
-                                    ->default('carousel')
+                                TextInput::make('name')
                                     ->required()
-                                    ->live(),
-                                Select::make('grid_columns')
-                                    ->label('Grid Columns')
-                                    ->options([
-                                        '2' => '2 Columns',
-                                        '3' => '3 Columns',
-                                        '4' => '4 Columns',
-                                    ])
-                                    ->default('2')
-                                    ->visible(fn (Forms\Get $get): bool => $get('image_display') === 'grid'),
-                                Select::make('image_position')
-                                    ->options([
-                                        'left' => 'Image Left',
-                                        'right' => 'Image Right',
-                                    ])
-                                    ->default('left'),
-                                TextInput::make('button_label')->maxLength(80),
-                                TextInput::make('button_url')->maxLength(255),
-                            ])->columns(2),
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug((string)$state))),
 
-                        Block::make('cards')
-                            ->label('Cards')
-                            ->schema([
-                                TextInput::make('title')->maxLength(255),
-                                Select::make('grid_columns')
-                                    ->label('Columns')
-                                    ->options([
-                                        '1' => '1 Column',
-                                        '2' => '2 Columns',
-                                        '3' => '3 Columns',
-                                        '4' => '4 Columns',
-                                    ])
-                                    ->default('3')
-                                    ->required(),
-                                Repeater::make('items')
+                                TextInput::make('slug')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->unique(HomePage::class, 'slug', fn($record) => $record),
+
+                                Toggle::make('is_published')
+                                    ->label('Is Published')
+                                    ->default(true),
+
+                                Forms\Components\Section::make('Banner')
                                     ->schema([
-                                        TextInput::make('title')->required()->maxLength(255),
-                                        Textarea::make('description')->rows(3),
-                                        FileUpload::make('image')
+                                        TextInput::make('blocks.banner.eyebrow')
+                                            ->maxLength(80)
+                                            ->default('Our Story'),
+                                        TextInput::make('blocks.banner.title')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->default('HOME TO YOUR ASIAN CRAVINGS'),
+                                        TextInput::make('blocks.banner.button_label')
+                                            ->maxLength(80)
+                                            ->default('Read More'),
+                                        TextInput::make('blocks.banner.button_url')
+                                            ->maxLength(255)
+                                            ->default('/our-story'),
+                                        FileUpload::make('blocks.banner.images')
+                                            ->label('Banner Images')
                                             ->image()
                                             ->multiple()
                                             ->maxFiles(8)
                                             ->disk('public')
-                                            ->directory('home-blocks')
+                                            ->directory('home-blocks/banner')
                                             ->visibility('public')
-                                            ->maxSize(4096),
-                                        TextInput::make('button_label')->maxLength(80),
-                                        TextInput::make('button_url')->maxLength(255),
+                                            ->maxSize(5120)
+                                            ->columnSpanFull(),
                                     ])
-                                    ->defaultItems(3)
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Section::make('Home To Your Asian Cravings')
+                                    ->schema([
+                                        Repeater::make('blocks.home_to_your_asian_cravings.items')
+                                            ->label('Cards')
+                                            ->schema([
+                                                TextInput::make('title')
+                                                    ->required()
+                                                    ->maxLength(255),
+
+                                                Forms\Components\RichEditor::make('description')
+                                                    ->columnSpanFull(),
+
+                                                FileUpload::make('image')
+                                                    ->image()
+                                                    ->disk('public')
+                                                    ->directory('home-blocks/asian-cravings')
+                                                    ->visibility('public')
+                                                    ->maxSize(5120)
+                                                    ->columnSpanFull(),
+
+                                                TextInput::make('button_label')
+                                                    ->maxLength(80)
+                                                    ->default('Learn More'),
+
+                                                TextInput::make('button_url')
+                                                    ->maxLength(255),
+                                            ])
+                                            ->default([
+                                                [
+                                                    'title' => 'About Us',
+                                                    'description' => 'We source and import a diverse selection of authentic Asian food products from countries such as Japan, China, Thailand, Malaysia, Indonesia, Taiwan, and more.',
+                                                    'button_label' => 'Learn More',
+                                                    'button_url' => '/our-story',
+                                                ],
+                                                [
+                                                    'title' => 'Our Impact',
+                                                    'description' => 'For years, we have served as a reliable bridge between world-class brands and Filipino consumers, ensuring access to safe, high-quality food and beverage products that enrich everyday life.',
+                                                    'button_label' => 'Learn More',
+                                                    'button_url' => '/our_impact',
+                                                ],
+                                                [
+                                                    'title' => 'Our Channel',
+                                                    'description' => 'We take pride in building strong and lasting partnerships that bring high-quality food products closer to consumers. Our distribution channels are strategically developed to ensure efficiency, consistency, and excellence nationwide.',
+                                                    'button_label' => 'Learn More',
+                                                    'button_url' => '/our_channel',
+                                                ],
+                                                [
+                                                    'title' => 'Reach Us',
+                                                    'description' => 'We believe that open communication is key to lasting partnerships. Our dedicated representatives are here to provide support, answer your questions, and explore opportunities that align with your business needs.',
+                                                    'button_label' => 'Learn More',
+                                                    'button_url' => '/reach_us',
+                                                ],
+                                            ])
+                                            ->minItems(4)
+                                            ->maxItems(4)
+                                            ->addable(false)
+                                            ->deletable(false)
+                                            ->reorderable(false)
+                                            ->columns(2)
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->collapsible()
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Section::make('Our Products')
+                                    ->schema([
+                                        TextInput::make('blocks.our_products.title')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->default('Our Products'),
+
+                                        Forms\Components\RichEditor::make('blocks.our_products.description')
+                                            ->columnSpanFull()
+                                            ->default('We offer a carefully curated portfolio of authentic Asian food and beverage products, spanning Cooking Essentials, Frozen Meat & Seafood, Beverages, and Snacks, bringing genuine flavors and quality to modern consumers.'),
+
+                                        TextInput::make('blocks.our_products.button_label')
+                                            ->maxLength(80)
+                                            ->default('All Products'),
+
+                                        TextInput::make('blocks.our_products.button_url')
+                                            ->maxLength(255)
+                                            ->default('/products/cooking-essentials/cooking-essentials-canned-goods'),
+
+                                        Repeater::make('blocks.our_products.highlights')
+                                            ->label('Product Highlights')
+                                            ->schema([
+                                                TextInput::make('label')
+                                                    ->required()
+                                                    ->maxLength(120),
+
+                                                FileUpload::make('image')
+                                                    ->image()
+                                                    ->disk('public')
+                                                    ->directory('home-blocks/products')
+                                                    ->visibility('public')
+                                                    ->maxSize(5120),
+                                            ])
+                                            ->default([
+                                                ['label' => 'Cooking Essentials'],
+                                                ['label' => 'Frozen Meat & Seafood'],
+                                                ['label' => 'Beverages'],
+                                                ['label' => 'Snacks'],
+                                            ])
+                                            ->minItems(4)
+                                            ->maxItems(4)
+                                            ->addable(false)
+                                            ->deletable(false)
+                                            ->reorderable(false)
+                                            ->columns(2)
+                                            ->columnSpanFull(),
+
+                                        Select::make('blocks.our_products.brand_ids')
+                                            ->label('Featured Brands')
+                                            ->options(fn(): array => Brand::query()
+                                                ->isActive()
+                                                ->orderBy('brand_name')
+                                                ->pluck('brand_name', 'id')
+                                                ->all())
+                                            ->multiple()
+                                            ->preload()
+                                            ->searchable()
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->collapsible()
+                                    ->columns(2)
+                                    ->columnSpanFull(),
+
+                                Forms\Components\Section::make('Our Recipes')
+                                    ->schema([
+                                        TextInput::make('blocks.our_recipes.eyebrow')
+                                            ->maxLength(80)
+                                            ->default('Recipes'),
+
+                                        TextInput::make('blocks.our_recipes.title')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->default('Cook Like A Chef!'),
+
+                                        Forms\Components\RichEditor::make('blocks.our_recipes.description')
+                                            ->columnSpanFull()
+                                            ->default("Turn every meal into a moment that brings families together and sparks inspiration in the kitchen. Discover our Asian recipes, crafted with a chef's touch and made to be shared."),
+
+                                        TextInput::make('blocks.our_recipes.button_label')
+                                            ->maxLength(80)
+                                            ->default('View Recipes'),
+
+                                        TextInput::make('blocks.our_recipes.button_url')
+                                            ->maxLength(255)
+                                            ->default('/recipes'),
+
+                                        FileUpload::make('blocks.our_recipes.banner_image')
+                                            ->image()
+                                            ->disk('public')
+                                            ->directory('home-blocks/recipes')
+                                            ->visibility('public')
+                                            ->maxSize(5120),
+
+                                        Select::make('blocks.our_recipes.recipe_ids')
+                                            ->label('Featured Recipes')
+                                            ->options(fn(): array => Recipe::query()
+                                                ->isPublished()
+                                                ->orderBy('recipe_name')
+                                                ->pluck('recipe_name', 'id')
+                                                ->all())
+                                            ->multiple()
+                                            ->preload()
+                                            ->searchable()
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->collapsible()
                                     ->columns(2)
                                     ->columnSpanFull(),
                             ]),
-
-                        Block::make('cta')
-                            ->label('Call To Action')
-                            ->schema([
-                                TextInput::make('title')->required()->maxLength(255),
-                                Textarea::make('description')->rows(4),
-                                TextInput::make('button_label')->required()->maxLength(80),
-                                TextInput::make('button_url')->required()->maxLength(255),
-                                Select::make('theme')
-                                    ->options([
-                                        'red' => 'Red',
-                                        'dark' => 'Dark',
-                                        'light' => 'Light',
-                                    ])
-                                    ->default('red'),
-                            ])->columns(2),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
                     ])
                     ->columnSpanFull(),
             ]);

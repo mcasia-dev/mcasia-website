@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\ProductCategoryResource\Pages;
 use App\Models\ProductCategory;
 use Filament\Forms;
@@ -26,52 +27,63 @@ class ProductCategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('parent_id')
-                    ->label('Parent Category')
-                    ->relationship('parent', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->nullable(),
+                Forms\Components\Tabs::make('Product Category')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                Forms\Components\Select::make('parent_id')
+                                    ->label('Parent Category')
+                                    ->relationship('parent', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->nullable(),
 
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(120)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function ($state, Forms\Set $set): void {
-                        if (filled($state)) {
-                            $set('slug', Str::slug((string)$state));
-                        }
-                    }),
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(120)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function ($state, Forms\Set $set): void {
+                                        if (filled($state)) {
+                                            $set('slug', Str::slug((string) $state));
+                                        }
+                                    }),
 
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(140)
-                    ->unique(ignoreRecord: true),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->maxLength(140)
+                                    ->unique(ignoreRecord: true),
 
-                Forms\Components\TextInput::make('level')
-                    ->numeric()
-                    ->required()
-                    ->default(1)
-                    ->minValue(1)
-                    ->maxValue(10),
+                                Forms\Components\TextInput::make('level')
+                                    ->numeric()
+                                    ->required()
+                                    ->default(1)
+                                    ->minValue(1)
+                                    ->maxValue(10),
 
-                Forms\Components\TextInput::make('sort_order')
-                    ->numeric()
-                    ->required()
-                    ->default(0),
+                                Forms\Components\TextInput::make('sort_order')
+                                    ->numeric()
+                                    ->required()
+                                    ->default(0),
 
-                Forms\Components\Toggle::make('is_active')
-                    ->required()
-                    ->default(true),
+                                Forms\Components\Toggle::make('is_active')
+                                    ->required()
+                                    ->default(true),
 
-                Forms\Components\SpatieMediaLibraryFileUpload::make('icon')
-                    ->label('Icon')
-                    ->collection('category-icons')
-                    ->image()
-                    ->optimize('webp')
-                    ->imageEditor()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
-                    ->maxSize(2048)
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('icon')
+                                    ->label('Icon')
+                                    ->collection('category-icons')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->imageEditor()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                                    ->maxSize(2048),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -107,7 +119,7 @@ class ProductCategoryResource extends Resource
                 Tables\Filters\TernaryFilter::make('is_active'),
             ])
             ->defaultSort('sort_order')
-            ->modifyQueryUsing(fn(Builder $query) => $query->orderBy('level')->orderBy('sort_order')->orderBy('name'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->orderBy('level')->orderBy('sort_order')->orderBy('name'))
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

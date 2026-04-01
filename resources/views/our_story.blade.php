@@ -320,6 +320,10 @@
                 <div class="about-banner-frame relative overflow-hidden rounded-[28px] border border-white/70 bg-white">
                     <div class="h-[28vh] min-h-[240px] sm:h-[34vh] md:h-[380px]">
                         <img src="{{ $ourStory->media[0]->original_url ?? asset('images/HOMEPAGE/1.jpg') }}" alt="McAsia Background"
+                             title="McAsia Background"
+                             loading="lazy"
+                             decoding="async"
+                             fetchpriority="high"
                              class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -376,6 +380,10 @@
                         class="fade-section story-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
                         <div class="h-44 sm:h-48 overflow-hidden">
                             <img src="{{ asset('images/about_us/1.jpg') }}" alt="Mission"
+                                 title="Mission"
+                                 loading="lazy"
+                                 decoding="async"
+                                 fetchpriority="high"
                                  class="w-full h-full object-cover">
                         </div>
                         <div class="p-5 sm:p-6">
@@ -394,6 +402,10 @@
                         class="fade-section story-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
                         <div class="h-44 sm:h-48 overflow-hidden">
                             <img src="{{ asset('images/about_us/2.jpg') }}" alt="Vision"
+                                 title="Vision"
+                                 loading="lazy"
+                                 decoding="async"
+                                 fetchpriority="high"
                                  class="w-full h-full object-cover">
                         </div>
                         <div class="p-5 sm:p-6">
@@ -412,6 +424,10 @@
                         class="fade-section story-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
                         <div class="h-44 sm:h-48 overflow-hidden">
                             <img src="{{ asset('images/about_us/3.jpg') }}" alt="Core Values"
+                                 title="Core Values"
+                                 loading="lazy"
+                                 decoding="async"
+                                 fetchpriority="high"
                                  class="w-full h-full object-cover">
                         </div>
                         <div class="p-5 sm:p-6">
@@ -441,7 +457,11 @@
                 </div>
 
                 <div class="text-center pt-8 sm:pt-4 fade-section">
-                    <a href="#" onclick="history.back(); return false;"
+                    <a href="#"
+                       title="Go back to the previous page"
+                       rel="noopener noreferrer"
+                       aria-label="Go back to the previous page"
+                       onclick="history.back(); return false;"
                        class="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-5 py-2.5 text-sm font-semibold text-red-700 shadow-sm hover:bg-red-50 transition-colors">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>Back</span>

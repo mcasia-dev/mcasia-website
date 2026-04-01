@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +12,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Brand extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use HasSeo;
 
     protected $fillable = [
         'brand_name',

@@ -1,24 +1,51 @@
+@extends('layouts.app')
+@props(['section' => []])
 @php
+    use Illuminate\Support\Facades\Storage;
+
     $fallbackHeroImages = [
         asset('images/home/banner/homepage-banner-1.jpg'),
         asset('images/home/banner/homepage-banner-2.jpg'),
         asset('images/home/banner/homepage-banner-3.jpg'),
     ];
 
-    $fromProps = collect($homepageBanners ?? [])
-        ->map(fn($banner) => $banner->media[0]->original_url ?? null)
+    $fromProps = collect(data_get($section, 'images', []))
+        ->map(fn ($path) => filled($path) ? Storage::disk('public')->url($path) : null)
         ->filter()
         ->values()
         ->all();
 
     $heroImages = count($fromProps) > 0 ? $fromProps : $fallbackHeroImages;
+    $eyebrow = data_get($section, 'eyebrow', 'Our Story');
+    $title = data_get($section, 'title', 'HOME TO YOUR ASIAN CRAVINGS');
+    $buttonLabel = data_get($section, 'button_label', 'Read More');
+    $buttonUrl = data_get($section, 'button_url', '/our-story');
 @endphp
 
+@push('styles')
+    @vite('resources/css/autoscroll.css')
+@endpush
+
 <section class="relative text-white overflow-hidden h-screen">
-    <img id="heroImageA" src="{{ $heroImages[0] ?? '' }}" alt=""
-        class="hero-layer is-active absolute inset-0 w-full h-full object-cover z-0" />
-    <img id="heroImageB" src="" alt=""
-        class="hero-layer absolute inset-0 w-full h-full object-cover z-0" />
+    <img
+        id="heroImageA"
+        src="{{ $heroImages[0] ?? '' }}"
+        alt="McAsia Foodtrade Corporation Banner"
+        title="McAsia Foodtrade Corporation"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="high"
+        class="hero-layer is-active absolute inset-0 w-full h-full object-cover z-0"
+    />
+    <img
+        id="heroImageB" src=""
+        alt="McAsia Foodtrade Corporation Banner"
+        title="McAsia Foodtrade Corporation"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="high"
+        class="hero-layer absolute inset-0 w-full h-full object-cover z-0"
+    />
 
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/30 z-10"></div>
 
@@ -28,25 +55,33 @@
                 <div class="h-full flex items-center">
                     <div class="max-w-2xl">
                         <div class="flex flex-col items-start gap-4">
-                            <div class="inline-flex items-center gap-2 text-4xl md:text-6xl font-brophyscript font-medium italic leading-8 text-white"
+                            <div
+                                class="inline-flex items-center gap-2 text-4xl md:text-6xl font-brophyscript font-medium italic leading-8 text-white prose"
                                 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                Our Story
+                                    {{ $eyebrow }}
                             </div>
                             <h1 class="text-white text-5xl md:text-7xl font-modica-bold font-extrabold mb-3 md:mb-6 leading-tight shine-text py-2"
                                 data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                                HOME TO YOUR ASIAN CRAVINGS
+                                {{ $title }}
                             </h1>
-                            <a href="/our-story"
-                                class="custom-border bg-red-700 text-white text-xs sm:text-sm text-center font-semibold hover:bg-red-500 transition-colors"
-                                data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                                Read More
+                            <a href="{{ $buttonUrl }}"
+                               title="{{ $buttonLabel }}"
+                               rel="noopener noreferrer"
+                               aria-label="{{ $buttonLabel }}"
+                               class="custom-border bg-red-700 text-white text-xs sm:text-sm text-center font-semibold hover:bg-red-500 transition-colors"
+                               data-aos="fade-up"
+                               data-aos-delay="600"
+                               data-aos-duration="1000"
+                            >
+                                {{ $buttonLabel }}
                             </a>
                             <div class="flex items-center gap-2" aria-label="Banner pagination" data-aos="fade-up"
-                                data-aos-delay="800" data-aos-duration="1000">
+                                 data-aos-delay="800" data-aos-duration="1000">
                                 @foreach ($heroImages as $index => $image)
                                     <button type="button"
-                                        class="hero-dot w-4 h-4 rounded-full border-2 border-white/90 transition-colors"
-                                        data-index="{{ $index }}" aria-label="Go to slide {{ $index + 1 }}"></button>
+                                            class="hero-dot w-4 h-4 rounded-full border-2 border-white/90 transition-colors"
+                                            data-index="{{ $index }}"
+                                            aria-label="Go to slide {{ $index + 1 }}"></button>
                                 @endforeach
                             </div>
                         </div>
