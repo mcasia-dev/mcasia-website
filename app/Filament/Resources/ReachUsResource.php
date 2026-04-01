@@ -19,6 +19,8 @@ class ReachUsResource extends Resource
     protected static ?string $model = ReachUs::class;
     protected static ?string $navigationGroup = 'Public Pages';
     protected static ?string $navigationLabel = 'Reach Us';
+    protected static ?string $label = 'Reach Us';
+    protected static ?string $pluralLabel = 'Reach Us';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

@@ -30,6 +30,7 @@ class SalesAvenueResource extends Resource
                             ->icon('heroicon-o-cube')
                             ->schema([
                                 Forms\Components\Select::make('categories')
+                                    ->label('Sales Avenue Categories')
                                     ->relationship('categories', 'name')
                                     ->required()
                                     ->multiple()

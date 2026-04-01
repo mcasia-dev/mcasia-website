@@ -52,19 +52,28 @@ class HomePageResource extends Resource
 
                                 Forms\Components\Section::make('Banner')
                                     ->schema([
+//                                      // TODO: CHange the label
                                         TextInput::make('blocks.banner.eyebrow')
+                                            ->label('Header Note')
                                             ->maxLength(80)
                                             ->default('Our Story'),
+
                                         TextInput::make('blocks.banner.title')
+                                            ->label('Banner Title')
                                             ->required()
                                             ->maxLength(255)
                                             ->default('HOME TO YOUR ASIAN CRAVINGS'),
+
                                         TextInput::make('blocks.banner.button_label')
                                             ->maxLength(80)
                                             ->default('Read More'),
-                                        TextInput::make('blocks.banner.button_url')
-                                            ->maxLength(255)
+
+                                        // TODO: Change it into select with text input
+//                                        TextInput::make('blocks.banner.button_url')
+                                        Forms\Components\Hidden::make('blocks.banner.button_url')
+                                            ->helperText('example: https://mcasiafoodtrade.ph/')
                                             ->default('/our-story'),
+
                                         FileUpload::make('blocks.banner.images')
                                             ->label('Banner Images')
                                             ->image()
@@ -104,8 +113,7 @@ class HomePageResource extends Resource
                                                     ->maxLength(80)
                                                     ->default('Learn More'),
 
-                                                TextInput::make('button_url')
-                                                    ->maxLength(255),
+                                                Forms\Components\Hidden::make('button_url'),
                                             ])
                                             ->default([
                                                 [
@@ -159,8 +167,7 @@ class HomePageResource extends Resource
                                             ->maxLength(80)
                                             ->default('All Products'),
 
-                                        TextInput::make('blocks.our_products.button_url')
-                                            ->maxLength(255)
+                                        Forms\Components\Hidden::make('blocks.our_products.button_url')
                                             ->default('/products/cooking-essentials/cooking-essentials-canned-goods'),
 
                                         Repeater::make('blocks.our_products.highlights')
@@ -226,8 +233,8 @@ class HomePageResource extends Resource
                                             ->maxLength(80)
                                             ->default('View Recipes'),
 
-                                        TextInput::make('blocks.our_recipes.button_url')
-                                            ->maxLength(255)
+                                        Forms\Components\Hidden::make('blocks.our_recipes.button_url')
+                                            ->helperText('example: https://mcasiafoodtrade.ph/')
                                             ->default('/recipes'),
 
                                         FileUpload::make('blocks.our_recipes.banner_image')

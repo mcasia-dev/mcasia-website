@@ -203,8 +203,6 @@ class PublicPageController extends Controller
             ->pageBySlug($slug)
             ->firstOrFail();
 
-        dd($salesAvenue);
-
         return view('sales-venue', [
                 'salesAvenue' => $salesAvenue,
             ] + $this->buildSeoViewData(
