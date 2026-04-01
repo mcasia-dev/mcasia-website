@@ -23,7 +23,7 @@
     </style>
 
     <main class="w-full overflow-x-hidden">
-        <section class="partnership-hero relative h-[34vh] sm:h-[44vh] lg:h-[56vh] overflow-hidden">
+        <section class="partnership-hero relative h-[34vh] sm:h-[44vh] lg:h-[86vh] overflow-hidden">
             <img src="{{ asset('images/partnership/banner.png') }}" alt="Partnership"
                 title="Partnership"
                 loading="lazy"
