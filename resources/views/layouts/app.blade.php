@@ -2,6 +2,17 @@
 <html lang="en">
 
 <head>
+    @php
+        $defaultSeoTitle = trim($__env->yieldContent('title', config('app.name', 'McAsia Foodtrade Corporation')));
+        $defaultSeoDescription = trim($__env->yieldContent('meta_description', 'McAsia Foodtrade Corporation'));
+        $defaultSeoAuthor = trim($__env->yieldContent('meta_author', ''));
+        $defaultSeoPublisher = trim($__env->yieldContent('meta_publisher', 'McAsia Foodtrade Corporation'));
+        $defaultSeoKeywords = trim($__env->yieldContent('meta_keywords', ''));
+        $defaultSeoRobots = trim($__env->yieldContent('meta_robots', 'index, follow'));
+        $defaultSeoCanonical = trim($__env->yieldContent('meta_canonical', request()->url()));
+        $defaultSeoImage = trim($__env->yieldContent('meta_image', asset('/images/mcasia_logo_minimal.png')));
+    @endphp
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,7 +20,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('/images/mcasia_logo_minimal.png') }}" type="image/x-icon">
-    <title>@yield('title', 'McAsia Foodtrade Corporation')</title>
+    @hasSection('seo')
+        @yield('seo')
+    @else
+        <x-seo.seo-head
+            :seo="$seoMeta ?? null"
+            :fallback-title="$seoFallbackTitle ?? $defaultSeoTitle"
+            :fallback-description="$seoFallbackDescription ?? $defaultSeoDescription"
+            :fallback-image="$seoFallbackImage ?? $defaultSeoImage"
+            :fallback-author="$defaultSeoAuthor"
+            :fallback-publisher="$defaultSeoPublisher"
+            :fallback-keywords="$defaultSeoKeywords"
+            :fallback-robots="$defaultSeoRobots"
+            :fallback-canonical="$defaultSeoCanonical"
+        />
+    @endif
 
     <!-- Global CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,7 +44,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Chendolle&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Page-specific CSS -->
@@ -27,53 +52,66 @@
 </head>
 
 <body class="bg-gray-100 text-gray-800 overflow-x-hidden">
-    {{-- Header --}}
-    @include('components.header')
+{{-- Header --}}
+@include('components.header')
 
-    <!-- Main content -->
-    @yield('content')
+<!-- Main content -->
+@yield('content')
 
-    <!-- Global JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js" defer></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- Global JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://unpkg.com/alpinejs@3.15.0/dist/cdn.min.js" defer></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-    <!-- AOS - Animate On Scroll -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- AOS - Animate On Scroll -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <!-- Page-specific JS -->
-    @stack('scripts')
+<!-- Page-specific JS -->
+@stack('scripts')
 
 
-    <script>
-        AOS.init();
+{{--Google Tag Manager--}}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-61Q8G78708"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
 
-        window.addEventListener('mouseover', initLandbot, {
-            once: true
-        });
-        window.addEventListener('touchstart', initLandbot, {
-            once: true
-        });
-        // var myLandbot;
-        //
-        // function initLandbot() {
-        //     if (!myLandbot) {
-        //         var s = document.createElement('script');
-        //         s.type = "module"
-        //         s.async = true;
-        //         s.addEventListener('load', function () {
-        //             var myLandbot = new Landbot.Livechat({
-        //                 configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3236836-KDF61WB61CG5PRC2/index.json',
-        //             });
-        //         });
-        //         s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
-        //         var x = document.getElementsByTagName('script')[0];
-        //         x.parentNode.insertBefore(s, x);
-        //     }
-        // }
-    </script>
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '{{ config('services.google.tag_id') }}');
+</script>
+
+<script>
+    AOS.init();
+
+    window.addEventListener('mouseover', initLandbot, {
+        once: true
+    });
+    window.addEventListener('touchstart', initLandbot, {
+        once: true
+    });
+    // var myLandbot;
+    //
+    // function initLandbot() {
+    //     if (!myLandbot) {
+    //         var s = document.createElement('script');
+    //         s.type = "module"
+    //         s.async = true;
+    //         s.addEventListener('load', function () {
+    //             var myLandbot = new Landbot.Livechat({
+    //                 configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-3236836-KDF61WB61CG5PRC2/index.json',
+    //             });
+    //         });
+    //         s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
+    //         var x = document.getElementsByTagName('script')[0];
+    //         x.parentNode.insertBefore(s, x);
+    //     }
+    // }
+</script>
 </body>
 
 </html>

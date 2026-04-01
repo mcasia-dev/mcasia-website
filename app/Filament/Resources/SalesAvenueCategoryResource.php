@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\SalesAvenueCategoryResource\Pages;
 use App\Filament\Resources\SalesAvenueCategoryResource\RelationManagers;
 use App\Models\PublicPage\Recipe;
@@ -25,36 +26,47 @@ class SalesAvenueCategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('parent_id')
-                    ->relationship('parent', 'name'),
+                Forms\Components\Tabs::make('Sales Avenue Category')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                Forms\Components\Select::make('parent_id')
+                                    ->relationship('parent', 'name'),
 
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function ($state, Forms\Set $set) {
-                        if (filled($state)) {
-                            $set('slug', Str::slug((string)$state));
-                        }
-                    }),
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(function ($state, Forms\Set $set) {
+                                        if (filled($state)) {
+                                            $set('slug', Str::slug((string) $state));
+                                        }
+                                    }),
 
-                Forms\Components\TextInput::make('slug')
-                    ->readOnly()
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(SalesAvenueCategory::class, 'slug', fn($record) => $record),
+                                Forms\Components\TextInput::make('slug')
+                                    ->readOnly()
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->unique(SalesAvenueCategory::class, 'slug', fn ($record) => $record),
 
-                Forms\Components\TextInput::make('level')
-                    ->numeric(),
+                                Forms\Components\TextInput::make('level')
+                                    ->numeric(),
 
-                Forms\Components\TextInput::make('sort_order')
-                    ->label('Sort Order')
-                    ->numeric(),
+                                Forms\Components\TextInput::make('sort_order')
+                                    ->label('Sort Order')
+                                    ->numeric(),
 
-                Forms\Components\Toggle::make('is_active')
-                    ->label('Is Active')
-                    ->default(true)
-                    ->required(),
+                                Forms\Components\Toggle::make('is_active')
+                                    ->label('Is Active')
+                                    ->default(true)
+                                    ->required(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 

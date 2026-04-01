@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\OurStoryResource\Pages;
 use App\Filament\Resources\OurStoryResource\RelationManagers;
 use App\Models\PublicPage\OurStory;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -28,63 +30,75 @@ class OurStoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
+                Tabs::make('Our Story')
+                    ->tabs([
+                        Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                TextInput::make('title')
+                                    ->required()
+                                    ->maxLength(255),
 
-                TextInput::make('subtitle')
-                    ->nullable()
-                    ->maxLength(500),
+                                TextInput::make('subtitle')
+                                    ->nullable()
+                                    ->maxLength(500),
 
-                RichEditor::make('description')
-                    ->nullable()
-                    ->columnSpanFull(),
+                                RichEditor::make('description')
+                                    ->nullable()
+                                    ->columnSpanFull(),
 
-                Repeater::make('timeline_items')
-                    ->label('Timeline')
-                    ->nullable()
-                    ->reorderableWithButtons()
-                    ->collapsible()
-                    ->cloneable()
-                    ->addActionLabel('Add milestone')
-                    ->schema([
-                        TextInput::make('year')
-                            ->required()
-                            ->maxLength(50)
-                            ->placeholder('2012 or Today'),
-                        TextInput::make('title')
-                            ->required()
-                            ->maxLength(255)
-                            ->placeholder('The Beginning'),
-                        RichEditor::make('body')
-                            ->required()
-                            ->toolbarButtons([
-                                'bold',
-                                'italic',
-                                'underline',
-                                'strike',
-                                'link',
-                                'h2',
-                                'h3',
-                                'bulletList',
-                                'orderedList',
-                            ])
-                            ->columnSpanFull(),
+                                Repeater::make('timeline_items')
+                                    ->label('Timeline')
+                                    ->nullable()
+                                    ->reorderableWithButtons()
+                                    ->collapsible()
+                                    ->cloneable()
+                                    ->addActionLabel('Add milestone')
+                                    ->schema([
+                                        TextInput::make('year')
+                                            ->required()
+                                            ->maxLength(50)
+                                            ->placeholder('2012 or Today'),
+                                        TextInput::make('title')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->placeholder('The Beginning'),
+                                        RichEditor::make('body')
+                                            ->required()
+                                            ->toolbarButtons([
+                                                'bold',
+                                                'italic',
+                                                'underline',
+                                                'strike',
+                                                'link',
+                                                'h2',
+                                                'h3',
+                                                'bulletList',
+                                                'orderedList',
+                                            ])
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->columns(2)
+                                    ->columnSpanFull(),
+
+                                SpatieMediaLibraryFileUpload::make('banner')
+                                    ->collection('our-story-image')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->imageEditor()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120),
+
+                                Toggle::make('is_published')
+                                    ->label('Is Published')
+                                    ->default(true)
+                            ]),
+
+                        Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make())
                     ])
-                    ->columns(2)
                     ->columnSpanFull(),
-
-                SpatieMediaLibraryFileUpload::make('banner')
-                    ->collection('our-story-image')
-                    ->image()
-                    ->optimize('webp')
-                    ->imageEditor()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120),
-
-                Toggle::make('is_published')
-                    ->label('Is Published')
-                    ->default(true)
             ]);
     }
 

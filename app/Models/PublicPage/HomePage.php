@@ -2,11 +2,14 @@
 
 namespace App\Models\PublicPage;
 
+use App\Traits\HasSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class HomePage extends Model
 {
+    use HasSeo;
+
     protected $fillable = [
         'name',
         'slug',
@@ -28,4 +31,3 @@ class HomePage extends Model
         return $query->where('is_published', true);
     }
 }
-

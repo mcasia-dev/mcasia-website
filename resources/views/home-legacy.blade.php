@@ -1,5 +1,15 @@
 @extends('layouts.app')
-@section('title', 'McAsia Foodtrade Corporation')
+@section('seo')
+    <x-seo.meta
+        title="McAsia Foodtrade Corporation - Home To Your Asian Cravings"
+        description="McAsia Foodtrade Corporation delivers authentic Asian food products, trusted brands, and culinary solutions across the Philippines."
+        author="McAsia Foodtrade Corporation"
+        publisher="McAsia Foodtrade Corporation"
+        keywords="McAsia, Asian food products, Philippine food distributor, Asian brands, foodservice solutions"
+        :image="asset('images/mcasia_logo_minimal.png')"
+        :canonical="url()->current()"
+    />
+@endsection
 @section('content')
 
 

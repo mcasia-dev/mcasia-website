@@ -35,10 +35,21 @@
                 @foreach ($brands as $brand)
                     @if ($brand->slug != null)
                         <a href="/brands/{{ $brand->slug }}"
+                           title="View {{ $brand->brand_name }}"
+                           rel="noopener noreferrer"
+                           aria-label="View {{ $brand->brand_name }}"
                            data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
-                           class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
-                            <img src="{{ $brand->media[0]->original_url }}" alt="{{ $brand->brand_name }}"
-                                 class="h-28 w-28 object-contain p-3 ">
+                           class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20"
+                        >
+                            <img
+                                src="{{ $brand->media[0]->original_url }}"
+                                alt="{{ $brand->brand_name }}"
+                                title="{{ $brand->brand_name }}"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="high"
+                                class="h-28 w-28 object-contain p-3"
+                            />
                             <div
                                 class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
                                 {{ $brand->brand_name }}
@@ -48,8 +59,15 @@
                         <div
                             data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
                             class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
-                            <img src="{{ $brand->media[0]->original_url }}" alt="{{ $brand->brand_name }}"
-                                 class="h-28 w-28 object-contain p-3 ">
+                            <img
+                                src="{{ $brand->media[0]->original_url }}"
+                                alt="{{ $brand->brand_name }}"
+                                title="{{ $brand->brand_name }}"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="high"
+                                class="h-28 w-28 object-contain p-3 "
+                            />
                             <div
                                 class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
                                 {{ $brand->brand_name }}
@@ -60,11 +78,23 @@
             @else
                 @foreach ($brandLogos as $brand)
                     @if ($brand['url'] != null)
-                        <a href="{{ $brand['url'] }}"
-                           data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
-                           class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
-                            <img src="{{ $brand['src'] }}" alt="{{ $brand['name'] }}"
-                                 class="h-28 w-28 object-contain p-3 ">
+                        <a
+                            href="{{ $brand['url'] }}"
+                            title="View {{ $brand['name'] }}"
+                            rel="noopener noreferrer"
+                            aria-label="View {{ $brand['name'] }}"
+                            data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
+                            class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20"
+                        >
+                            <img
+                                src="{{ $brand['src'] }}"
+                                alt="{{ $brand['name'] }}"
+                                title="{{ $brand['name'] }}"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="high"
+                                class="h-28 w-28 object-contain p-3"
+                            />
                             <div
                                 class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
                                 {{ $brand['name'] }}
@@ -74,8 +104,15 @@
                         <div
                             data-aos="zoom-in-up" data-aos-duration="650" data-aos-delay="{{ $loop->index * 60 }}"
                             class="group relative flex items-center justify-center rounded-xl overflow-hidden bg-white h-20">
-                            <img src="{{ $brand['src'] }}" alt="{{ $brand['name'] }}"
-                                 class="h-28 w-28 object-contain p-3 ">
+                            <img
+                                src="{{ $brand['src'] }}"
+                                alt="{{ $brand['name'] }}"
+                                title="{{ $brand['name'] }}"
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="high"
+                                class="h-28 w-28 object-contain p-3"
+                            />
                             <div
                                 class="absolute inset-x-0 bottom-0 bg-red-600/95 text-white text-xs font-semibold tracking-wide uppercase px-3 py-2 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center">
                                 {{ $brand['name'] }}
@@ -87,4 +124,3 @@
         </div>
     </div>
 </section>
-

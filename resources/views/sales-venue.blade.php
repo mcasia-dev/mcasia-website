@@ -41,14 +41,18 @@
             <section class="max-w-7xl mx-auto px-4 sm:px-6 py-6 lg:py-10">
                 <div class="flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
                     <article class="fade-section w-full lg:w-1/2 space-y-4">
-                        <h2 class="text-2xl lg:text-4xl font-bold text-gray-800 leading-tight">
+                        <h1 class="text-2xl lg:text-4xl font-bold text-gray-800 leading-tight">
                             {{ $item->title }}
-                        </h2>
+                        </h1>
                         <p class="text-gray-600 text-sm lg:text-base text-justify leading-relaxed">
                             {!! $item->content !!}
                         </p>
 
-                        <a href="#" onclick="history.back(); return false;"
+                        <a href="#"
+                           title="Go back to the previous page"
+                           rel="noopener noreferrer"
+                           aria-label="Go back to the previous page"
+                           onclick="history.back(); return false;"
                            class="inline-flex items-center gap-2 text-base text-gray-800 hover:text-red-600 transition-colors py-2">
                             <i class="fa-solid fa-arrow-left"></i>
                             <span>Back</span>
@@ -73,7 +77,11 @@
                                 @foreach($heroImages as $index => $heroImage)
                                     <img src="{{ $heroImage }}"
                                          class="sa-slide absolute top-0 left-0 w-full h-full object-cover {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}"
-                                         alt="{{ $salesAvenue->name }}">
+                                         alt="{{ $salesAvenue->name }}"
+                                         title="{{ $salesAvenue->name }}"
+                                         loading="lazy"
+                                         decoding="async"
+                                         fetchpriority="high">
                                 @endforeach
                             </div>
                         </div>
@@ -97,6 +105,10 @@
                                         <div class="rounded-lg  bg-white p-2">
                                             <img src="{{ $image->getUrl() }}"
                                                  alt="{{ $item->title }}"
+                                                 title="{{ $item->title }}"
+                                                 loading="lazy"
+                                                 decoding="async"
+                                                 fetchpriority="high"
                                                  class="w-full h-32 sm:h-36 object-contain">
                                         </div>
                                     @endforeach

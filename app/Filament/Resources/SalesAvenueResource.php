@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\SalesAvenueResource\Pages;
 use App\Filament\Resources\SalesAvenueResource\RelationManagers;
 use App\Models\SalesAvenue;
@@ -23,51 +24,63 @@ class SalesAvenueResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('categories')
-                    ->relationship('categories', 'name')
-                    ->required()
-                    ->multiple()
-                    ->searchable()
-                    ->preload(),
+                Forms\Components\Tabs::make('Sales Avenue')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                Forms\Components\Select::make('categories')
+                                    ->relationship('categories', 'name')
+                                    ->required()
+                                    ->multiple()
+                                    ->searchable()
+                                    ->preload(),
 
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
+                                Forms\Components\TextInput::make('title')
+                                    ->required()
+                                    ->maxLength(255),
 
-                Forms\Components\Toggle::make('is_published')
-                    ->label('Is Published')
-                    ->default(true)
-                    ->required(),
+                                Forms\Components\Toggle::make('is_published')
+                                    ->label('Is Published')
+                                    ->default(true)
+                                    ->required(),
 
-                Forms\Components\TextInput::make('grid_no')
-                    ->label('No. of grids')
-                    ->helperText('Number of grids to be display.')
-                    ->required()
-                    ->default(3),
+                                Forms\Components\TextInput::make('grid_no')
+                                    ->label('No. of grids')
+                                    ->helperText('Number of grids to be display.')
+                                    ->required()
+                                    ->default(3),
 
-                Forms\Components\RichEditor::make('content')
-                    ->columnSpanFull(),
+                                Forms\Components\RichEditor::make('content')
+                                    ->columnSpanFull(),
 
-                Forms\Components\SpatieMediaLibraryFileUpload::make('banner')
-                    ->collection('sales-avenue-banner')
-                    ->image()
-                    ->optimize('webp')
-                    ->imageEditor()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120)
-                    ->multiple()
-                    ->required(),
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('banner')
+                                    ->collection('sales-avenue-banner')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->imageEditor()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120)
+                                    ->multiple()
+                                    ->required(),
 
-                Forms\Components\SpatieMediaLibraryFileUpload::make('images')
-                    ->collection('sales-avenue-images')
-                    ->image()
-                    ->optimize('webp')
-                    ->imageEditor()
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120)
-                    ->multiple()
-                    ->reorderable()
-                    ->nullable(),
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('images')
+                                    ->collection('sales-avenue-images')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->imageEditor()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120)
+                                    ->multiple()
+                                    ->reorderable()
+                                    ->nullable(),
+                            ]),
+
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make())
+                    ])
+                    ->columnSpanFull()
             ]);
     }
 

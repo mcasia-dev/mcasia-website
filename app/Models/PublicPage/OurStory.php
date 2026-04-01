@@ -2,15 +2,16 @@
 
 namespace App\Models\PublicPage;
 
+use App\Traits\HasSeo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class OurStory extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use HasSeo;
 
     protected $fillable = [
         'title',

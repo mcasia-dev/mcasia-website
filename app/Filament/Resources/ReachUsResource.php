@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Components\SeoFields;
 use App\Filament\Resources\ReachUsResource\Pages;
 use App\Filament\Resources\ReachUsResource\RelationManagers;
 use App\Models\ReachUs;
@@ -25,26 +26,37 @@ class ReachUsResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Tabs::make('Reach Us')
+                    ->tabs([
+                        Forms\Components\Tabs\Tab::make('Details')
+                            ->icon('heroicon-o-cube')
+                            ->schema([
+                                Forms\Components\TextInput::make('title')
+                                    ->required()
+                                    ->maxLength(255),
 
-                Forms\Components\Textarea::make('subtitle')
+                                Forms\Components\Textarea::make('subtitle')
+                                    ->columnSpanFull(),
+
+                                Forms\Components\RichEditor::make('description')
+                                    ->columnSpanFull(),
+
+                                Forms\Components\SpatieMediaLibraryFileUpload::make('banner')
+                                    ->collection('reach-us-banner')
+                                    ->image()
+                                    ->optimize('webp')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(5120),
+
+                                Forms\Components\Toggle::make('is_published')
+                                    ->default(true)
+                                    ->nullable(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('SEO')
+                            ->icon('heroicon-o-magnifying-glass')
+                            ->schema(SeoFields::make()),
+                    ])
                     ->columnSpanFull(),
-
-                Forms\Components\RichEditor::make('description')
-                    ->columnSpanFull(),
-
-                Forms\Components\SpatieMediaLibraryFileUpload::make('banner')
-                    ->collection('reach-us-banner')
-                    ->image()
-                    ->optimize('webp')
-                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120),
-
-                Forms\Components\Toggle::make('is_published')
-                    ->default(true)
-                    ->nullable(),
             ]);
     }
 

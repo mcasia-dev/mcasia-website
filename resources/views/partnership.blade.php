@@ -25,6 +25,10 @@
     <main class="w-full overflow-x-hidden">
         <section class="partnership-hero relative h-[34vh] sm:h-[44vh] lg:h-[56vh] overflow-hidden">
             <img src="{{ asset('images/partnership/banner.png') }}" alt="Partnership"
+                title="Partnership"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="high"
                 class="absolute inset-0 w-full h-full object-cover">
             <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
                 <div>
@@ -37,7 +41,11 @@
             <div class="max-w-4xl mx-auto form-card rounded-2xl p-5 sm:p-7 lg:p-10">
                 <div class="flex items-center justify-between gap-4 mb-6">
                     <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Partners Information Sheet</h2>
-                    <a href="#" onclick="history.back(); return false;"
+                    <a href="#"
+                        title="Go back to the previous page"
+                        rel="noopener noreferrer"
+                        aria-label="Go back to the previous page"
+                        onclick="history.back(); return false;"
                         class="inline-flex items-center gap-2 text-sm sm:text-base text-gray-700 hover:text-red-600 transition-colors">
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>Back</span>
