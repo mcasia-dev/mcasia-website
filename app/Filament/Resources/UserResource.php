@@ -32,10 +32,21 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
+
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->required()
+                    ->required(fn ($context) => $context === 'create')
+                    ->revealable()
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->confirmed()
                     ->maxLength(255),
+
+                Forms\Components\TextInput::make('password_confirmation')
+                    ->label('Confirm Password')
+                    ->password()
+                    ->required(fn ($context) => $context === 'create')
+                    ->revealable()
+                    ->dehydrated(false),
                 Forms\Components\Toggle::make('is_admin')
                     ->default(false)
             ]);
