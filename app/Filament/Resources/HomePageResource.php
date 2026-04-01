@@ -19,6 +19,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Route;
 
 class HomePageResource extends Resource
 {
@@ -52,7 +53,6 @@ class HomePageResource extends Resource
 
                                 Forms\Components\Section::make('Banner')
                                     ->schema([
-//                                      // TODO: CHange the label
                                         TextInput::make('blocks.banner.eyebrow')
                                             ->label('Header Note')
                                             ->maxLength(80)
@@ -68,11 +68,10 @@ class HomePageResource extends Resource
                                             ->maxLength(80)
                                             ->default('Read More'),
 
-                                        // TODO: Change it into select with text input
-//                                        TextInput::make('blocks.banner.button_url')
-                                        Forms\Components\Hidden::make('blocks.banner.button_url')
-                                            ->helperText('example: https://mcasiafoodtrade.ph/')
-                                            ->default('/our-story'),
+                                        ...static::getLinkFieldSchema(
+                                            pathPrefix: 'blocks.banner',
+                                            defaultUrl: '/our-story',
+                                        ),
 
                                         FileUpload::make('blocks.banner.images')
                                             ->label('Banner Images')
@@ -113,7 +112,10 @@ class HomePageResource extends Resource
                                                     ->maxLength(80)
                                                     ->default('Learn More'),
 
-                                                Forms\Components\Hidden::make('button_url'),
+                                                ...static::getLinkFieldSchema(
+                                                    pathPrefix: '',
+                                                    defaultUrl: '/our-story',
+                                                ),
                                             ])
                                             ->default([
                                                 [
@@ -167,8 +169,10 @@ class HomePageResource extends Resource
                                             ->maxLength(80)
                                             ->default('All Products'),
 
-                                        Forms\Components\Hidden::make('blocks.our_products.button_url')
-                                            ->default('/products/cooking-essentials/cooking-essentials-canned-goods'),
+                                        ...static::getLinkFieldSchema(
+                                            pathPrefix: 'blocks.our_products',
+                                            defaultUrl: '/products/cooking-essentials/cooking-essentials-canned-goods',
+                                        ),
 
                                         Repeater::make('blocks.our_products.highlights')
                                             ->label('Product Highlights')
@@ -233,9 +237,10 @@ class HomePageResource extends Resource
                                             ->maxLength(80)
                                             ->default('View Recipes'),
 
-                                        Forms\Components\Hidden::make('blocks.our_recipes.button_url')
-                                            ->helperText('example: https://mcasiafoodtrade.ph/')
-                                            ->default('/recipes'),
+                                        ...static::getLinkFieldSchema(
+                                            pathPrefix: 'blocks.our_recipes',
+                                            defaultUrl: '/recipes',
+                                        ),
 
                                         FileUpload::make('blocks.our_recipes.banner_image')
                                             ->image()
@@ -303,5 +308,104 @@ class HomePageResource extends Resource
             'create' => Pages\CreateHomePage::route('/create'),
             'edit' => Pages\EditHomePage::route('/{record}/edit'),
         ];
+    }
+
+    protected static function getLinkFieldSchema(string $pathPrefix, string $defaultUrl): array
+    {
+        $linkTypePath = static::qualifyPath($pathPrefix, 'link_type');
+        $externalUrlPath = static::qualifyPath($pathPrefix, 'external_button_url');
+        $buttonUrlPath = static::qualifyPath($pathPrefix, 'button_url');
+
+        return [
+            Select::make($linkTypePath)
+                ->label('Button Route')
+                ->options(fn (): array => static::getWebRouteOptions() + ['other' => 'Other / External Link'])
+                ->searchable()
+                ->preload()
+                ->default($defaultUrl)
+                ->dehydrated(false)
+                ->live()
+                ->afterStateHydrated(function ($state, callable $set, Forms\Get $get) use ($linkTypePath, $externalUrlPath, $buttonUrlPath, $defaultUrl): void {
+                    $savedUrl = $get($buttonUrlPath);
+                    $routeOptions = static::getWebRouteOptions();
+
+                    if (! filled($savedUrl)) {
+                        $set($linkTypePath, $defaultUrl);
+                        $set($buttonUrlPath, $defaultUrl);
+
+                        return;
+                    }
+
+                    if (array_key_exists($savedUrl, $routeOptions)) {
+                        $set($linkTypePath, $savedUrl);
+                        $set($externalUrlPath, null);
+
+                        return;
+                    }
+
+                    $set($linkTypePath, 'other');
+                    $set($externalUrlPath, $savedUrl);
+                })
+                ->afterStateUpdated(function ($state, callable $set, Forms\Get $get) use ($externalUrlPath, $buttonUrlPath, $defaultUrl): void {
+                    if ($state === 'other') {
+                        $set($buttonUrlPath, $get($externalUrlPath));
+
+                        return;
+                    }
+
+                    $set($externalUrlPath, null);
+                    $set($buttonUrlPath, $state ?: $defaultUrl);
+                }),
+
+            TextInput::make($externalUrlPath)
+                ->label('Custom / External URL')
+                ->helperText('Use this only if the button should open a page that is not in the route list above. Enter the full link, for example: https://mcasiafoodtrade.ph/')
+                ->placeholder('https://mcasiafoodtrade.ph/')
+                ->dehydrated(false)
+                ->visible(fn (Forms\Get $get): bool => $get($linkTypePath) === 'other')
+                ->live(onBlur: true)
+                ->afterStateUpdated(function ($state, callable $set) use ($buttonUrlPath): void {
+                    $set($buttonUrlPath, $state);
+                }),
+
+            Forms\Components\Hidden::make($buttonUrlPath)
+                ->default($defaultUrl),
+        ];
+    }
+
+    protected static function qualifyPath(string $prefix, string $field): string
+    {
+        return filled($prefix) ? "{$prefix}.{$field}" : $field;
+    }
+
+    protected static function getWebRouteOptions(): array
+    {
+        return collect(Route::getRoutes())
+            ->filter(function ($route): bool {
+                $methods = $route->methods();
+                $uri = $route->uri();
+                $middleware = $route->middleware();
+
+                return in_array('GET', $methods, true)
+                    && ! in_array('POST', $methods, true)
+                    && in_array('web', $middleware, true)
+                    && ! str_contains($uri, '{')
+                    && ! str_starts_with($uri, 'admin')
+                    && ! str_starts_with($uri, 'livewire')
+                    && ! str_starts_with($uri, '_');
+            })
+            ->mapWithKeys(function ($route): array {
+                $uri = '/' . ltrim($route->uri(), '/');
+                $uri = $uri === '//' ? '/' : $uri;
+
+                $label = str($route->getName() ?: $uri)
+                    ->replace(['-', '_', '.'], ' ')
+                    ->headline()
+                    ->toString();
+
+                return [$uri => $label . ' (' . $uri . ')'];
+            })
+            ->sortKeys()
+            ->all();
     }
 }

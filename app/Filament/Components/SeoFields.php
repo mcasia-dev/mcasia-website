@@ -92,7 +92,6 @@ class SeoFields
 
                     Forms\Components\Select::make('seo.og_locale')
                         ->label('OG Locale')
-                        ->required()
                         ->options([
                             'en_PH' => 'English (Philippines)',
                             'en_US' => 'English (US)',

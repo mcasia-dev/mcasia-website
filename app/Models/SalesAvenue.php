@@ -19,11 +19,14 @@ class SalesAvenue extends Model implements HasMedia
         'title',
         'content',
         'is_published',
-        'grid_no'
+        'grid_no',
+        'image_field_type',
+        'image_links',
     ];
 
     protected $casts = [
         'is_published' => 'boolean',
+        'image_links' => 'array',
     ];
 
     public function registerMediaCollections(): void
