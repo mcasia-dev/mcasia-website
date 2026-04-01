@@ -95,9 +95,34 @@
                         @php
                             $images = $item->getMedia('sales-avenue-images');
                             $gridColumns = $item->grid_no ?? 3;
+                            $imageFieldType = $item->image_field_type ?? 'plain';
+                            $clickableImages = collect($item->image_links ?? [])
+                                ->filter(fn ($image) => ! empty($image['image'] ?? null))
+                                ->values();
                         @endphp
 
-                        @if($images->isNotEmpty())
+                        @if($imageFieldType === 'clickable' && $clickableImages->isNotEmpty())
+                            <article class="sales-card fade-section rounded-xl p-5 sm:p-6">
+                                <div class="grid gap-3 mt-5"
+                                     style="grid-template-columns: repeat({{ $gridColumns }}, minmax(0, 1fr));">
+                                    @foreach($clickableImages as $image)
+                                        <a href="{{ $image['link_url'] ?? '#' }}"
+                                           class="rounded-lg bg-white p-2 block transition-transform hover:-translate-y-1"
+                                           title="{{ $item->title }}"
+                                           rel="noopener noreferrer"
+                                           aria-label="{{ $item->title }}">
+                                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image['image']) }}"
+                                                 alt="{{ $item->title }}"
+                                                 title="{{ $item->title }}"
+                                                 loading="lazy"
+                                                 decoding="async"
+                                                 fetchpriority="high"
+                                                 class="w-full h-32 sm:h-36 object-contain">
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </article>
+                        @elseif($images->isNotEmpty())
                             <article class="sales-card fade-section rounded-xl p-5 sm:p-6">
                                 <div class="grid gap-3 mt-5"
                                      style="grid-template-columns: repeat({{ $gridColumns }}, minmax(0, 1fr));">
