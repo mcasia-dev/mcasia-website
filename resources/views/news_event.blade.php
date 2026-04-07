@@ -246,9 +246,9 @@
                                         <h3 class="text-2xl sm:text-3xl font-bold text-gray-900">{{ $event['title'] }}</h3>
                                         <p class="text-sm text-gray-500 mt-1 mb-4">{{ $event['date'] ?? '' }}</p>
                                         @if ($hasDescription)
-                                            <p class="text-gray-700 text-sm sm:text-base leading-relaxed text-justify">
+                                            <div class="text-gray-700 text-sm sm:text-base leading-relaxed text-justify">
                                                 {!! $event['description'] !!}
-                                            </p>
+                                            </div>
                                         @else
                                             <p class="text-gray-500 text-sm">No description available.</p>
                                         @endif

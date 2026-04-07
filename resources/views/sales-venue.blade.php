@@ -44,9 +44,9 @@
                         <h1 class="text-2xl lg:text-4xl font-bold text-gray-800 leading-tight">
                             {{ $item->title }}
                         </h1>
-                        <p class="text-gray-600 text-sm lg:text-base text-justify leading-relaxed">
+                        <div class="text-gray-600 text-sm lg:text-base text-justify leading-relaxed prose">
                             {!! $item->content !!}
-                        </p>
+                        </div>
 
                         <a href="#"
                            title="Go back to the previous page"
