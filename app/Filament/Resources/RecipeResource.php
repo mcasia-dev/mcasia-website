@@ -73,8 +73,7 @@ class RecipeResource extends Resource
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('recipe_video')
                                     ->label('Recipe Video')
                                     ->collection('recipe-video')
-                                    ->acceptedFileTypes(['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/webm'])
-                                    ->maxSize(102400),
+                                    ->acceptedFileTypes(['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/webm']),
 
                                 Forms\Components\Toggle::make('is_published')
                                     ->default(true)
