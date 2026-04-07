@@ -19,7 +19,7 @@
                 rgba(15, 23, 42, 0.34),
                 rgba(0, 0, 0, 0.22)
             ),
-            url("{{ asset('images/our-products/banner.jpg') }}");
+            url("{{ asset('images/our-products/banner.webp') }}");
             background-size: cover;
             background-position: center;
             border-radius: 1.5rem;
@@ -184,7 +184,7 @@
                                              title="{{ $category->name }} icon"
                                              loading="lazy"
                                              decoding="async"
-                                             fetchpriority="high">
+                                             fetchpriority="low">
                                     @endforeach
                                 </span>
                                 <p class="mt-2 text-sm font-bold leading-tight drop-shadow">{{ $category->name }}</p>
@@ -235,7 +235,7 @@
                                      title="Product image"
                                      loading="lazy"
                                      decoding="async"
-                                     fetchpriority="high">
+                                     fetchpriority="low">
                             </article>
                         @empty
                             <div class="rounded-xl bg-white border border-slate-200 p-6 text-slate-600">
