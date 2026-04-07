@@ -31,7 +31,7 @@ class ProductResource extends Resource
                     ->optimize('webp')
                     ->imageEditor()
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(5120)
+                    ->maxSize(15120)
                     ->required(),
 
                 Forms\Components\Select::make('brand_id')
