@@ -140,7 +140,7 @@ class HomePageResource extends Resource
                                                     'title' => 'Reach Us',
                                                     'description' => 'We believe that open communication is key to lasting partnerships. Our dedicated representatives are here to provide support, answer your questions, and explore opportunities that align with your business needs.',
                                                     'button_label' => 'Learn More',
-                                                    'button_url' => '/reach_us',
+                                                    'button_url' => '/reach-us',
                                                 ],
                                             ])
                                             ->minItems(4)
