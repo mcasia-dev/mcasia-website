@@ -90,6 +90,11 @@ class ProductResource extends Resource
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_active'),
+                Tables\Filters\SelectFilter::make('category_id')
+                    ->label('Category')
+                    ->relationship('categories', 'name')
+                    ->searchable()
+                    ->preload()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
