@@ -103,37 +103,34 @@
                     <i class="fa-solid fa-chevron-down transition-transform" id="ourSalesAvenueArrow"></i>
                 </button>
                 <ul id="ourSalesAvenue" class="hidden flex flex-col bg-gray-50">
-                    <li>
-                        <button onclick="toggleDropdown('ourSalesAvenueFoodServices')"
-                                class="w-full text-left px-6 py-2 flex justify-between items-center hover:bg-red-50 hover:text-red-600">
-                            Food Services
-                            <i class="fa-solid fa-chevron-down transition-transform"
-                               id="ourSalesAvenueFoodServicesArrow"></i>
-                        </button>
-                        <ul id="ourSalesAvenueFoodServices" class="hidden flex flex-col bg-gray-100">
-                            <li>
-                                <a href="/beverage" class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
-                                    Beverages
+                    @foreach($salesAvenues ?? [] as $salesAvenue)
+                        <li>
+                            @if(!empty($salesAvenue['subheader']))
+                                @php($salesDropdownId = 'ourSalesAvenueItem' . $loop->index)
+                                <button onclick="toggleDropdown('{{ $salesDropdownId }}')"
+                                        class="w-full text-left px-6 py-2 flex justify-between items-center hover:bg-red-50 hover:text-red-600">
+                                    {{ $salesAvenue['title'] }}
+                                    <i class="fa-solid fa-chevron-down transition-transform"
+                                       id="{{ $salesDropdownId }}Arrow"></i>
+                                </button>
+                                <ul id="{{ $salesDropdownId }}" class="hidden flex flex-col bg-gray-100">
+                                    @foreach($salesAvenue['subheader'] as $subheader)
+                                        <li>
+                                            <a href="/sales-avenue/{{ $subheader['url'] ?: '#' }}"
+                                               class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
+                                                {{ $subheader['title'] }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <a href="/sales-avenue/{{ $salesAvenue['url'] ?: '#' }}"
+                                   class="block px-6 py-2 hover:bg-red-50 hover:text-red-600">
+                                    {{ $salesAvenue['title'] }}
                                 </a>
-                            </li>
-                            <li>
-                                <a href="/foodservice_solutions"
-                                   class="block px-8 py-2 hover:bg-red-50 hover:text-red-600">
-                                    Food
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/retail_product" class="block px-6 py-2 hover:bg-red-50 hover:text-red-600">
-                            Retail
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/ecommerce" class="block px-6 py-2 hover:bg-red-50 hover:text-red-600">
-                            Ecommerce
-                        </a>
-                    </li>
+                            @endif
+                        </li>
+                    @endforeach
                 </ul>
             </li>
 

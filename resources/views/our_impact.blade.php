@@ -95,7 +95,7 @@
                 @endif
 
                 @if(!empty($pageDescription))
-                    <div class="mt-6 border-t border-slate-200 pt-6 text-gray-600 leading-relaxed prose prose-sm sm:prose-base max-w-none">
+                    <div class="mt-6 border-t border-slate-200 pt-6 text-gray-600 text-justify leading-relaxed prose prose-sm sm:prose-base max-w-none">
                         {!! $pageDescription !!}
                     </div>
                 @elseif($blocks->isEmpty())
@@ -121,7 +121,7 @@
                         @if(!empty($blockData['heading']))
                             <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">{{ $blockData['heading'] }}</h2>
                         @endif
-                        <div class="text-gray-600 leading-relaxed prose prose-sm sm:prose-base max-w-none">
+                        <div class="text-gray-600 text-justify leading-relaxed prose prose-sm sm:prose-base max-w-none">
                             {!! $blockData['body'] ?? '' !!}
                         </div>
                     </div>

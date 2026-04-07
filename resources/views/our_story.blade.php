@@ -363,7 +363,7 @@
                             <div class="timeline-panel story-card">
                                 <span class="timeline-chip">{{ $entry['year'] }}</span>
                                 <h3 class="timeline-heading">{{ $entry['title'] }}</h3>
-                                <div class="timeline-body text-sm md:text-lg prose">
+                                <div class="timeline-body text-sm md:text-lg text-justify prose">
                                     {!! $entry['body'] !!}
                                 </div>
                             </div>
