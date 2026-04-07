@@ -18,13 +18,13 @@ Route::controller(PublicPageController::class)
         Route::get('/our_channel', 'ourChannel')->name('our_channel');
         Route::get('/our_impact', 'ourImpact')->name('our_impact');
         Route::get('/brands/{slug}', 'showBrands')->name('show-brands');
-        Route::get('/reach_us', 'reachUs')->name('reach_us');
         Route::get('/privacy_policy', 'privacyPolicy')->name('privacy_policy');
         Route::get('/terms-and-conditions', 'termsAndConditions')->name('terms-and-conditions');
     });
 
 Route::get('/product_catalog', fn() => view('product_catalog.product_catalog'))->name('product_catalog');
 Route::get('/product_catalog_mobile', fn() => view('product_catalog.product_catalog_mobile'))->name('product_catalog_mobile');
+
 Route::get('/menu_ideas_with_products', fn() => view('menu_ideas.menu_ideas_with_products'))->name('menu_ideas_with_products');
 Route::get('/menu_ideas_with_products_mobile', fn() => view('menu_ideas.menu_ideas_with_products_mobile'))->name('menu_ideas_with_products_mobile');
 

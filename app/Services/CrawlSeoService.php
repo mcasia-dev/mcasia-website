@@ -22,7 +22,7 @@ class CrawlSeoService
             ->add(Product::query()->get())
             ->add(route('our-story'))
             ->add(route('news_event'))
-            ->add(route('reach_us'))
+            ->add(route('reach-us'))
             ->add(route('our_channel'))
             ->add(route('our_impact'))
             ->writeToFile(public_path('sitemap.xml'));
