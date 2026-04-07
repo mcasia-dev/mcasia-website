@@ -17,8 +17,7 @@
 
         .about-page {
             font-family: 'Onest', sans-serif;
-            background:
-            radial-gradient(1000px 500px at 90% -10%, rgba(220, 38, 38, 0.08), transparent 60%),
+            background: radial-gradient(1000px 500px at 90% -10%, rgba(220, 38, 38, 0.08), transparent 60%),
             radial-gradient(900px 500px at -10% 50%, rgba(239, 68, 68, 0.08), transparent 60%),
             linear-gradient(180deg, #f8fafc 0%, #f3f4f6 100%);
             color: var(--ink);
@@ -242,6 +241,7 @@
     </style>
 
     @php
+        // Starts with empty timeline entries by declaring empty array.
         $timelineEntries = [];
 
         foreach (($ourStory?->timeline_items ?? []) as $item) {
@@ -258,6 +258,7 @@
 
         $contentHtml = $ourStory?->content ?? '';
 
+        //  Check the timeline items if empty and the content HTML
         if (empty($timelineEntries) && !empty($contentHtml)) {
             $dom = new \DOMDocument();
             libxml_use_internal_errors(true);
@@ -319,7 +320,8 @@
             <div class="max-w-6xl mx-auto">
                 <div class="about-banner-frame relative overflow-hidden rounded-[28px] border border-white/70 bg-white">
                     <div class="h-[28vh] min-h-[240px] sm:h-[34vh] md:h-[380px]">
-                        <img src="{{ $ourStory->media[0]->original_url ?? asset('images/HOMEPAGE/1.jpg') }}" alt="McAsia Background"
+                        <img src="{{ $ourStory->media[0]->original_url ?? asset('images/HOMEPAGE/1.jpg') }}"
+                             alt="McAsia Background"
                              title="McAsia Background"
                              loading="lazy"
                              decoding="async"
@@ -331,7 +333,8 @@
         </section>
 
         <section class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12 space-y-6 sm:space-y-8">
-            <article class="about-intro-card fade-section rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 lg:p-10">
+            <article
+                class="about-intro-card fade-section rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 lg:p-10">
                 <div class="max-w-4xl">
                     <div class="about-title-block">
                         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-slate-900">
@@ -343,7 +346,8 @@
                         {{ $ourStory?->subtitle ?? 'Bridging the Philippines with the authentic flavors of Asia since 2012' }}
                     </p>
 
-                    <div class="mt-6 border-t border-slate-200 pt-6 text-gray-600 leading-relaxed text-sm md:text-lg lg:text-xl text-justify">
+                    <div
+                        class="mt-6 border-t border-slate-200 pt-6 text-gray-600 leading-relaxed text-sm md:text-lg lg:text-xl text-justify">
                         {!! $ourStory->description ?? '<strong>McAsia Foodtrade Corporation</strong>, established in March 2012, began with a clear vision to bridge the Philippines with the rich flavors of Asia by providing authentic, high-quality food products to businesses and consumers nationwide. Operating under the trading name McAsia, the company set out to become a trusted source of Asian culinary essentials in the country.' !!}
                     </div>
                 </div>
