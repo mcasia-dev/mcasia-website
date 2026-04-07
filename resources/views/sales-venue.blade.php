@@ -28,6 +28,16 @@
         .sa-slide {
             transition: opacity 1s ease-in-out;
         }
+
+        .sales-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media (min-width: 640px) {
+            .sales-grid {
+                grid-template-columns: repeat(var(--grid-columns, 3), minmax(0, 1fr));
+            }
+        }
     </style>
 
     @php
@@ -103,8 +113,8 @@
 
                         @if($imageFieldType === 'clickable' && $clickableImages->isNotEmpty())
                             <article class="sales-card fade-section rounded-xl p-5 sm:p-6">
-                                <div class="grid gap-3 mt-5"
-                                     style="grid-template-columns: repeat({{ $gridColumns }}, minmax(0, 1fr));">
+                                <div class="sales-grid grid gap-3 mt-5"
+                                     style="--grid-columns: {{ max(1, (int) $gridColumns) }};">
                                     @foreach($clickableImages as $image)
                                         <a href="{{ $image['link_url'] ?? '#' }}"
                                            class="rounded-lg bg-white p-2 block transition-transform hover:-translate-y-1"
@@ -124,8 +134,8 @@
                             </article>
                         @elseif($images->isNotEmpty())
                             <article class="sales-card fade-section rounded-xl p-5 sm:p-6">
-                                <div class="grid gap-3 mt-5"
-                                     style="grid-template-columns: repeat({{ $gridColumns }}, minmax(0, 1fr));">
+                                <div class="sales-grid grid gap-3 mt-5"
+                                     style="--grid-columns: {{ max(1, (int) $gridColumns) }};">
                                     @foreach($images as $image)
                                         <div class="rounded-lg  bg-white p-2">
                                             <img src="{{ $image->getUrl() }}"
