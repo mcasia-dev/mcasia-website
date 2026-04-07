@@ -2,6 +2,61 @@
  * Magazine sample
 */
 
+var pageImageCache = {};
+
+function pageAssetPath(page, suffix, extension) {
+	return 'menu_ideas_flip_page_assets/pages/' + page + suffix + '.' + extension;
+}
+
+function assetCandidates(page, suffix) {
+	return [
+		pageAssetPath(page, suffix, 'webp'),
+		pageAssetPath(page, suffix, 'jpg'),
+		pageAssetPath(page, suffix, 'png')
+	];
+}
+
+function loadImageWithFallback(img, candidates, done) {
+	var index = 0;
+
+	function tryNext() {
+		if (index >= candidates.length) {
+			return;
+		}
+
+		var src = candidates[index++];
+
+		img.off('error.catalogFallback').on('error.catalogFallback', tryNext);
+		img.attr('src', src);
+	}
+
+	img.off('load.catalogLoad').on('load.catalogLoad', function() {
+		img.off('error.catalogFallback');
+
+		if (done) {
+			done.call(this);
+		}
+	});
+
+	tryNext();
+}
+
+function preloadPageAssets(page) {
+	var totalPages = $('.magazine').turn('pages');
+
+	if (page < 1 || (totalPages && page > totalPages) || pageImageCache[page]) {
+		return;
+	}
+
+	pageImageCache[page] = true;
+
+	$.each(assetCandidates(page, ''), function(_, src) {
+		var image = new Image();
+		image.src = src;
+		return false;
+	});
+}
+
 function addPage(page, book) {
 
 	var id, pages = book.turn('pages');
@@ -27,13 +82,14 @@ function loadPage(page, pageElement) {
 	// Create an image element
 
 	var img = $('<img />');
+	img.attr('draggable', 'false');
 
 	img.mousedown(function(e) {
 		e.preventDefault();
 	});
 
-	img.load(function() {
-		
+	loadImageWithFallback(img, assetCandidates(page, ''), function() {
+
 		// Set the size
 		$(this).css({width: '100%', height: '100%'});
 
@@ -42,13 +98,9 @@ function loadPage(page, pageElement) {
 		$(this).appendTo(pageElement);
 
 		// Remove the loader indicator
-		
+
 		pageElement.find('.loader').remove();
 	});
-
-	// Load the page
-
-	img.attr('src', 'menu_ideas_flip_page_assets/pages/' +  page + '.png');
 
 	loadRegions(page, pageElement);
 
@@ -99,11 +151,11 @@ function regionClick(event) {
 	if (region.hasClass('region')) {
 
 		$('.magazine-viewport').data().regionClicked = true;
-		
+
 		setTimeout(function() {
 			$('.magazine-viewport').data().regionClicked = false;
 		}, 100);
-		
+
 		var regionType = $.trim(region.attr('class').replace('region', ''));
 
 		return processRegion(region, regionType);
@@ -147,35 +199,31 @@ function processRegion(region, regionType) {
 // Load large page
 
 function loadLargePage(page, pageElement) {
-	
-	var img = $('<img />');
 
-	img.load(function() {
+	var img = $('<img />');
+	img.attr('draggable', 'false');
+
+	loadImageWithFallback(img, assetCandidates(page, '-large').concat(assetCandidates(page, '')), function() {
 
 		var prevImg = pageElement.find('img');
 		$(this).css({width: '100%', height: '100%'});
 		$(this).appendTo(pageElement);
 		prevImg.remove();
-		
-	});
 
-	// Loadnew page
-	
-	img.attr('src', 'menu_ideas_flip_page_assets/pages/' +  page + '-large.png');
+	});
 }
 
 // Load small page
 
 function loadSmallPage(page, pageElement) {
-	
+
 	var img = pageElement.find('img');
 
 	img.css({width: '100%', height: '100%'});
 
-	img.unbind('load');
-	// Loadnew page
-
-	img.attr('src', 'menu_ideas_flip_page_assets/pages/' +  page + '.png');
+	loadImageWithFallback(img, assetCandidates(page, ''), function() {
+		$(this).css({width: '100%', height: '100%'});
+	});
 }
 
 // http://code.google.com/p/chromium/issues/detail?id=128488
@@ -187,11 +235,15 @@ function isChrome() {
 }
 
 function disableControls(page) {
+		preloadPageAssets(page + 1);
+		preloadPageAssets(page + 2);
+		preloadPageAssets(page - 1);
+
 		if (page==1)
 			$('.previous-button').hide();
 		else
 			$('.previous-button').show();
-					
+
 		if (page==$('.magazine').turn('pages'))
 			$('.next-button').hide();
 		else
@@ -226,7 +278,7 @@ function resizeViewport() {
 		if (bound.width%2!==0)
 			bound.width-=1;
 
-			
+
 		if (bound.width!=$('.magazine').width() || bound.height!=$('.magazine').height()) {
 
 			$('.magazine').turn('size', bound.width, bound.height);
@@ -258,7 +310,7 @@ function resizeViewport() {
 		$('.made').show();
 
 	$('.magazine').addClass('animated');
-	
+
 }
 
 
@@ -315,7 +367,7 @@ function setPreview(view) {
 // Width of the flipbook when zoomed in
 
 function largeMagazineWidth() {
-	
+
 	return 2214;
 
 }
@@ -337,25 +389,25 @@ function decodeParams(data) {
 // Calculate the width and height of a square within another square
 
 function calculateBound(d) {
-	
+
 	var bound = {width: d.width, height: d.height};
 
 	if (bound.width>d.boundWidth || bound.height>d.boundHeight) {
-		
+
 		var rel = bound.width/bound.height;
 
 		if (d.boundWidth/rel>d.boundHeight && d.boundHeight*rel<=d.boundWidth) {
-			
+
 			bound.width = Math.round(d.boundHeight*rel);
 			bound.height = d.boundHeight;
 
 		} else {
-			
+
 			bound.width = d.boundWidth;
 			bound.height = Math.round(d.boundWidth/rel);
-		
+
 		}
 	}
-		
+
 	return bound;
 }
