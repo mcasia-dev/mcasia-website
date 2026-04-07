@@ -187,11 +187,12 @@
                                                      :src="img"
                                                      :alt="`${@js($event['title'])} image ${i + 1}`"
                                                      :title="`${@js($event['title'])} image ${i + 1}`"
-                                                     loading="lazy"
+                                                     loading="eager"
                                                      decoding="async"
                                                      fetchpriority="high"
                                                      class="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
-                                                     @click="fullImage = img">
+                                                     @click="fullImage = img"
+                                                />
                                             </template>
 
                                             <button @click="prev()"
