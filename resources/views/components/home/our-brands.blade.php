@@ -45,7 +45,7 @@
                                 src="{{ $brand->media[0]->original_url }}"
                                 alt="{{ $brand->brand_name }}"
                                 title="{{ $brand->brand_name }}"
-                                loading="lazy"
+                                loading="eager"
                                 decoding="async"
                                 fetchpriority="high"
                                 class="h-28 w-28 object-contain p-3"
@@ -63,7 +63,7 @@
                                 src="{{ $brand->media[0]->original_url }}"
                                 alt="{{ $brand->brand_name }}"
                                 title="{{ $brand->brand_name }}"
-                                loading="lazy"
+                                loading="eager"
                                 decoding="async"
                                 fetchpriority="high"
                                 class="h-28 w-28 object-contain p-3 "
@@ -92,7 +92,7 @@
                                 title="{{ $brand['name'] }}"
                                 loading="lazy"
                                 decoding="async"
-                                fetchpriority="high"
+                                fetchpriority="low"
                                 class="h-28 w-28 object-contain p-3"
                             />
                             <div
@@ -110,7 +110,7 @@
                                 title="{{ $brand['name'] }}"
                                 loading="lazy"
                                 decoding="async"
-                                fetchpriority="high"
+                                fetchpriority="low"
                                 class="h-28 w-28 object-contain p-3"
                             />
                             <div
