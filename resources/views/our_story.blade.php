@@ -203,6 +203,13 @@
             color: #111827;
         }
 
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.4));
+        }
+
         @media (min-width: 1024px) {
             .timeline-showcase::before {
                 left: 50%;
@@ -316,19 +323,16 @@
     @endphp
 
     <main class="about-page">
-        <section class="px-4 pt-6 sm:px-6 sm:pt-8 lg:pt-10">
-            <div class="max-w-6xl mx-auto">
-                <div class="about-banner-frame relative overflow-hidden rounded-[28px] border border-white/70 bg-white">
-                    <div class="h-[28vh] min-h-[240px] sm:h-[34vh] md:h-[380px]">
-                        <img src="{{ $ourStory->media[0]->original_url ?? asset('images/HOMEPAGE/1.jpg') }}"
-                             alt="McAsia Background"
-                             title="McAsia Background"
-                             loading="lazy"
-                             decoding="async"
-                             fetchpriority="high"
-                             class="w-full h-full object-cover">
-                    </div>
-                </div>
+        <section class="hero-banner relative h-[36vh] sm:h-[46vh] lg:h-[100vh] overflow-hidden">
+            <img src="{{ $ourStory->media[0]->original_url ?? asset('images/HOMEPAGE/1.jpg') }}" --}}
+                 alt="McAsia Background"
+                 title="McAsia Background"
+                 loading="lazy"
+                 decoding="async"
+                 fetchpriority="high"
+                 class="w-full h-full object-cover"
+            />
+            <div class="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">
             </div>
         </section>
 
@@ -442,34 +446,22 @@
                             <ul class="space-y-2 text-gray-600 text-sm md:text-base text-justify">
                                 <li class="flex items-start gap-2"><i
                                         class="fa-solid fa-check text-teal-600 mt-1"></i><span>Excellence in everything we
-                                        do</span></li>
+                                            do</span></li>
                                 <li class="flex items-start gap-2"><i
                                         class="fa-solid fa-check text-teal-600 mt-1"></i><span>Customer Commitment</span>
                                 </li>
                                 <li class="flex items-start gap-2"><i
                                         class="fa-solid fa-check text-teal-600 mt-1"></i><span>Integrity in all
-                                        dealings</span></li>
+                                            dealings</span></li>
                                 <li class="flex items-start gap-2"><i
                                         class="fa-solid fa-check text-teal-600 mt-1"></i><span>Teamwork and
-                                        collaboration</span></li>
+                                            collaboration</span></li>
                                 <li class="flex items-start gap-2"><i
                                         class="fa-solid fa-check text-teal-600 mt-1"></i><span>Sustainable practices</span>
                                 </li>
                             </ul>
                         </div>
                     </article>
-                </div>
-
-                <div class="text-center pt-8 sm:pt-4 fade-section">
-                    <a href="#"
-                       title="Go back to the previous page"
-                       rel="noopener noreferrer"
-                       aria-label="Go back to the previous page"
-                       onclick="history.back(); return false;"
-                       class="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-5 py-2.5 text-sm font-semibold text-red-700 shadow-sm hover:bg-red-50 transition-colors">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <span>Back</span>
-                    </a>
                 </div>
             </div>
         </section>

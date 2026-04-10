@@ -7,6 +7,7 @@ use App\Filament\Resources\SalesAvenueResource\Pages;
 use App\Filament\Resources\SalesAvenueResource\RelationManagers;
 use App\Models\SalesAvenue;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -197,6 +198,11 @@ class SalesAvenueResource extends Resource
                         ->maxLength(2048)
                         ->placeholder('https://example.com or /reach-us')
                         ->required()
+                        ->columnSpanFull(),
+
+                    TextInput::make('title')
+                        ->label('Title')
+                        ->nullable()
                         ->columnSpanFull(),
                 ])
                 ->reorderableWithButtons()

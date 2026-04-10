@@ -57,16 +57,6 @@
                         <div class="text-gray-600 text-sm lg:text-base text-justify leading-relaxed prose">
                             {!! $item->content !!}
                         </div>
-
-                        <a href="#"
-                           title="Go back to the previous page"
-                           rel="noopener noreferrer"
-                           aria-label="Go back to the previous page"
-                           onclick="history.back(); return false;"
-                           class="inline-flex items-center gap-2 text-base text-gray-800 hover:text-red-600 transition-colors py-2">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            <span>Back</span>
-                        </a>
                     </article>
 
                     <div class="fade-section w-full lg:w-1/2">
@@ -121,13 +111,20 @@
                                            title="{{ $item->title }}"
                                            rel="noopener noreferrer"
                                            aria-label="{{ $item->title }}">
-                                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image['image']) }}"
-                                                 alt="{{ $item->title }}"
-                                                 title="{{ $item->title }}"
-                                                 loading="lazy"
-                                                 decoding="async"
-                                                 fetchpriority="high"
-                                                 class="w-full h-32 sm:h-36 object-contain">
+                                            <img
+                                                src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image['image']) }}"
+                                                alt="{{ $item->title }}"
+                                                title="{{ $item->title }}"
+                                                loading="lazy"
+                                                decoding="async"
+                                                fetchpriority="high"
+                                                class="w-full h-32 sm:h-36 object-contain"
+                                            />
+                                            @if(!is_null($image['title']))
+                                                <p class="text-gray-700 text-center font-medium uppercase py-2 text-sm">
+                                                    {{ $image['title'] ?? '' }}
+                                                </p>
+                                            @endif
                                         </a>
                                     @endforeach
                                 </div>

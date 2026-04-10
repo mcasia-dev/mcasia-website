@@ -39,19 +39,6 @@
 
         <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14 lg:py-16">
             <div class="max-w-4xl mx-auto form-card rounded-2xl p-5 sm:p-7 lg:p-10">
-                <div class="flex items-center justify-between gap-4 mb-6">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Partners Information Sheet</h2>
-                    <a href="#"
-                        title="Go back to the previous page"
-                        rel="noopener noreferrer"
-                        aria-label="Go back to the previous page"
-                        onclick="history.back(); return false;"
-                        class="inline-flex items-center gap-2 text-sm sm:text-base text-gray-700 hover:text-red-600 transition-colors">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <span>Back</span>
-                    </a>
-                </div>
-
                 @if (session('success'))
                     <div class="mb-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
                         {{ session('success') }}

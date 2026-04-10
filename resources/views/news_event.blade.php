@@ -281,19 +281,6 @@
                     {{ $events->links() }}
                 </div>
             @endif
-
-            <div class="pt-10 text-center">
-                <a href="#"
-                   title="Go back to the previous page"
-                   rel="noopener noreferrer"
-                   aria-label="Go back to the previous page"
-                   onclick="history.back(); return false;"
-                   class="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back</span>
-                </a>
-            </div>
-
         </section>
     </div>
     @include('components.footer')

@@ -125,7 +125,7 @@
 
         @media (min-width: 1280px) {
             .canned-image-grid {
-                grid-template-columns: repeat(5, minmax(0, 1fr));
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
@@ -134,16 +134,28 @@
             background: #fff;
             border-radius: 0.5rem;
             box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
-            padding: 0.85rem;
-            height: 210px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
         }
 
         .canned-image-card img {
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            padding: 0.85rem;
+            transform-origin: center center;
+            transition: transform 220ms ease, transform-origin 120ms ease;
+            will-change: transform, transform-origin;
+            cursor: zoom-in;
+        }
+
+        .canned-image-card:hover img {
+            transform: scale(4.5);
+        }
+
+        .canned-image-card.is-zooming {
+            z-index: 2;
         }
     </style>
 @endpush
@@ -230,8 +242,9 @@
                 <div class="mt-5">
                     <div id="product-image-grid" class="canned-image-grid">
                         @forelse($productImages as $image)
-                            <article class="canned-image-card">
+                            <article class="canned-image-card" data-zoom-card>
                                 <img src="{{ $image }}" alt="Product"
+                                     data-zoom-image
                                      title="Product image"
                                      loading="lazy"
                                      decoding="async"
@@ -257,3 +270,31 @@
 
     @include('components.footer')
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('[data-zoom-card]').forEach(function (card) {
+                const image = card.querySelector('[data-zoom-image]');
+
+                if (!image) {
+                    return;
+                }
+
+                card.addEventListener('mousemove', function (event) {
+                    const bounds = card.getBoundingClientRect();
+                    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+                    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+
+                    image.style.transformOrigin = `${x}% ${y}%`;
+                    card.classList.add('is-zooming');
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    image.style.transformOrigin = 'center center';
+                    card.classList.remove('is-zooming');
+                });
+            });
+        });
+    </script>
+@endpush
