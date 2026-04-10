@@ -181,7 +181,7 @@
                                          fetchpriority="high">
                                     <div class="mt-3 text-center">
                                         <span
-                                            class="inline-block text-xs sm:text-sm font-semibold tracking-wide text-gray-700"
+                                            class="inline-block text-xs sm:text-sm font-semibold tracking-wide text-gray-700 uppercase"
                                             x-text="product.name"></span>
                                     </div>
                                 </button>
